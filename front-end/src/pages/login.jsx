@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { api_url } from "../config/const";
+import "../assets/css/style.css";
+import "../assets/css/login.css";
+import Footer from "../components/footer";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,27 +16,19 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:4000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+    axios
+      .post(`${api_url}/auth/login`, formData)
+      .then((res) => {
+        if (res.data.token) {
+          localStorage.setItem("token", res.data.token);
+          navigate("/map");
+        } else {
+          setError("Erreur de connexion");
+        }
+      })
+      .catch((err) => {
+        setError("Erreur de connexion");
       });
-
-      const data = await response.json();
-
-      if (response.ok && data.token) {
-        localStorage.setItem("token", data.token);
-        navigate("/dashboard");
-      } else {
-        setError(data.error || "Erreur de connexion");
-      }
-    } catch (err) {
-      setError("Erreur réseau ou serveur");
-    }
   };
 
   const handleChange = (e) => {
@@ -41,12 +38,12 @@ const Login = () => {
     });
   };
   return (
-    <div className="auth-container">
-      <h2>Connexion</h2>
-      {error && <div className="error-message">{error}</div>}
+    <div className="backgroundBlured">
+      <div className="auth-container">
+        <h2>Connexion</h2>
+        {error && <div className="error-message">{error}</div>}
 
-      <form onSubmit={handleLogin}>
-        <div className="form-group">
+        <form onSubmit={handleLogin} className="formLogin">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -56,9 +53,6 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-        </div>
-
-        <div className="form-group">
           <label htmlFor="password">Mot de passe</label>
           <input
             type="password"
@@ -68,13 +62,14 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-        </div>
-      </form>
+          <button type="submit">Se connecter</button>
+        </form>
 
-      <div className="auth-links">
-        <p>
-          Pas encore de compte ? <Link to="/register">S'inscrire</Link>
-        </p>
+        <div className="auth-links">
+          <p>
+            Pas encore de compte ? <Link to="/register">S'inscrire</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

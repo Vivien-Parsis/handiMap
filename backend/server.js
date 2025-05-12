@@ -1,6 +1,6 @@
 const express = require("express")
 const cors = require("cors")
-const { host, port } = require("./config/server.config")
+const { host, port, frontend_url } = require("./config/server.config")
 const { userRouter } = require("./routes/user.route")
 const { authRouter } = require("./routes/auth.route")
 const { checkRouteJwt } = require("./middlewares/auth.middleware")
@@ -11,7 +11,7 @@ const app = express()
 
 //plugin
 app.use(cors({
-    origin: `http://${host}:${port}`,
+    origin: [`http://${host}:${port}`, frontend_url],
     credentials: true
 }))
 app.use(express.json())

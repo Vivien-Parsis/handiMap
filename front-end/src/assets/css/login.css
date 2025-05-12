@@ -1,0 +1,29 @@
+.backgroundBlured{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.auth-container{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgb(223, 209, 255);
+    flex-direction: column;
+    padding:1em;
+    border-radius: 10px;
+}
+.formLogin{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.formLogin *{
+    margin:.3em 0 .3em;
+}

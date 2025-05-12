@@ -1,0 +1,102 @@
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { api_url } from "../config/const";
+import "../assets/css/style.css";
+import "../assets/css/register.css";
+
+const Register = () => {
+  const [formData, setFormData] = useState({
+    nom: "",
+    prenom: "",
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    axios
+      .post(`${api_url}/auth/register`, formData)
+      .then((res) => {
+        if (res.data) {
+          localStorage.setItem("token", res.data);
+          navigate("/map");
+        } else {
+          setError("Erreur de connexion");
+        }
+      })
+      .catch((err) => {
+        setError("Erreur de connexion");
+      });
+  };
+
+  return (
+    <div className="backgroundBlured">
+      <div className="auth-container">
+        <h2>Inscription</h2>
+        {error && <div className="error-message">{error}</div>}
+
+        <form onSubmit={handleRegister} className="formRegister">
+            <label htmlFor="nom">Nom</label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              value={formData.nom}
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="prenom">Prénom</label>
+            <input
+              type="text"
+              id="prenom"
+              name="prenom"
+              value={formData.prenom}
+              onChange={handleChange}
+              required
+            />
+
+            <label htmlFor="email">Adresse email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+
+          <button type="submit">S'inscrire</button>
+        </form>
+
+        <div className="auth-links">
+          <p>
+            Vous avez déjà un compte ? <Link to="/login">Se connecter</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Register;
