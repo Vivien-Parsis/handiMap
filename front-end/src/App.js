@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/protectedRoute';
 import Login from './pages/login';
 import './App.css';
@@ -6,7 +6,6 @@ import Register from './pages/register';
 import Map from './pages/map';
 import Footer from './components/footer';
 import Error404 from './pages/error404';
-import Header from './components/header';
 
 function App() {
   return (
@@ -26,7 +25,6 @@ function App() {
         <Route path="*" element={<Error404/>} />
       </Routes>
       
-    <Header/>  
     <Footer/>
     </BrowserRouter>
   );
