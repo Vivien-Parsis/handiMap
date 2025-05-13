@@ -1,9 +1,9 @@
-const { getAllHandicaps } = require('../controllers/handicap.controller')
-
-const handicapRouter = require('express').Router()
+import { getAllHandicaps } from '../controllers/handicap.controller.js'
+import { Router } from 'express'
+const handicapRouter = Router()
 
 handicapRouter.get("/",getAllHandicaps)
 
-module.exports = {
+export{
     handicapRouter
 }

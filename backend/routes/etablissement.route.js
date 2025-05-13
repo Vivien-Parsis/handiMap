@@ -1,9 +1,10 @@
-const { getAlletablissements } = require('../controllers/etablissement.controller')
+import { getAlletablissements } from '../controllers/etablissement.controller.js'
 
-const etablissementRouter = require('express').Router()
+import { Router } from 'express'
+const etablissementRouter = Router()
 
 etablissementRouter.get("/",getAlletablissements)
 
-module.exports = {
+export{
     etablissementRouter
 }

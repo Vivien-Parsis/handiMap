@@ -1,5 +1,5 @@
-const { jwt_secret } = require("../config/server.config")
-const jwt = require('jsonwebtoken')
+import { jwt_secret } from "../config/server.config.js"
+import jwt from 'jsonwebtoken'
 
 const checkRouteJwt = (req, res, next) => {
     const token = req.headers.authorization || ""
@@ -32,7 +32,7 @@ const checkAdminRouteJwt = (req, res, next) => {
     }
 }
 
-module.exports = {
+export {
     checkRouteJwt,
     checkAdminRouteJwt
 }

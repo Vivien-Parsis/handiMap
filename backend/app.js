@@ -1,11 +1,11 @@
-const express = require("express")
-const cors = require("cors")
-const { host, port, frontend_url } = require("./config/server.config")
-const { userRouter } = require("./routes/user.route")
-const { authRouter } = require("./routes/auth.route")
-const { checkRouteJwt } = require("./middlewares/auth.middleware")
-const { handicapRouter } = require("./routes/handicap.route")
-const { etablissementRouter } = require("./routes/etablissement.route")
+import express from "express"
+import cors from "cors"
+import { host, port, frontend_url } from "./config/server.config.js"
+import { userRouter } from "./routes/user.route.js"
+import { authRouter } from "./routes/auth.route.js"
+import { checkRouteJwt } from "./middlewares/auth.middleware.js"
+import { handicapRouter } from "./routes/handicap.route.js"
+import { etablissementRouter } from "./routes/etablissement.route.js"
 
 const app = express()
 
@@ -25,4 +25,4 @@ app.use((req, res, next) => {
     return res.status(404).send({ "message": "page not found" })
 })
 
-module.exports = { app }
+export{ app }

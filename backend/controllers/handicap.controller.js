@@ -1,4 +1,4 @@
-const { handicapModel } = require("../models/handicap.model")
+import { handicapModel } from "../models/handicap.model.js"
 
 const getAllHandicaps = async (req, res) => {
     try {
@@ -9,6 +9,6 @@ const getAllHandicaps = async (req, res) => {
     }
 }
 
-module.exports = {
+export {
   getAllHandicaps
 }

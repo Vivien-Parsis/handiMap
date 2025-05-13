@@ -1,4 +1,4 @@
-const { pool } = require('../config/db.config')
+import { pool } from '../config/db.config.js'
 
 const userModel = {
 	create: async ({ email, passwordHash, role = 'user', nom, prenom }) => {
@@ -32,6 +32,6 @@ const userModel = {
 	}
 }
 
-module.exports = {
+export{
 	userModel
 }

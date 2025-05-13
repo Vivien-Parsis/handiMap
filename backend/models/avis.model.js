@@ -1,4 +1,4 @@
-const { pool } = require('../config/db.config')
+import { pool } from '../config/db.config.js'
 
 const avisModel = {
     create: async ({ note, date, commentaire, photo, id_user, id_etablissement }) => {
@@ -29,6 +29,6 @@ const avisModel = {
     }
 }
 
-module.exports = {
+export {
     avisModel
 }

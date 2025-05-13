@@ -1,4 +1,4 @@
-const { userModel } = require("../models/user.model")
+import { userModel } from "../models/user.model.js"
 
 const getCurrentUser = async (req, res) => {
     try {
@@ -45,7 +45,7 @@ const deleteHandicapFromUser = async (req, res) => {
     }
 }
 
-module.exports = {
+export {
     getCurrentUser,
     addHandicapToUser,
     deleteHandicapFromUser,

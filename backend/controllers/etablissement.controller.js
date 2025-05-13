@@ -1,4 +1,4 @@
-const { etablissementModel } = require("../models/etablissement.model")
+import { etablissementModel } from "../models/etablissement.model.js"
 
 
 const getAlletablissements = async (req, res) => {
@@ -10,6 +10,6 @@ const getAlletablissements = async (req, res) => {
     }
 }
 
-module.exports = {
+export {
   getAlletablissements
 }

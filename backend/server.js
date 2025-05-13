@@ -1,5 +1,5 @@
-const { app } = require("./app")
-const { host, port } = require("./config/server.config")
+import { app } from "./app.js"
+import { host, port } from "./config/server.config.js"
 
 //listen
 app.listen({ host: host, port: port }, () => {

@@ -17,4 +17,4 @@ const isStrongPassword = (password) => {
     return password.length >= 6 && password.length <= 30 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /\d/.test(password)
 }
 
-module.exports = { isValidEmail, isStrongPassword }
+export{ isValidEmail, isStrongPassword }

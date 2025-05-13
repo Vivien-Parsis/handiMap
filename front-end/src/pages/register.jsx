@@ -11,6 +11,7 @@ const Register = () => {
     prenom: "",
     email: "",
     password: "",
+    password_confirmation: "",
   });
 
   const [error, setError] = useState(null);
@@ -85,6 +86,15 @@ const Register = () => {
             onChange={handleChange}
             required
           />
+          <label htmlFor="password_confirmation">Confirmer mot de passe</label>
+          <input
+            type="password_confirmation"
+            id="password_confirmation"
+            name="password_confirmation"
+            value={formData.password_confirmation}
+            onChange={handleChange}
+            required
+          />
           <input type="checkbox" required name="rgpd" id="rgpd" />
           <label htmlFor="rgpd">J'accepte le RGPD</label>
           <button type="submit">S'inscrire</button>
@@ -96,7 +106,7 @@ const Register = () => {
           </p>
         </div>
       </div>
-      <Header/>
+      <Header />
     </div>
   );
 };

@@ -1,12 +1,12 @@
-const request = require("supertest")
-const { app } = require("../app")
-const bcrypt = require('bcrypt')
+import request from "supertest"
+import bcrypt from 'bcrypt'
 
 jest.mock('../models/user.model')
 jest.mock('../services/auth.service')
 
-const { userModel } = require('../models/user.model')
-const { generateToken } = require('../services/auth.service')
+import { app } from "../app.js"
+import { userModel } from '../models/user.model.js'
+import { generateToken } from '../services/auth.service.js'
 
 
 describe('Auth Routes', () => {
