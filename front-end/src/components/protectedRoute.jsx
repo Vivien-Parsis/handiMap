@@ -1,8 +1,8 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
-const protectedRoute = () => {
+const protectedRoute = ({ children }) => {
   let auth = localStorage.getItem('token')
-  return auth ? <Outlet /> : <Navigate to="/login" />
+  return auth ? children : <Navigate to="/login" />
 }
 
 export default protectedRoute

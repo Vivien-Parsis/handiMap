@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { api_url } from "../config/const";
-import "../assets/css/style.css";
-import "../assets/css/register.css";
+import styles from "../assets/css/authForm.module.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +29,7 @@ const Register = () => {
       .then((res) => {
         if (res.data) {
           localStorage.setItem("token", res.data);
-          navigate("/map");
+          navigate("/");
         } else {
           setError("Erreur de connexion");
         }
@@ -41,51 +40,52 @@ const Register = () => {
   };
 
   return (
-    <div className="backgroundBlured">
-      <div className="auth-container">
+    <div className={styles.backgroundBlured}>
+      <div className={styles.authContainer}>
         <h2>Inscription</h2>
         {error && <div className="error-message">{error}</div>}
 
-        <form onSubmit={handleRegister} className="formRegister">
-            <label htmlFor="nom">Nom</label>
-            <input
-              type="text"
-              id="nom"
-              name="nom"
-              value={formData.nom}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="prenom">Prénom</label>
-            <input
-              type="text"
-              id="prenom"
-              name="prenom"
-              value={formData.prenom}
-              onChange={handleChange}
-              required
-            />
+        <form onSubmit={handleRegister} className={styles.formLogin}>
+          <label htmlFor="nom">Nom</label>
+          <input
+            type="text"
+            id="nom"
+            name="nom"
+            value={formData.nom}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="prenom">Prénom</label>
+          <input
+            type="text"
+            id="prenom"
+            name="prenom"
+            value={formData.prenom}
+            onChange={handleChange}
+            required
+          />
 
-            <label htmlFor="email">Adresse email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+          <label htmlFor="email">Adresse email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-            <label htmlFor="password">Mot de passe</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <input type="checkbox" required name="rgpd" id="rgpd" />
+          <label htmlFor="rgpd">J'accepte le RGPD</label>
           <button type="submit">S'inscrire</button>
         </form>
 

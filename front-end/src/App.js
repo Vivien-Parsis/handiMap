@@ -5,9 +5,12 @@ import './App.css';
 import Register from './pages/register';
 import Map from './pages/map';
 import Footer from './components/footer';
+import Error404 from './pages/error404';
+import Header from './components/header';
 
 function App() {
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
@@ -20,10 +23,10 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<h1>404 - Page non trouvée</h1>} />
+        <Route path="*" element={<Error404/>} />
       </Routes>
       
-      
+    <Header/>  
     <Footer/>
     </BrowserRouter>
   );

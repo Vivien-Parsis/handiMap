@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { api_url } from "../config/const";
-import "../assets/css/style.css";
-import "../assets/css/login.css";
-import Footer from "../components/footer";
+import styles from "../assets/css/authForm.module.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +19,7 @@ const Login = () => {
       .then((res) => {
         if (res.data.token) {
           localStorage.setItem("token", res.data.token);
-          navigate("/map");
+          navigate("/");
         } else {
           setError("Erreur de connexion");
         }
@@ -38,12 +36,12 @@ const Login = () => {
     });
   };
   return (
-    <div className="backgroundBlured">
-      <div className="auth-container">
+    <div className={styles.backgroundBlured}>
+      <div className={styles.authContainer}>
         <h2>Connexion</h2>
         {error && <div className="error-message">{error}</div>}
 
-        <form onSubmit={handleLogin} className="formLogin">
+        <form onSubmit={handleLogin} className={styles.formLogin}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
