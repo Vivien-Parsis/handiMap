@@ -11,7 +11,7 @@ const login = async (req, res) => {
         return res.status(401).json({ message: 'Identifiants invalides' })
     }
     const token = generateToken(user)
-    res.json({ token })
+    res.status(200).json({ token })
 }
 
 const register = async (req, res) => {
