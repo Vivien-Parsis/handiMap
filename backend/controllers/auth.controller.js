@@ -3,6 +3,8 @@ import { isValidEmail, isStrongPassword } from '../utils/checks.utils.js'
 import { userModel } from '../models/user.model.js'
 import bcrypt from 'bcrypt'
 import vine, { errors } from '@vinejs/vine'
+import jwt from 'jsonwebtoken'
+import { db_url } from '../config/server.config.js'
 
 const login = async (req, res) => {
     const schema = vine.object({
@@ -56,7 +58,7 @@ const register = async (req, res) => {
         } else {
             return res.status(409).json({ message: 'utilisateur deja existant' })
         }
-    }catch (error) {
+    } catch (error) {
         if (error instanceof errors.E_VALIDATION_ERROR) {
             res.status(error.status).send(error.messages);
         }

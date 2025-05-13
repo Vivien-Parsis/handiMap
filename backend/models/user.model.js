@@ -16,6 +16,14 @@ const userModel = {
 		const result = await pool.query('SELECT * FROM users WHERE id_user = $1', [id])
 		return result.rows[0]
 	},
+	findUserHandicap: async (id) => {
+		const result = await pool.query('SELECT * FROM Handicap JOIN User_Handicap ON Handicap.id_handicap = User_Handicap.id_handicap WHERE User_Handicap.id_user = $1', [id])
+        return result.rows
+	},
+	findUserAvis: async (id) => {
+		const result = await pool.query('SELECT * FROM Avis JOIN Etablissement ON Avis.id_etablissement = Etablissement.id_etablissement WHERE id_user = $1 ORDER BY Avis.date DESC', [id])
+        return result.rows
+	},
 	addHandicap: async ({ id_user, id_handicap }) => {
 		const result = await pool.query(
 			'INSERT INTO User_Handicap (id_user, id_handicap) VALUES ($1, $2) RETURNING *',
