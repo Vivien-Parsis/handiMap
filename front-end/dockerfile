@@ -1,0 +1,7 @@
+FROM node:23-alpine
+RUN mkdir /handimap_front
+COPY . ./handimap_front
+WORKDIR handimap_front
+RUN npm i
+EXPOSE 3000
+CMD ["npm","run","start"]
