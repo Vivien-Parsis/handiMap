@@ -10,6 +10,7 @@ userRouter.post("/handicaps", addHandicapToUser)
 userRouter.delete("/handicaps", deleteHandicapFromUser)
 
 userRouter.get("/avis", getUserAvis)
+userRouter.delete("/avis", deleteAvisFromUser)
 
 export{
     userRouter

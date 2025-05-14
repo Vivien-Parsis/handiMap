@@ -49,6 +49,13 @@
     font-style: italic;
     font-size: .8em;
 }
+.deleteAvis{
+    color: red;
+    border:0px;
+    border-radius: .3em;
+    padding:.3em;
+    margin :.2em 0 1em;
+}
 @media (max-width: 650px) { 
     .accountContainer{
         width: 98%;

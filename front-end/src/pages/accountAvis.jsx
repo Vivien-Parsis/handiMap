@@ -18,13 +18,13 @@ const AccountAvis = () => {
   const handleDeleteAvis = (id) => {
     const jwt_token = localStorage.getItem("token");
     axios
-      .delete(`${api_url}/user/handicaps`, {
-        data: { id_handicap: id },
+      .delete(`${api_url}/user/avis`, {
+        data: { id_avis: id },
         headers: { authorization: jwt_token },
       })
       .then((res) => {});
     axios
-      .get(`${api_url}/user/handicaps`, {
+      .get(`${api_url}/user/avis`, {
         headers: { authorization: jwt_token },
       })
       .then((res) => {
@@ -65,6 +65,7 @@ const AccountAvis = () => {
                 <span>{forStars(el.note)}</span>
                 <p>{el.commentaire}</p>
                 <span className={styles.avisNotice}>{el.nom} le {el.date.split("T")[0]}</span>
+                <button className={styles.deleteAvis} onClick={() => handleDeleteAvis(el.id_avis)}>Supprimer</button>
               </li>
             );
           })}

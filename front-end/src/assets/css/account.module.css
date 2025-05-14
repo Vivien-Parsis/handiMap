@@ -33,7 +33,11 @@
     padding:0;
 }
 .deleteHandicaps{
-    color: red
+    color: red;
+    border:0px;
+    border-radius: .3em;
+    padding:.3em;
+    margin :.2em 0 1em;
 }
 .addHandicaps{
     background-color: greenyellow;

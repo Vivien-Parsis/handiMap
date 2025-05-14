@@ -37,6 +37,13 @@ const userModel = {
 			[id_user, id_handicap]
 		)
 		return result.rows[0]
+	},
+	deleteAvis: async ({ id_user, id_avis }) => {
+		const result = await pool.query(
+			'DELETE FROM Avis WHERE id_user = $1 AND id_avis = $2 RETURNING *',
+			[id_user, id_avis]
+		)
+		return result.rows[0]
 	}
 }
 
