@@ -11,7 +11,7 @@ const checkRouteJwt = (req, res, next) => {
         req.user = decoded
         next()
     }catch(err){
-        return res.status(403).send({ "message": "error with jwt token" })
+        return res.status(403).send({ "message": "error with jwt token", error:err })
     }
 }
 
@@ -22,13 +22,13 @@ const checkAdminRouteJwt = (req, res, next) => {
     }
     try {
         const decoded = jwt.verify(token, jwt_secret)
-        if(token.role=="admin"){
+        if(token.role=="admin" && !decoded){
             return next()
         }else{
             return res.status(401).send({ "message": "not a admin" })
         }
     }catch(err){
-        return res.status(403).send({ "message": "error with jwt token" })
+        return res.status(403).send({ "message": "error with jwt token", error:err })
     }
 }
 

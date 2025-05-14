@@ -123,14 +123,14 @@ const Account = () => {
         <ul>
           {userHandicaps.map((value) => {
             return (
-              <li>
+              <li key={value.id_user_handicap}>
                 {value.nom} | type : {value.type}{" "}
-                <span
+                <button
                   className={styles.deleteHandicaps}
                   onClick={() => handleDeleteHandicaps(value.id_handicap)}
                 >
                   Supprimer
-                </span>
+                </button>
               </li>
             );
           })}
@@ -146,7 +146,7 @@ const Account = () => {
               )
             ) {
               return (
-                <option value={handicap.id_handicap}>
+                <option value={handicap.id_handicap} key={handicap.id_handicap}>
                   {handicap.nom} (type : {handicap.type})
                 </option>
               );

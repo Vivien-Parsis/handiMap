@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../assets/css/map.module.css";
 import TwoBtnBar from "../components/TwoButtonBar";
 
-const Map = () => {
+const Maps = () => {
   return (
     <div>
       <TwoBtnBar />
@@ -11,4 +11,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default Maps;

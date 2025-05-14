@@ -61,7 +61,7 @@ const AccountAvis = () => {
         <ul className={styles.avisContainer}>
           {userAvis.map((el) => {
             return (
-              <li>
+              <li key={el.id_avis}>
                 <span>{forStars(el.note)}</span>
                 <p>{el.commentaire}</p>
                 <span className={styles.avisNotice}>{el.nom} le {el.date.split("T")[0]}</span>

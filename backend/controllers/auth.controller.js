@@ -1,10 +1,7 @@
 import { generateToken } from '../services/auth.service.js'
-import { isValidEmail, isStrongPassword } from '../utils/checks.utils.js'
 import { userModel } from '../models/user.model.js'
 import bcrypt from 'bcrypt'
 import vine, { errors } from '@vinejs/vine'
-import jwt from 'jsonwebtoken'
-import { db_url } from '../config/server.config.js'
 
 const login = async (req, res) => {
     const schema = vine.object({
@@ -15,7 +12,7 @@ const login = async (req, res) => {
 
     try {
         const validator = vine.compile(schema)
-        const output = await validator.validate(currentUser)
+        await validator.validate(currentUser)
         const user = await userModel.findByEmail(currentUser.email)
         if (!user || !(await bcrypt.compare(currentUser.password, user.password))) {
             return res.status(401).json({ message: 'Identifiants invalides' })
@@ -47,7 +44,7 @@ const register = async (req, res) => {
 
     try {
         const validator = vine.compile(schema)
-        const output = await validator.validate(currentUser)
+        await validator.validate(currentUser)
         const userFind = await userModel.findByEmail(currentUser.email)
         if (!userFind) {
             const salt = await bcrypt.genSalt(10);

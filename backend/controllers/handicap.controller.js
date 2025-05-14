@@ -5,7 +5,7 @@ const getAllHandicaps = async (req, res) => {
         const handicaps = await handicapModel.findAll()
         res.json(handicaps)
     } catch (err) {
-        res.status(500).json({ message: "Erreur serveur" })
+        res.status(500).json({ message: "Erreur serveur", error:err })
     }
 }
 

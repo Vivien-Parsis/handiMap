@@ -3,7 +3,7 @@ import ProtectedRoute from './components/protectedRoute';
 import Login from './pages/login';
 import './App.css';
 import Register from './pages/register';
-import Map from './pages/map';
+import Maps from './pages/map';
 import Footer from './components/footer';
 import Error404 from './pages/error404';
 import Account from './pages/account';
@@ -20,7 +20,7 @@ function App() {
           path="/"
           element={
             <ProtectedRoute>
-              <Map />
+              <Maps />
             </ProtectedRoute>
           }
         />
