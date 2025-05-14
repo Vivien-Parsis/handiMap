@@ -9,11 +9,11 @@ const avisModel = {
         return result.rows[0]
     },
     findByUser: async (id_user) => {
-        const result = await pool.query('SELECT * FROM avis WHERE id_user = $1', [id_user])
+        const result = await pool.query('SELECT * FROM avis WHERE id_user = $1 RETURNING *', [id_user])
         return result.rows[0]
     },
     findByEtablissement: async (id_etablissement) => {
-        const result = await pool.query('SELECT * FROM avis WHERE id_etablissement = $1', [id_etablissement])
+        const result = await pool.query('SELECT * FROM avis WHERE id_etablissement = $1 RETURNING *', [id_etablissement])
         return result.rows[0]
     },
     update: async (id, data) => {

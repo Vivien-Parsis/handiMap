@@ -88,7 +88,7 @@ const Register = () => {
           />
           <label htmlFor="password_confirmation">Confirmer mot de passe</label>
           <input
-            type="password_confirmation"
+            type="password"
             id="password_confirmation"
             name="password_confirmation"
             value={formData.password_confirmation}

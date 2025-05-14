@@ -8,6 +8,8 @@ import Footer from './components/footer';
 import Error404 from './pages/error404';
 import Account from './pages/account';
 import AccountAvis from './pages/accountAvis';
+import ProtectedOwnerRoute from './components/protectedOwnerRoute';
+import AdminEtablissement from './pages/adminEtablissement';
 
 function App() {
   return (
@@ -38,6 +40,15 @@ function App() {
             <ProtectedRoute>
               <AccountAvis/>
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/account/etablissement"
+          element={
+            <ProtectedOwnerRoute>
+              <AdminEtablissement/>
+            </ProtectedOwnerRoute>
+            
           }
         />
         <Route path="*" element={<Error404 />} />

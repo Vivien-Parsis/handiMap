@@ -29,7 +29,8 @@ const handicapModel = {
     },
 
     delete: async (id) => {
-        await pool.query('DELETE FROM Handicap WHERE id_handicap = $1', [id])
+        const result = await pool.query('DELETE FROM Handicap WHERE id_handicap = $1 RETURNING *', [id])
+        return result.rows[0]
     }
 }
 

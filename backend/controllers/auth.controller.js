@@ -9,11 +9,11 @@ const login = async (req, res) => {
         password: vine.string().minLength(6).maxLength(30).regex(/[A-Z]/).regex(/[a-z]/).regex(/\d/).regex(/[^a-zA-Z0-9]/),
     })
     const currentUser = { password: req.body.password, email: req.body.email }
-
     try {
         const validator = vine.compile(schema)
         await validator.validate(currentUser)
         const user = await userModel.findByEmail(currentUser.email)
+        console.log(user)
         if (!user || !(await bcrypt.compare(currentUser.password, user.password))) {
             return res.status(401).json({ message: 'Identifiants invalides' })
         }

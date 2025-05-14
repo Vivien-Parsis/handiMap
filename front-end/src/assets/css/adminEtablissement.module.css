@@ -1,0 +1,76 @@
+.backgroundBlured {
+  background-image: url("../images/maptemplateblured.png");
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ownerContainer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 1em;
+  border-radius: 10px;
+  width: 60%;
+}
+.linkButton {
+  background-color: #bdaad0;
+  border: 0px;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  color: white;
+  text-decoration: none;
+}
+.etablissementsContainer {
+  background-color: rgb(223, 209, 255);
+  margin: 1em 0 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  border-radius: 10px;
+}
+.etablissementsContainer span {
+  background-color: rgb(223, 209, 255);
+  margin: 1em 0 1em;
+  width: 30%;
+}
+.etablissementsContainer .etablissementsPhoto {
+  width: 30%;
+}
+.startIcon {
+  width: 1em;
+}
+.etablissementsDelete {
+  color: red;
+  border: 0px;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  margin: 0.2em;
+}
+.etablissementsDelete:hover {
+  color: rgb(2, 2, 2);
+  background-color: grey;
+}
+.handicapsLine{
+    margin:.1em 0 .1em;
+}
+.Selecthandicaps{
+    width: 99%;
+    border:none;
+    border-radius: 5px;
+}
+@media (max-width: 650px) {
+  .ownerContainer {
+    width: 98%;
+  }
+}

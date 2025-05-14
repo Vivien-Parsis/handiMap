@@ -64,7 +64,7 @@ const getUserHandicap = async (req, res) => {
     })
     try {
         const validator = vine.compile(schema)
-        await validator.validate({ id_user: req.user.id_user})
+        await validator.validate({ id_user: req.user.id_user })
         const handicaps = await userModel.findUserHandicap(req.user.id_user)
         if (!handicaps) {
             return res.status(404).json({ message: "Handicap introuvable" })

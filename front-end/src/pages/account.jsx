@@ -3,6 +3,7 @@ import axios from "axios";
 import { api_url } from "../config/const";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../assets/css/account.module.css";
+import { jwtDecode } from "jwt-decode";
 
 const Account = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -10,9 +11,9 @@ const Account = () => {
   const [allHandicaps, setAllHandicaps] = useState([]);
   const [newHandicap, setNewHandicap] = useState();
   const navigate = useNavigate();
-
+  const jwt_token = localStorage.getItem("token");
+  
   const handleDeleteHandicaps = (id) => {
-    const jwt_token = localStorage.getItem("token");
     axios
       .delete(`${api_url}/user/handicaps`, {
         data: { id_handicap: id },
@@ -35,7 +36,6 @@ const Account = () => {
       });
   };
   const handleAddHandicaps = () => {
-    const jwt_token = localStorage.getItem("token");
     if (!newHandicap) {
       return;
     }
@@ -63,11 +63,14 @@ const Account = () => {
   };
   const handleChangeSelectAddHandicaps = (e) => {
     e.preventDefault();
-    console.log(e);
     setNewHandicap(e.target.value);
   };
+  const showEtablissementBtn = () => {
+    if(jwtDecode(jwt_token).role === "admin" || jwtDecode(jwt_token).role === "owner"){
+      return <Link to="/account/etablissement" className={styles.linkButton}>Voir mes établissements</Link>
+    }
+  }
   useEffect(() => {
-    const jwt_token = localStorage.getItem("token");
     axios
       .get(`${api_url}/user/`, { headers: { authorization: jwt_token } })
       .then((res) => {
@@ -108,7 +111,7 @@ const Account = () => {
       .catch((err) => {
         navigate("/login");
       });
-  }, [navigate]);
+  }, [navigate, jwt_token]);
   return (
     <div className={styles.backgroundBlured}>
       <div className={styles.accountContainer}>
@@ -135,7 +138,8 @@ const Account = () => {
             );
           })}
         </ul>
-        <select onChange={handleChangeSelectAddHandicaps}>
+        <label htmlFor="addHandicap">Rajouter un handicape</label>
+        <select onChange={handleChangeSelectAddHandicaps} id="addHandicap">
           <option value="" selected disabled hidden>
             Choisisez ici
           </option>
@@ -162,7 +166,8 @@ const Account = () => {
           Ajouter
         </button>
 
-        <Link to="/account/avis"><button className={styles.linkButton}>Voir mes avis</button></Link>
+        <Link to="/account/avis" className={styles.linkButton}>Voir mes avis</Link>
+        {showEtablissementBtn()}
       </div>
     </div>
   );

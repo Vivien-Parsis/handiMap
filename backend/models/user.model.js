@@ -9,6 +9,7 @@ const userModel = {
 		return result.rows[0]
 	},
 	findByEmail: async (email) => {
+		console.log(email)
 		const result = await pool.query('SELECT * FROM users WHERE email = $1', [email])
 		return result.rows[0]
 	},
