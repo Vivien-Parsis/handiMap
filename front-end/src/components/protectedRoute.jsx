@@ -3,8 +3,15 @@ import { Navigate } from "react-router-dom";
 
 const protectedRoute = ({ children }) => {
   let auth = localStorage.getItem("token");
-  const decode = jwtDecode(auth);
-  return decode ? children : <Navigate to="/login" />;
+  const decoded = jwtDecode(auth);
+  if(!decoded){
+    return <Navigate to="/login" />; 
+  }else if(!decoded.role || !decoded.email || !decoded.id_user){
+    localStorage.setItem("token", "");
+    return <Navigate to="/login" />;
+  }else{
+    return children;
+  }
 };
 
 export default protectedRoute;
