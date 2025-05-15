@@ -21,7 +21,7 @@ const login = async (req, res) => {
         res.status(200).json({ token })
     } catch (error) {
         if (error instanceof errors.E_VALIDATION_ERROR) {
-            res.status(error.status).send(error.messages);
+            res.status(error.status).send(error.messages)
         }
     }
 }
@@ -47,8 +47,8 @@ const register = async (req, res) => {
         await validator.validate(currentUser)
         const userFind = await userModel.findByEmail(currentUser.email)
         if (!userFind) {
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(currentUser.password, salt);
+            const salt = await bcrypt.genSalt(10)
+            const hashedPassword = await bcrypt.hash(currentUser.password, salt)
             const newUser = await userModel.create({ email: currentUser.email, passwordHash: hashedPassword, role: 'user', nom: currentUser.nom, prenom: currentUser.prenom })
             const token = generateToken({ role: newUser.role, id: newUser.id_user, email: newUser.email })
             return res.status(201).json({ token })
@@ -57,7 +57,7 @@ const register = async (req, res) => {
         }
     } catch (error) {
         if (error instanceof errors.E_VALIDATION_ERROR) {
-            res.status(error.status).send(error.messages);
+            res.status(error.status).send(error.messages)
         }
     }
 }

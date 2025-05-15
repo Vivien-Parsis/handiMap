@@ -15,7 +15,6 @@ const app = express()
 app.use(rateLimit({
 	windowMs: 60 * 1000, 
 	limit: 100,
-	standardHeaders: 'draft-8',
 }))
 app.use(cors({
     origin: [`http://${host}:${port}`, frontend_url],
