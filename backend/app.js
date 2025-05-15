@@ -7,10 +7,16 @@ import { checkOwnerRouteJwt, checkRouteJwt } from "./middlewares/auth.middleware
 import { handicapRouter } from "./routes/handicap.route.js"
 import { etablissementRouter } from "./routes/etablissement.route.js"
 import { ownerRouter } from "./routes/owner.route.js"
+import { rateLimit } from 'express-rate-limit'
 
 const app = express()
 
 //plugin
+app.use(rateLimit({
+	windowMs: 60 * 1000, 
+	limit: 100,
+	standardHeaders: 'draft-8',
+}))
 app.use(cors({
     origin: [`http://${host}:${port}`, frontend_url],
     credentials: true
