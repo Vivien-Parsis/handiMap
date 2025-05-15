@@ -5,13 +5,14 @@ const protectedOwnerRoute = ({ children }) => {
   let auth = localStorage.getItem("token");
   const decode = jwtDecode(auth)
   if (decode) {
-    if (decode.role === "owner") {
+    if(!decode.role || !decode.id_user || !decode.email){
+      localStorage.setItem("token", "");
+      return <Navigate to="/login" />;
+    }else if(decode.role === "owner" || decode.role === "admin"){
       return children;
-    } else {
+    }else{
       return <Navigate to="/" />;
     }
-  } else {
-    return <Navigate to="/login" />;
   }
 };
 
