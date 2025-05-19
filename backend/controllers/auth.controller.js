@@ -13,7 +13,6 @@ const login = async (req, res) => {
         const validator = vine.compile(schema)
         await validator.validate(currentUser)
         const user = await userModel.findByEmail(currentUser.email)
-        console.log(user)
         if (!user || !(await bcrypt.compare(currentUser.password, user.password))) {
             return res.status(401).json({ message: 'Identifiants invalides' })
         }

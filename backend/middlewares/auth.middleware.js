@@ -1,5 +1,5 @@
 import { jwt_secret } from "../config/server.config.js"
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken"
 import { userModel } from "../models/user.model.js"
 
 const checkRouteJwt = async (req, res, next) => {

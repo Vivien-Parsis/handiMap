@@ -8,20 +8,25 @@ import { handicapRouter } from "./routes/handicap.route.js"
 import { etablissementRouter } from "./routes/etablissement.route.js"
 import { ownerRouter } from "./routes/owner.route.js"
 import { rateLimit } from 'express-rate-limit'
+import morgan from "morgan"
+import helmet from 'helmet'
 
 const app = express()
 
-//plugin
+//middleware
+app.use(helmet())
 app.use(rateLimit({
-	windowMs: 60 * 1000, 
-	limit: 100,
+    windowMs: 60 * 1000,
+    limit: 100,
 }))
 app.use(cors({
     origin: [`http://${host}:${port}`, frontend_url],
     credentials: true
 }))
 app.use(express.json())
+app.use(morgan(':status || :method :date[clf] || :response-time || :url || :user-agent'))
 //route
+app.use('/', (req, res) => { res.send("handi'map api") })
 app.use('/auth', authRouter)
 app.use('/user', checkRouteJwt, userRouter)
 app.use('/handicap', checkRouteJwt, handicapRouter)
@@ -32,4 +37,4 @@ app.use((req, res, next) => {
     return res.status(404).send({ "message": "page not found" })
 })
 
-export{ app }
+export { app }

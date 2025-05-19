@@ -70,7 +70,7 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <Header/>
+      <Header />
     </div>
   );
 };

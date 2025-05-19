@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { api_url } from "../config/const";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../assets/css/adminEtablissement.module.css";
+import styles from "../assets/css/ownerEtablissement.module.css";
 import starsIcon from "../assets/images/star-svgrepo-com.png";
 import etablissementplaceholder from "../assets/images/etablissementplaceholder.jpg";
+import Header from "../components/header";
 
-const AdminEtablissement = () => {
+const OwnerEtablissement = () => {
   const [ownerEtablisement, setOwnerEtablisement] = useState([]);
   const [allHandicaps, setAllHandicaps] = useState([]);
   const [newHandicap, setNewHandicap] = useState("");
@@ -24,6 +25,9 @@ const AdminEtablissement = () => {
   };
   const getAvisAverage = (avis) => {
     let average = 0;
+    if (avis.length === 0) {
+      return 0;
+    }
     for (let a of avis) {
       average += a.note;
     }
@@ -33,18 +37,18 @@ const AdminEtablissement = () => {
     return avis ? avis.length : 0;
   };
 
-  const handleAddHandicaps = (etablissement) => {
+  const handleAddHandicaps = async (etablissement) => {
     if (!newHandicap) {
       return;
     }
-    axios
+    await axios
       .post(
         `${api_url}/owner/etablissements/handicaps`,
         { id_handicap: newHandicap, id_etablissement: etablissement },
         { headers: { authorization: jwt_token } }
       )
       .then();
-    axios
+    await axios
       .get(`${api_url}/owner/etablissements`, {
         headers: { authorization: jwt_token },
       })
@@ -59,14 +63,45 @@ const AdminEtablissement = () => {
         navigate("/login");
       });
   };
-  const handleDeleteHandicaps = (handicap, etablissement) => {
-    axios
-      .delete(`${api_url}/owner/etablissements/handicaps`, {
-        data: { id_handicap: handicap, id_etablissement: etablissement },
+  const handleDeleteEtablissement = async (id_etablissement) => {
+    if (!id_etablissement) {
+      return;
+    }
+    await axios
+      .delete(`${api_url}/owner/etablissements`, {
+        data: { id_etablissement: id_etablissement },
+        headers: {
+          authorization: jwt_token,
+        },
+      })
+      .then(() => {})
+      .catch((err) => {
+        console.log("err");
+      });
+    await axios
+      .get(`${api_url}/owner/etablissements`, {
         headers: { authorization: jwt_token },
       })
+      .then((res) => {
+        if (res.data) {
+          setOwnerEtablisement(res.data);
+        } else {
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
+  };
+  const handleDeleteHandicaps = async (handicap, etablissement) => {
+    await axios
+      .delete(
+        `${api_url}/owner/etablissements/handicaps`,
+        { id_handicap: handicap, id_etablissement: etablissement },
+        { headers: { authorization: jwt_token } }
+      )
       .then((res) => {});
-    axios
+    await axios
       .get(`${api_url}/owner/etablissements`, {
         headers: { authorization: jwt_token },
       })
@@ -117,7 +152,9 @@ const AdminEtablissement = () => {
   }, [navigate, jwt_token]);
   return (
     <div>
+      <Header />
       <div className={styles.backgroundBlured}>
+        <Link to="/account">Revenir sur mon compte</Link>
         <div className={styles.ownerContainer}>
           <h2>Mes etablissements</h2>
           {ownerEtablisement.map((et) => {
@@ -139,7 +176,31 @@ const AdminEtablissement = () => {
                   <h3>{et.nom_etablissement}</h3>
                   <p>{et.adresse}</p>
                   {forStars(et.avis)}
-                  <p>{getAvisAverage(et.avis)} sur {getAvisNumber(et.avis)} avis</p>
+                  <p>
+                    {getAvisAverage(et.avis)} sur {getAvisNumber(et.avis)} avis
+                  </p>
+                  <Link
+                    className={styles.linkButton}
+                    to="/account/etablissement"
+                  >
+                    Voir les avis
+                  </Link>
+                  <div>
+                    <Link
+                      className={styles.linkButton}
+                      to="/account/etablissement/modify"
+                    >
+                      Modifier
+                    </Link>
+                    <button
+                      className={styles.etablissementsDelete}
+                      onClick={() =>
+                        handleDeleteEtablissement(et.id_etablissement)
+                      }
+                    >
+                      Supprimer
+                    </button>
+                  </div>
                 </span>
                 <span>
                   <h3>Handicaps</h3>
@@ -147,7 +208,15 @@ const AdminEtablissement = () => {
                     return (
                       <p className={styles.handicapsLine} key={ha.id_handicap}>
                         {ha.nom_handicap}
-                        <button className={styles.etablissementsDelete} onClick={() => handleDeleteHandicaps(ha.id_handicap, et.id_etablissement)}>
+                        <button
+                          className={styles.etablissementsDelete}
+                          onClick={() =>
+                            handleDeleteHandicaps(
+                              ha.id_handicap,
+                              et.id_etablissement
+                            )
+                          }
+                        >
                           Supprimer
                         </button>
                       </p>
@@ -193,13 +262,13 @@ const AdminEtablissement = () => {
               </div>
             );
           })}
-          <Link className={styles.linkButton} to="/account">
-            Revenir en arriere
-          </Link>
         </div>
+        <Link className={styles.linkButton} to="/account/etablissement/add">
+          Rajouter un etablissement
+        </Link>
       </div>
     </div>
   );
 };
 
-export default AdminEtablissement;
+export default OwnerEtablissement;

@@ -4,6 +4,7 @@ import { api_url } from "../config/const";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../assets/css/accountAvis.module.css";
 import starsIcon from "../assets/images/star-svgrepo-com.png";
+import Header from "../components/header";
 
 const AccountAvis = () => {
   const [userAvis, setUserAvis] = useState([]);
@@ -56,6 +57,8 @@ const AccountAvis = () => {
   }, [navigate]);
   return (
     <div className={styles.backgroundBlured}>
+      <Header />
+      <Link to="/account">Revenir sur mon compte</Link>
       <div className={styles.accountContainer}>
         <h2>Mes avis</h2>
         <ul className={styles.avisContainer}>
@@ -64,8 +67,15 @@ const AccountAvis = () => {
               <li key={el.id_avis}>
                 <span>{forStars(el.note)}</span>
                 <p>{el.commentaire}</p>
-                <span className={styles.avisNotice}>{el.nom} le {el.date.split("T")[0]}</span>
-                <button className={styles.deleteAvis} onClick={() => handleDeleteAvis(el.id_avis)}>Supprimer</button>
+                <span className={styles.avisNotice}>
+                  {el.nom} le {el.date.split("T")[0]}
+                </span>
+                <button
+                  className={styles.deleteAvis}
+                  onClick={() => handleDeleteAvis(el.id_avis)}
+                >
+                  Supprimer
+                </button>
               </li>
             );
           })}

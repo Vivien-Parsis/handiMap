@@ -9,7 +9,8 @@ import Error404 from './pages/error404';
 import Account from './pages/account';
 import AccountAvis from './pages/accountAvis';
 import ProtectedOwnerRoute from './components/protectedOwnerRoute';
-import AdminEtablissement from './pages/adminEtablissement';
+import OwnerEtablissement from './pages/ownerEtablissement';
+import OwnerAddEtablissement from './pages/ownerAddEtablissement';
 
 function App() {
   return (
@@ -18,19 +19,12 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Maps />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/" element={<Maps />} />
         <Route
           path="/account"
           element={
             <ProtectedRoute>
-              <Account/>
+              <Account />
             </ProtectedRoute>
           }
         />
@@ -38,7 +32,7 @@ function App() {
           path="/account/avis"
           element={
             <ProtectedRoute>
-              <AccountAvis/>
+              <AccountAvis />
             </ProtectedRoute>
           }
         />
@@ -46,9 +40,18 @@ function App() {
           path="/account/etablissement"
           element={
             <ProtectedOwnerRoute>
-              <AdminEtablissement/>
+              <OwnerEtablissement />
             </ProtectedOwnerRoute>
-            
+
+          }
+        />
+        <Route
+          path="/account/etablissement/add"
+          element={
+            <ProtectedOwnerRoute>
+              <OwnerAddEtablissement />
+            </ProtectedOwnerRoute>
+
           }
         />
         <Route path="*" element={<Error404 />} />

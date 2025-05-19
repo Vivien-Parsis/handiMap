@@ -8,6 +8,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  flex-direction: column;
+  padding:8vh 0;
 }
 
 .ownerContainer {
@@ -21,7 +23,7 @@
   border-radius: 10px;
   width: 60%;
 }
-.linkButton {
+.linkButton{
   background-color: #bdaad0;
   border: 0px;
   border-radius: 0.3em;
@@ -29,8 +31,31 @@
   color: white;
   text-decoration: none;
 }
+.linkButton:hover{
+  background-color: #4b4b4b;
+}
+.addHandicaps{
+  background-color: #53be63;
+  border: 0px;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  text-decoration: none;
+  margin : 1em 0;
+}
+.addHandicaps:hover {
+  color: rgb(2, 2, 2);
+  background-color: grey;
+}
+.deleteEtablissement{
+  background-color: #be5353;
+  border: 0px;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  text-decoration: none;
+  margin : 1em 0;
+}
 .etablissementsContainer {
-  background-color: rgb(223, 209, 255);
+  background-color: #EBECFF;
   margin: 1em 0 1em;
   display: flex;
   flex-wrap: wrap;
@@ -40,9 +65,12 @@
   border-radius: 10px;
 }
 .etablissementsContainer span {
-  background-color: rgb(223, 209, 255);
+  background-color: #EBECFF;
   margin: 1em 0 1em;
   width: 30%;
+}
+.etablissementsContainer span div {
+  margin: 1em 0 1em;
 }
 .etablissementsContainer .etablissementsPhoto {
   width: 30%;
@@ -51,11 +79,12 @@
   width: 1em;
 }
 .etablissementsDelete {
-  color: red;
+  color: rgb(0, 0, 0);
   border: 0px;
   border-radius: 0.3em;
   padding: 0.3em;
   margin: 0.2em;
+  background-color: red;
 }
 .etablissementsDelete:hover {
   color: rgb(2, 2, 2);

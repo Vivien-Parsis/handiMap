@@ -1,21 +1,34 @@
-.twoBtnBar{
-    width: 100%;
-    top: 0;
-    z-index: 99;
-    position: absolute;
-    padding: 10px 0 10px;
-    display: flex
-;
-    justify-content: flex-end;
-    align-content: center;
-    flex-wrap: wrap;
+.twoBtnBar {
+  width: 100%;
+  top: 0;
+  z-index: 99;
+  position: absolute;
+  padding: 10px 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: wrap;
 }
-.twoBtnBar a img{
-    width: 50px;
-    background-color: #424362;
-    border-radius: 10px;
-    margin :0 10px 0;
+.twoBtnBar a img {
+  width: 50px;
+  background-color: #424362;
+  border-radius: 10px;
+  margin: 0 10px 0;
 }
-.twoBtnBar a img:hover{
-    background-color: rgb(223, 209, 255);
+.twoBtnBar a img:hover {
+  background-color: rgb(223, 209, 255);
+}
+.searchBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  margin: 0 10px 0;
+}
+.searchBar img {
+  width: 25px;
+}
+.searchBar input {
+    border: 2px black;
+    border-radius: 5px;
 }

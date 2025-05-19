@@ -1,4 +1,11 @@
-import { getCurrentUser, addHandicapToUser, deleteHandicapFromUser, getUserHandicap, getUserAvis, deleteAvisFromUser } from '../controllers/user.controller.js'
+import { 
+    getCurrentUser, 
+    addHandicapToUser, 
+    deleteHandicapFromUser, 
+    getUserHandicap, 
+    getUserAvis, 
+    deleteAvisFromUser 
+} from '../controllers/user.controller.js'
 
 import { Router } from 'express'
 const userRouter = Router()

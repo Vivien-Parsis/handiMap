@@ -9,7 +9,6 @@ const userModel = {
 		return result.rows[0]
 	},
 	findByEmail: async (email) => {
-		console.log(email)
 		const result = await pool.query('SELECT * FROM users WHERE email = $1', [email])
 		return result.rows[0]
 	},
@@ -19,11 +18,11 @@ const userModel = {
 	},
 	findUserHandicap: async (id) => {
 		const result = await pool.query('SELECT * FROM Handicap JOIN User_Handicap ON Handicap.id_handicap = User_Handicap.id_handicap WHERE User_Handicap.id_user = $1', [id])
-        return result.rows
+		return result.rows
 	},
 	findUserAvis: async (id) => {
-		const result = await pool.query('SELECT * FROM Avis JOIN Etablissement ON Avis.id_etablissement = Etablissement.id_etablissement WHERE id_user = $1 ORDER BY Avis.date DESC', [id])
-        return result.rows
+		const result = await pool.query('SELECT * FROM Avis JOIN Etablissement ON Avis.id_etablissement = Etablissement.id_etablissement WHERE Avis.id_user = $1 ORDER BY Avis.date DESC', [id])
+		return result.rows
 	},
 	addHandicap: async ({ id_user, id_handicap }) => {
 		const result = await pool.query(
@@ -48,6 +47,6 @@ const userModel = {
 	}
 }
 
-export{
+export {
 	userModel
 }

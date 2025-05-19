@@ -7,14 +7,15 @@ const getCurrentUser = async (req, res) => {
     })
     try {
         const validator = vine.compile(schema)
-        await validator.validate({ id_user: req.user.id_user})
+        await validator.validate({ id_user: req.user.id_user })
         const user = await userModel.findById(req.user.id_user)
         if (!user) {
             return res.status(404).json({ message: "Utilisateur introuvable" })
+        } else {
+            return res.json(user)
         }
-        res.json(user)
     } catch (err) {
-        res.status(500).json({ message: "Erreur serveur", error:err })
+        res.status(500).json({ message: "Erreur serveur", error: err })
     }
 }
 
@@ -30,7 +31,7 @@ const addHandicapToUser = async (req, res) => {
         const result = await userModel.addHandicap({ id_user: req.user.id_user, id_handicap: id_handicap })
         res.status(201).json(result)
     } catch (err) {
-        res.status(500).json({ message: "Erreur serveur", error:err })
+        res.status(500).json({ message: "Erreur serveur", error: err })
     }
 }
 
@@ -51,10 +52,11 @@ const deleteHandicapFromUser = async (req, res) => {
         const result = await userModel.deleteHandicap({ id_user: req.user.id_user, id_handicap: id_handicap })
         if (!result) {
             return res.status(404).json({ message: "Association non trouvée" })
+        } else {
+            return res.json({ message: "Handicap supprimé", data: result })
         }
-        res.json({ message: "Handicap supprimé", data: result })
     } catch (err) {
-        res.status(500).json({ message: "Erreur serveur", error:err })
+        res.status(500).json({ message: "Erreur serveur", error: err })
     }
 }
 
@@ -68,10 +70,11 @@ const getUserHandicap = async (req, res) => {
         const handicaps = await userModel.findUserHandicap(req.user.id_user)
         if (!handicaps) {
             return res.status(404).json({ message: "Handicap introuvable" })
+        } else {
+            return res.json(handicaps)
         }
-        res.json(handicaps)
     } catch (err) {
-        res.status(500).json({ message: "Erreur serveur", error:err })
+        res.status(500).json({ message: "Erreur serveur", error: err })
     }
 }
 
@@ -80,10 +83,11 @@ const getUserAvis = async (req, res) => {
         const avis = await userModel.findUserAvis(req.user.id_user)
         if (!avis) {
             return res.status(404).json({ message: "Handicap introuvable" })
+        } else {
+            res.json(avis)
         }
-        res.json(avis)
     } catch (err) {
-        res.status(500).json({ message: "Erreur serveur", error:err })
+        res.status(500).json({ message: "Erreur serveur", error: err })
     }
 }
 
@@ -102,7 +106,7 @@ const deleteAvisFromUser = async (req, res) => {
         }
         res.json({ message: "avis supprimé", data: result })
     } catch (err) {
-        res.status(500).json({ message: "Erreur serveur", error:err })
+        res.status(500).json({ message: "Erreur serveur", error: err })
     }
 }
 

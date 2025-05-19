@@ -12,7 +12,11 @@ const Account = () => {
   const [newHandicap, setNewHandicap] = useState();
   const navigate = useNavigate();
   const jwt_token = localStorage.getItem("token");
-  
+
+  const disconnet = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
   const handleDeleteHandicaps = (id) => {
     axios
       .delete(`${api_url}/user/handicaps`, {
@@ -66,10 +70,17 @@ const Account = () => {
     setNewHandicap(e.target.value);
   };
   const showEtablissementBtn = () => {
-    if(jwtDecode(jwt_token).role === "admin" || jwtDecode(jwt_token).role === "owner"){
-      return <Link to="/account/etablissement" className={styles.linkButton}>Voir mes établissements</Link>
+    if (
+      jwtDecode(jwt_token).role === "admin" ||
+      jwtDecode(jwt_token).role === "owner"
+    ) {
+      return (
+        <Link to="/account/etablissement" className={styles.linkButton}>
+          Voir mes établissements
+        </Link>
+      );
     }
-  }
+  };
   useEffect(() => {
     axios
       .get(`${api_url}/user/`, { headers: { authorization: jwt_token } })
@@ -122,6 +133,9 @@ const Account = () => {
           </li>
           <li>{userInfo.email}</li>
         </ul>
+        <button className={styles.linkButton} onClick={()=>disconnet()}>
+          me deconnecter
+        </button>
         <h3>Mes handicaps</h3>
         <ul>
           {userHandicaps.map((value) => {
@@ -166,7 +180,9 @@ const Account = () => {
           Ajouter
         </button>
 
-        <Link to="/account/avis" className={styles.linkButton}>Voir mes avis</Link>
+        <Link to="/account/avis" className={styles.linkButton}>
+          Voir mes avis
+        </Link>
         {showEtablissementBtn()}
       </div>
     </div>
