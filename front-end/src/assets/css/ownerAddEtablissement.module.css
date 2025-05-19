@@ -21,7 +21,7 @@
   padding: 1em;
   border-radius: 10px;
   width: 60%;
-  background-color: #ebecff;
+  background-color: var(--background-color-light);
   margin: 1% 0;
 }
 .FormAddHandicap form {
@@ -38,7 +38,7 @@
 }
 
 .addButton {
-  background-color: #bdaad0;
+  background-color: var(--button-color);
   border: 0px;
   border-radius: 0.3em;
   padding: 0.3em;

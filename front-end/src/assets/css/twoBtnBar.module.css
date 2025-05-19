@@ -11,7 +11,7 @@
 }
 .twoBtnBar a img {
   width: 50px;
-  background-color: #424362;
+  background-color: var(--background-color-dark);
   border-radius: 10px;
   margin: 0 10px 0;
 }
@@ -29,6 +29,6 @@
   width: 25px;
 }
 .searchBar input {
-    border: 2px black;
-    border-radius: 5px;
+  border: 2px black;
+  border-radius: 5px;
 }

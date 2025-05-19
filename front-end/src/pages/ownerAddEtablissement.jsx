@@ -3,7 +3,6 @@ import axios from "axios";
 import { api_url } from "../config/const";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../assets/css/ownerAddEtablissement.module.css";
-import Header from "../components/header";
 
 const OwnerAddEtablissement = () => {
   const [newEtablissement, setNewEtablissement] = useState({
@@ -56,7 +55,6 @@ const OwnerAddEtablissement = () => {
 
   return (
     <div className={styles.backgroundBlured}>
-      <Header />
       <Link to="/account/etablissement">Revenir sur mes etablissements</Link>
       <div className={styles.FormAddHandicap}>
         <h2>Rajouter un lieu</h2>

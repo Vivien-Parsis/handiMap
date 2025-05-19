@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import ProtectedRoute from './components/protectedRoute';
 import Login from './pages/login';
 import './App.css';
@@ -11,11 +11,16 @@ import AccountAvis from './pages/accountAvis';
 import ProtectedOwnerRoute from './components/protectedOwnerRoute';
 import OwnerEtablissement from './pages/ownerEtablissement';
 import OwnerAddEtablissement from './pages/ownerAddEtablissement';
+import Header from './components/header';
 
 function App() {
+  const location = useLocation()
+  const showHeader = () => {
+    return (location.pathname.startsWith("/map") || location.pathname === "/") ? "" : <Header />
+  }
   return (
-
-    <BrowserRouter>
+    <>
+      {showHeader()}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -58,7 +63,7 @@ function App() {
       </Routes>
 
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 

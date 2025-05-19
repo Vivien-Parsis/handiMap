@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { api_url } from "../config/const";
 import styles from "../assets/css/authForm.module.css";
-import Header from "../components/header";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -106,7 +105,6 @@ const Register = () => {
           </p>
         </div>
       </div>
-      <Header />
     </div>
   );
 };

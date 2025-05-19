@@ -9,7 +9,7 @@
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
-  padding:8vh 0;
+  padding: 8vh 0;
 }
 
 .ownerContainer {
@@ -23,39 +23,38 @@
   border-radius: 10px;
   width: 60%;
 }
-.linkButton{
-  background-color: #bdaad0;
+.linkButton {
+  background-color: var(--button-color);
   border: 0px;
   border-radius: 0.3em;
   padding: 0.3em;
   color: white;
   text-decoration: none;
 }
-.linkButton:hover{
-  background-color: #4b4b4b;
+.linkButton:hover {
+  background-color: var(--button-color-hover);
 }
-.addHandicaps{
-  background-color: #53be63;
+.addHandicaps {
+  background-color: var(--button-color-add);
   border: 0px;
   border-radius: 0.3em;
   padding: 0.3em;
   text-decoration: none;
-  margin : 1em 0;
+  margin: 1em 0;
 }
 .addHandicaps:hover {
-  color: rgb(2, 2, 2);
-  background-color: grey;
+  background-color: var(--button-color-hover);
 }
-.deleteEtablissement{
-  background-color: #be5353;
+.deleteEtablissement {
+  background-color: var(--button-color-delete);
   border: 0px;
   border-radius: 0.3em;
   padding: 0.3em;
   text-decoration: none;
-  margin : 1em 0;
+  margin: 1em 0;
 }
 .etablissementsContainer {
-  background-color: #EBECFF;
+  background-color: var(--background-color-light);
   margin: 1em 0 1em;
   display: flex;
   flex-wrap: wrap;
@@ -65,7 +64,7 @@
   border-radius: 10px;
 }
 .etablissementsContainer span {
-  background-color: #EBECFF;
+  background-color: var(--background-color-light);
   margin: 1em 0 1em;
   width: 30%;
 }
@@ -84,19 +83,19 @@
   border-radius: 0.3em;
   padding: 0.3em;
   margin: 0.2em;
-  background-color: red;
+  background-color: var(--button-color-delete);
 }
 .etablissementsDelete:hover {
   color: rgb(2, 2, 2);
-  background-color: grey;
+  background-color: var(--button-color-hover);
 }
-.handicapsLine{
-    margin:.1em 0 .1em;
+.handicapsLine {
+  margin: 0.1em 0 0.1em;
 }
-.Selecthandicaps{
-    width: 99%;
-    border:none;
-    border-radius: 5px;
+.Selecthandicaps {
+  width: 99%;
+  border: none;
+  border-radius: 5px;
 }
 @media (max-width: 650px) {
   .ownerContainer {

@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-color: #EBECFF;
+  background-color: var(--background-color-light);
   flex-direction: column;
   padding: 1em;
   border-radius: 10px;
@@ -41,17 +41,17 @@
 }
 .deleteHandicaps:hover {
   color: rgb(2, 2, 2);
-  background-color: grey;
+  background-color: var(--button-color-hover);
 }
 .addHandicaps {
-  background-color: greenyellow;
+  background-color: var(--button-color-delete);
   border: 0px;
   border-radius: 0.3em;
   padding: 0.3em;
   margin: 0.2em 0 1em;
 }
 .linkButton {
-  background-color: #bdaad0;
+  background-color: var(--button-color);
   border: 0px;
   border-radius: 0.3em;
   padding: 0.3em;
@@ -59,8 +59,8 @@
   margin: 1em 0 1em;
   text-decoration: none;
 }
-.linkButton:hover{
-  background-color: #4b4b4b;
+.linkButton:hover {
+  background-color: var(--button-color-hover);
 }
 @media (max-width: 650px) {
   .accountContainer {

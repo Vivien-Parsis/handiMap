@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "../assets/css/ownerEtablissement.module.css";
 import starsIcon from "../assets/images/star-svgrepo-com.png";
 import etablissementplaceholder from "../assets/images/etablissementplaceholder.jpg";
-import Header from "../components/header";
 
 const OwnerEtablissement = () => {
   const [ownerEtablisement, setOwnerEtablisement] = useState([]);
@@ -152,7 +151,6 @@ const OwnerEtablissement = () => {
   }, [navigate, jwt_token]);
   return (
     <div>
-      <Header />
       <div className={styles.backgroundBlured}>
         <Link to="/account">Revenir sur mon compte</Link>
         <div className={styles.ownerContainer}>

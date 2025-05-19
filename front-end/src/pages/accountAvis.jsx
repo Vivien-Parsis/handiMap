@@ -4,7 +4,6 @@ import { api_url } from "../config/const";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../assets/css/accountAvis.module.css";
 import starsIcon from "../assets/images/star-svgrepo-com.png";
-import Header from "../components/header";
 
 const AccountAvis = () => {
   const [userAvis, setUserAvis] = useState([]);
@@ -57,7 +56,6 @@ const AccountAvis = () => {
   }, [navigate]);
   return (
     <div className={styles.backgroundBlured}>
-      <Header />
       <Link to="/account">Revenir sur mon compte</Link>
       <div className={styles.accountContainer}>
         <h2>Mes avis</h2>
