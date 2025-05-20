@@ -10,14 +10,14 @@ const checkRouteJwt = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        if(userSearch.id_user==decoded.id_user && userSearch.role==decoded.role && userSearch.email==decoded.email){
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email) {
             req.user = decoded
             next()
-        }else{
-            return res.status(403).send({ "message": "error with jwt token", error:err })
+        } else {
+            return res.status(403).send({ "message": "error with jwt token", error: err })
         }
-    }catch(err){
-        return res.status(403).send({ "message": "error while decode or search for token", error:err })
+    } catch (err) {
+        return res.status(403).send({ "message": "error while decode or search for token", error: err })
     }
 }
 
@@ -29,14 +29,14 @@ const checkAdminRouteJwt = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        if(userSearch.id_user==decoded.id_user && userSearch.role==decoded.role && userSearch.email==decoded.email && userSearch.role=="admin"){
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email && userSearch.role == "admin") {
             req.user = decoded
             next()
-        }else{
-            return res.status(403).send({ "message": "error with jwt token", error:err })
+        } else {
+            return res.status(403).send({ "message": "error with jwt token", error: err })
         }
-    }catch(err){
-        return res.status(403).send({ "message": "error while decode or search for token", error:err })
+    } catch (err) {
+        return res.status(403).send({ "message": "error while decode or search for token", error: err })
     }
 }
 
@@ -48,14 +48,14 @@ const checkOwnerRouteJwt = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        if(userSearch.id_user==decoded.id_user && userSearch.role==decoded.role && userSearch.email==decoded.email && (userSearch.role=="owner" || userSearch.role=="admin")){
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email && (userSearch.role == "owner" || userSearch.role == "admin")) {
             req.user = decoded
             next()
-        }else{
-            return res.status(403).send({ "message": "error with jwt token", error:err })
+        } else {
+            return res.status(403).send({ "message": "error with jwt token", error: err })
         }
-    }catch(err){
-        return res.status(403).send({ "message": "error while decode or search for token", error:err })
+    } catch (err) {
+        return res.status(403).send({ "message": "error while decode or search for token", error: err })
     }
 }
 

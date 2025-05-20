@@ -8,16 +8,17 @@ import {
 } from '../controllers/user.controller.js'
 
 import { Router } from 'express'
+import { checkRouteJwt } from '../middlewares/auth.middleware.js'
 const userRouter = Router()
 
-userRouter.get("/", getCurrentUser)
+userRouter.get("/", checkRouteJwt, getCurrentUser)
 
-userRouter.get("/handicaps", getUserHandicap)
-userRouter.post("/handicaps", addHandicapToUser)
-userRouter.delete("/handicaps", deleteHandicapFromUser)
+userRouter.get("/handicaps", checkRouteJwt, getUserHandicap)
+userRouter.post("/handicaps", checkRouteJwt, addHandicapToUser)
+userRouter.delete("/handicaps", checkRouteJwt, deleteHandicapFromUser)
 
-userRouter.get("/avis", getUserAvis)
-userRouter.delete("/avis", deleteAvisFromUser)
+userRouter.get("/avis", checkRouteJwt, getUserAvis)
+userRouter.delete("/avis", checkRouteJwt, deleteAvisFromUser)
 
 export{
     userRouter

@@ -1,0 +1,68 @@
+.map {
+	background-image: url("../images/maptemplate.png");
+	background-size: cover;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+}
+.etablisementContainer {
+	width: 90%;
+	max-height: 80%;
+	background-color: var(--background-color-light);
+	border-radius: 10px;
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+}
+.etablisementPhoto {
+	width: 40%;
+}
+.etablisementContainer span {
+	width: 58%;
+}
+.startIcon {
+	width: 1em;
+	height: 1em;
+	color: var(--avis-icon-color);
+}
+.titleAndAvisContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+}
+.infoContainer {
+	width: 75%;
+}
+.avisContainer {
+	width: 25%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	align-content: center;
+}
+.avisContainer span {
+	width: 100%;
+}
+
+.handicapContainer,
+.titleAndAvisContainer {
+	padding: 0.6em 0;
+	border-bottom: 1px black solid;
+}
+
+.avisListItem {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 1em 0;
+}
+.avisListItem span {
+	width: 100%;
+}

@@ -3,7 +3,6 @@ import cors from "cors"
 import { host, port, frontend_url } from "./config/server.config.js"
 import { userRouter } from "./routes/user.route.js"
 import { authRouter } from "./routes/auth.route.js"
-import { checkOwnerRouteJwt, checkRouteJwt } from "./middlewares/auth.middleware.js"
 import { handicapRouter } from "./routes/handicap.route.js"
 import { etablissementRouter } from "./routes/etablissement.route.js"
 import { ownerRouter } from "./routes/owner.route.js"
@@ -26,12 +25,11 @@ app.use(cors({
 app.use(express.json())
 app.use(morgan(':status || :method :date[clf] || :response-time || :url || :user-agent'))
 //route
-app.use('/', (req, res) => { res.send("handi'map api") })
 app.use('/auth', authRouter)
-app.use('/user', checkRouteJwt, userRouter)
-app.use('/handicap', checkRouteJwt, handicapRouter)
-app.use('/etablissement', checkRouteJwt, etablissementRouter)
-app.use('/owner', checkOwnerRouteJwt, ownerRouter)
+app.use('/user', userRouter)
+app.use('/handicap', handicapRouter)
+app.use('/etablissement', etablissementRouter)
+app.use('/owner', ownerRouter)
 
 app.use((req, res, next) => {
     return res.status(404).send({ "message": "page not found" })

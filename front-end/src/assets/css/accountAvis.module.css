@@ -1,68 +1,81 @@
 .backgroundBlured {
-  background-image: url("../images/maptemplateblured.png");
-  background-size: cover;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
+	background-image: url("../images/maptemplateblured.png");
+	background-size: cover;
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: column;
 }
 
 .accountContainer {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  background-color: var(--background-color-light);
-  padding: 1em;
-  border-radius: 10px;
-  width: 50%;
-  margin: 2% 0;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+	background-color: var(--background-color-light);
+	padding: 1em;
+	border-radius: 10px;
+	width: 50%;
+	margin: 2% 0;
 }
 .accountContainer h2 {
-  margin: 0.1em 0 0.1em;
+	margin: 0.1em 0 0.1em;
 }
 .accountContainer li {
-  list-style: none;
-  text-align: center;
+	list-style: none;
+	text-align: center;
 }
 .accountContainer ul {
-  padding: 0;
+	padding: 0;
 }
 .linkButton {
-  background-color: var(--button-color);
-  border: 0px;
-  border-radius: 0.3em;
-  padding: 0.3em;
-  color: white;
+	background-color: var(--button-color);
+	border: 0px;
+	border-radius: 0.3em;
+	padding: 0.3em;
+	color: white;
 }
 .linkButton:hover {
-  background-color: var(--button-color-hover);
+	background-color: var(--button-color-hover);
 }
-.avisContainer li span img {
-  width: 1em;
+.avisContainer li span svg {
+	width: 1em;
+  height: 1em;
+  color:var(--avis-icon-color);
 }
 .avisContainer li {
-  margin: 1em;
+	margin: 1em;
 }
 .avisNotice {
-  font-style: italic;
-  font-size: 0.8em;
+	font-style: italic;
+	font-size: 0.8em;
 }
 .deleteAvis {
-  color: var(--button-color-delete);
-  border: 0px;
-  border-radius: 0.3em;
-  padding: 0.3em;
-  margin: 0.2em 0 1em;
+	background-color: var(--button-color-delete);
+	border: 0px;
+	border-radius: 0.3em;
+	padding: 0.3em;
+	text-decoration: none;
+	margin: 1em;
+	color: white;
+}
+.deleteAvis:hover {
+	color: rgb(2, 2, 2);
+	background-color: var(--button-color-hover);
+}
+.linkText {
+	text-decoration: none;
+	text-align: left;
+	width: 100%;
 }
 @media (max-width: 650px) {
-  .accountContainer {
-    width: 98%;
-  }
+	.accountContainer {
+		width: 98%;
+	}
 }

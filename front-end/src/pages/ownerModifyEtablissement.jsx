@@ -1,33 +1,37 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { api_url } from "../config/const";
-import { Link, useNavigate } from "react-router";
-import styles from "../assets/css/ownerAddEtablissement.module.css";
+import { Link, useNavigate, useLocation } from "react-router";
+import styles from "../assets/css/ownerModifyEtablissement.module.css";
 
-const OwnerAddEtablissement = () => {
-	const [newEtablissement, setNewEtablissement] = useState({
-		nom: "",
-		adresse: "",
-		type: "",
-		coordonnees: "",
-		photo: null
-	});
+const OwnerModifyEtablissement = () => {
+	const location = useLocation();
+	const params = {
+		id_etablissement: location.state.id_etablissement || "",
+		nom: location.state.nom || "",
+		adresse: location.state.adresse || "",
+		type: location.state.type || "",
+		coordonnees: location.state.coordonnees || "",
+		photo: location.state.photo || ""
+	};
+	const [modifyEtablissement, setModifyEtablissement] = useState(params);
 	const navigate = useNavigate();
 
 	const jwt_token = localStorage.getItem("token");
 
-	const handleAddEtablissement = async () => {
-		if (!newEtablissement) {
+	const handleModifyEtablissement = async () => {
+		if (!modifyEtablissement) {
 			return;
 		}
 		const formData = new FormData();
-		formData.append("nom", newEtablissement.nom);
-		formData.append("adresse", newEtablissement.adresse);
-		formData.append("type", newEtablissement.type);
-		formData.append("coordonnees", newEtablissement.coordonnees);
-		formData.append("photo", newEtablissement.photo);
+		formData.append("id_etablissement",modifyEtablissement.id_etablissement);
+		formData.append("nom", modifyEtablissement.nom);
+		formData.append("adresse", modifyEtablissement.adresse);
+		formData.append("type", modifyEtablissement.type);
+		formData.append("coordonnees", modifyEtablissement.coordonnees);
+		formData.append("photo", modifyEtablissement.photo);
 		await axios
-			.post(`${api_url}/owner/etablissements`, formData, {
+			.put(`${api_url}/owner/etablissements`, formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
 					authorization: jwt_token
@@ -41,14 +45,14 @@ const OwnerAddEtablissement = () => {
 			});
 	};
 	const handleChange = (e) => {
-		setNewEtablissement({
-			...newEtablissement,
+		setModifyEtablissement({
+			...modifyEtablissement,
 			[e.target.name]: e.target.value
 		});
 	};
 	const handlePhotoChange = (e) => {
-		setNewEtablissement({
-			...newEtablissement,
+		setModifyEtablissement({
+			...modifyEtablissement,
 			photo: e.target.files[0]
 		});
 	};
@@ -58,15 +62,15 @@ const OwnerAddEtablissement = () => {
 			<Link to="/account/etablissement">
 				Revenir sur mes etablissements
 			</Link>
-			<div className={styles.FormAddEtablissement}>
-				<h2>Rajouter un lieu</h2>
+			<div className={styles.FormModifyEtablissement}>
+				<h2>Modifier un lieu</h2>
 				<form>
 					<label htmlFor="nom">nom</label>
 					<input
 						type="text"
 						id="nom"
 						name="nom"
-						value={newEtablissement.nom}
+						value={modifyEtablissement.nom}
 						onChange={handleChange}
 						required
 					/>
@@ -75,7 +79,7 @@ const OwnerAddEtablissement = () => {
 						type="text"
 						id="type"
 						name="type"
-						value={newEtablissement.type}
+						value={modifyEtablissement.type}
 						onChange={handleChange}
 						required
 					/>
@@ -93,7 +97,7 @@ const OwnerAddEtablissement = () => {
 						type="text"
 						id="adresse"
 						name="adresse"
-						value={newEtablissement.adresse}
+						value={modifyEtablissement.adresse}
 						onChange={handleChange}
 						required
 					/>
@@ -102,14 +106,14 @@ const OwnerAddEtablissement = () => {
 						type="text"
 						id="coordonnees"
 						name="coordonnees"
-						value={newEtablissement.coordonnees}
+						value={modifyEtablissement.coordonnees}
 						onChange={handleChange}
 						required
 					/>
 					<button
 						type="button"
 						className={styles.addButton}
-						onClick={() => handleAddEtablissement()}
+						onClick={() => handleModifyEtablissement()}
 					>
 						Rajouter
 					</button>
@@ -119,4 +123,4 @@ const OwnerAddEtablissement = () => {
 	);
 };
 
-export default OwnerAddEtablissement;
+export default OwnerModifyEtablissement;

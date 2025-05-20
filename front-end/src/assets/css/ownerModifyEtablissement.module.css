@@ -1,0 +1,52 @@
+.backgroundBlured {
+  background-image: url("../images/maptemplateblured.png");
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.FormModifyEtablissement {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 1em;
+  border-radius: 10px;
+  width: 60%;
+  background-color: var(--background-color-light);
+  margin: 1% 0;
+}
+.FormModifyEtablissement form {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.FormModifyEtablissement form * {
+  margin: 0.3em 0 0.3em;
+}
+
+.addButton {
+  background-color: var(--button-color);
+  border: 0px;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  color: white;
+  text-decoration: none;
+}
+
+.addButton:hover {
+	background-color: var(--button-color-hover);
+}
+

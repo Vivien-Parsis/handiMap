@@ -8,16 +8,17 @@ import {
 } from '../controllers/owner.controller.js'
 import { Router } from 'express'
 import { upload } from '../middlewares/upload.middleware.js'
+import { checkOwnerRouteJwt } from '../middlewares/auth.middleware.js'
 
 const ownerRouter = Router()
 
-ownerRouter.get("/etablissements", getAllOwnerEtablissement)
-ownerRouter.post("/etablissements", upload.single('photo'), createEtablissement)
-ownerRouter.put("/etablissements", updateEtablissement)
-ownerRouter.delete("/etablissements", deleteEtablissement)
+ownerRouter.get("/etablissements", checkOwnerRouteJwt, getAllOwnerEtablissement)
+ownerRouter.post("/etablissements", checkOwnerRouteJwt, upload.single('photo'), createEtablissement)
+ownerRouter.put("/etablissements", checkOwnerRouteJwt, upload.single('photo'), updateEtablissement)
+ownerRouter.delete("/etablissements", checkOwnerRouteJwt, deleteEtablissement)
 
-ownerRouter.post("/etablissements/handicaps", addHandicapToEtablissement)
-ownerRouter.delete("/etablissements/handicaps", deleteHandicapToEtablissement)
+ownerRouter.post("/etablissements/handicaps", checkOwnerRouteJwt, addHandicapToEtablissement)
+ownerRouter.delete("/etablissements/handicaps", checkOwnerRouteJwt, deleteHandicapToEtablissement)
 
 export {
     ownerRouter

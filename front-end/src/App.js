@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router';
 import ProtectedRoute from './components/protectedRoute';
 import Login from './pages/login';
 import './App.css';
@@ -12,11 +12,13 @@ import ProtectedOwnerRoute from './components/protectedOwnerRoute';
 import OwnerEtablissement from './pages/ownerEtablissement';
 import OwnerAddEtablissement from './pages/ownerAddEtablissement';
 import Header from './components/header';
+import OwnerModifyEtablissement from './pages/ownerModifyEtablissement';
+import Etablissement from './pages/etablissement';
 
 function App() {
   const location = useLocation()
   const showHeader = () => {
-    return (location.pathname.startsWith("/map") || location.pathname === "/") ? "" : <Header />
+    return (location.pathname.startsWith("/map") || location.pathname.startsWith("/etablissement") || location.pathname === "/") ? "" : <Header />
   }
   return (
     <>
@@ -25,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Maps />} />
+        <Route path="/etablissement" element={<Etablissement />} />
         <Route
           path="/account"
           element={
@@ -47,7 +50,6 @@ function App() {
             <ProtectedOwnerRoute>
               <OwnerEtablissement />
             </ProtectedOwnerRoute>
-
           }
         />
         <Route
@@ -56,7 +58,14 @@ function App() {
             <ProtectedOwnerRoute>
               <OwnerAddEtablissement />
             </ProtectedOwnerRoute>
-
+          }
+        />
+        <Route
+          path="/account/etablissement/modify"
+          element={
+            <ProtectedOwnerRoute>
+              <OwnerModifyEtablissement />
+            </ProtectedOwnerRoute>
           }
         />
         <Route path="*" element={<Error404 />} />

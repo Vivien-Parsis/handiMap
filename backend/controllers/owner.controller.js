@@ -10,7 +10,6 @@ const getAllOwnerEtablissement = async (req, res) => {
         const validator = vine.compile(schema)
         await validator.validate({ id_user: req.user.id_user })
         const etablissement = await etablissementModel.findAllOwnerEtablissement(req.user.id_user)
-
         const transformRes = []
 
         for (let etab of etablissement) {
@@ -44,7 +43,9 @@ const getAllOwnerEtablissement = async (req, res) => {
                     date: etab.date,
                     commentaire: etab.commentaire,
                     photo_avis: etab.photo_avis,
-                    auteur_avis: etab.auteur_avis
+                    auteur_avis: etab.auteur_avis,
+                    nom_auteur_avis: etab.nom_auteur_avis,
+                    prenom_auteur_avis: etab.prenom_auteur_avis
                 })
             }
         }
@@ -92,16 +93,17 @@ const updateEtablissement = async (req, res) => {
         coordonnees: vine.string(),
         id_user: vine.number().withoutDecimals()
     })
+    console.log(req.file)
     const currentEtablissement = {
         id_etablissement: req.body.id_etablissement,
         nom: req.body.nom,
         adresse: req.body.adresse,
         type: req.body.type,
-        photo: req.body.photo,
+        photo: req.file ? req.file.path : req.body.photo,
         coordonnees: req.body.coordonnees,
         id_user: req.user.id_user
     }
-
+    console.log(currentEtablissement)
     try {
         const validator = vine.compile(schema)
         await validator.validate(currentEtablissement)

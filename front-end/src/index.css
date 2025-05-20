@@ -23,9 +23,11 @@ code {
   --background-color-light: #ebecff;
 
   --button-color: #bdaad0;
-  --button-color-delete: #9c2d2d;
+  --button-color-delete: #ca2a2a;
   --button-color-add: #4e9e58;
   --button-color-hover: #b1b1b1;
+
+  --avis-icon-color:yellow;
 }
 [data-theme='monocolor'] {
   --background-color-dark: #757575;
@@ -35,4 +37,6 @@ code {
   --button-color-delete: #a0a0a0;
   --button-color-add: #a0a0a0;
   --button-color-hover: #b1b1b1;
+
+  --avis-icon-color:rgb(255, 255, 255);
 }

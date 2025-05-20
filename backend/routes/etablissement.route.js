@@ -1,10 +1,11 @@
-import { getAlletablissements } from '../controllers/etablissement.controller.js'
+import { getAllEtablissements, getEtablissementWithAllJoin } from '../controllers/etablissement.controller.js'
 
 import { Router } from 'express'
 const etablissementRouter = Router()
 
-etablissementRouter.get("/",getAlletablissements)
+etablissementRouter.get("/", getAllEtablissements)
+etablissementRouter.get("/findwithjoin", getEtablissementWithAllJoin)
 
-export{
+export {
     etablissementRouter
 }

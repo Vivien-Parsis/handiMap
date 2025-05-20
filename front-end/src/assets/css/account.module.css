@@ -1,69 +1,87 @@
 .backgroundBlured {
-  background-image: url("../images/maptemplateblured.png");
-  background-size: cover;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+	background-image: url("../images/maptemplateblured.png");
+	background-size: cover;
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .accountContainer {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  background-color: var(--background-color-light);
-  flex-direction: column;
-  padding: 1em;
-  border-radius: 10px;
-  width: 50%;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	background-color: var(--background-color-light);
+	flex-direction: column;
+	padding: 1em;
+	border-radius: 10px;
+	width: 50%;
 }
-.accountContainer h2 {
-  margin: 0.1em 0 0.1em;
+.accountContainer h2,
+.accountContainer h3 {
+	margin: 0.1em 0 0.1em;
+}
+.accountContainer h3{
+	text-align: left;
+	width: 100%;
 }
 .accountContainer li {
-  list-style: none;
-  text-align: center;
+	list-style: none;
+	text-align: left;
 }
 .accountContainer ul {
-  padding: 0;
+	padding: 0;
+	width: 100%;
 }
 .deleteHandicaps {
-  color: red;
-  border: 0px;
-  border-radius: 0.3em;
-  padding: 0.3em;
-  margin: 0.2em 0 1em;
+	background-color: var(--button-color-delete);
+	border: 0px;
+	border-radius: 0.3em;
+	padding: 0.3em;
+	text-decoration: none;
+	margin: 0.3em;
+	color: white;
 }
 .deleteHandicaps:hover {
-  color: rgb(2, 2, 2);
-  background-color: var(--button-color-hover);
+	color: rgb(2, 2, 2);
+	background-color: var(--button-color-hover);
 }
 .addHandicaps {
-  background-color: var(--button-color-delete);
-  border: 0px;
-  border-radius: 0.3em;
-  padding: 0.3em;
-  margin: 0.2em 0 1em;
+	background-color: var(--button-color-add);
+	color: white;
+	border: 0px;
+	border-radius: 0.3em;
+	padding: 0.3em;
+	margin: 0.2em 0 1em;
 }
 .linkButton {
-  background-color: var(--button-color);
-  border: 0px;
-  border-radius: 0.3em;
-  padding: 0.3em;
-  color: white;
-  margin: 1em 0 1em;
-  text-decoration: none;
+	background-color: var(--button-color);
+	border: 0px;
+	border-radius: 0.3em;
+	padding: 0.3em;
+	color: white;
+	margin: 1em 0 1em;
+	text-decoration: none;
 }
-.linkButton:hover {
-  background-color: var(--button-color-hover);
+.linkButton:hover,
+.addHandicaps:hover {
+	background-color: var(--button-color-hover);
+}
+.linkText {
+	text-decoration: none;
+	text-align: left;
+	width: 100%;
+}
+.linkText:hover {
+	color: black;
 }
 @media (max-width: 650px) {
-  .accountContainer {
-    width: 98%;
-  }
+	.accountContainer {
+		width: 98%;
+	}
 }
