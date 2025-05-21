@@ -1,5 +1,7 @@
 import vine from '@vinejs/vine'
 import { userModel } from "../models/user.model.js"
+import { avisModel } from '../models/avis.model.js'
+import { handicapModel } from '../models/handicap.model.js'
 
 const getCurrentUser = async (req, res) => {
     const schema = vine.object({
@@ -67,7 +69,7 @@ const getUserHandicap = async (req, res) => {
     try {
         const validator = vine.compile(schema)
         await validator.validate({ id_user: req.user.id_user })
-        const handicaps = await userModel.findUserHandicap(req.user.id_user)
+        const handicaps = await handicapModel.findUserHandicap(req.user.id_user)
         if (!handicaps) {
             return res.status(404).json({ message: "Handicap introuvable" })
         } else {
@@ -80,7 +82,7 @@ const getUserHandicap = async (req, res) => {
 
 const getUserAvis = async (req, res) => {
     try {
-        const avis = await userModel.findUserAvis(req.user.id_user)
+        const avis = await avisModel.findUserAvis(req.user.id_user)
         if (!avis) {
             return res.status(404).json({ message: "Handicap introuvable" })
         } else {
@@ -100,7 +102,7 @@ const deleteAvisFromUser = async (req, res) => {
     try {
         const validator = vine.compile(schema)
         await validator.validate({ id_user: req.user.id_user, id_avis: id_avis })
-        const result = await userModel.deleteHandicap({ id_user: req.user.id_user, id_avis: id_avis })
+        const result = await userModel.deleteAvis({ id_user: req.user.id_user, id_avis: id_avis })
         if (!result) {
             return res.status(404).json({ message: "Association non trouvée" })
         }
@@ -110,11 +112,44 @@ const deleteAvisFromUser = async (req, res) => {
     }
 }
 
+const createUserAvis = async (req, res) => {
+    const schema = vine.object({
+        note: vine.number().withoutDecimals(),
+        id_user: vine.number().withoutDecimals(),
+        id_etablissement: vine.number().withoutDecimals(),
+        commentaire: vine.string(),
+    })
+    console.log(req.file, "eaeae")
+    const currentAvis = {
+        note: req.body.note,
+        id_user: req.user.id_user,
+        id_etablissement: req.body.id_etablissement,
+        photo: req.file ? req.file.path ? req.file.path : "" : "",
+        commentaire: req.body.commentaire,
+        date: new Date()
+    }
+    try {
+        const validator = vine.compile(schema)
+        await validator.validate({
+            note: currentAvis.note,
+            id_user: currentAvis.id_user,
+            id_etablissement: currentAvis.id_etablissement,
+            commentaire: currentAvis.commentaire
+        })
+        const avis = await avisModel.create(currentAvis)
+        res.status(201).json(avis)
+    } catch (err) {
+        console.error("Validation or DB error:", err)
+        res.status(500).json({ message: "Erreur serveur", error: err.message })
+    }
+}
+
 export {
     getCurrentUser,
     addHandicapToUser,
     deleteHandicapFromUser,
     getUserHandicap,
     getUserAvis,
-    deleteAvisFromUser
+    deleteAvisFromUser,
+    createUserAvis
 }

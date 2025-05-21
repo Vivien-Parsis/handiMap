@@ -46,34 +46,25 @@
 .avisContainer span {
 	width: 100%;
 }
-
-.handicapContainer,
 .titleAndAvisContainer {
 	padding: 0.6em 0;
 	border-bottom: 1px black solid;
 }
-
-.avisListItem {
+.formContainer {
 	display: flex;
-	align-items: center;
-    justify-content: space-between;
-	flex-wrap: wrap;
-	padding: 1em 0;
+	justify-content: center;
+	flex-direction: column;
 }
-.avisListItem div span {
-	width: 100%;
-	display: block;
+.formContainer form {
+	display: flex;
+	flex-direction: column;
+	align-items: baseline;
 }
-.avisListItem div {
-	width: 80%;
+.formContainer form * {
+	margin:.5em 0;
 }
-.avisListItem img {
-	width: 15%;
-}
-
-.avisListContainer {
-	height: 250px;
-	overflow-y: auto;
-	margin-top: 1em;
-	padding-right: 0.5em;
+.avisCommentaire{
+	width: 90%;
+	height:5em;
+	resize: none;
 }

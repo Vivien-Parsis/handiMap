@@ -14,6 +14,10 @@ const handicapModel = {
         return result.rows[0]
     },
 
+    findUserHandicap: async (id) => {
+        const result = await pool.query('SELECT * FROM Handicap JOIN User_Handicap ON Handicap.id_handicap = User_Handicap.id_handicap WHERE User_Handicap.id_user = $1', [id])
+        return result.rows
+    },
     findAll: async () => {
         const result = await pool.query('SELECT * FROM Handicap')
         return result.rows

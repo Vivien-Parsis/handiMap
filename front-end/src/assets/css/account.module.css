@@ -38,48 +38,6 @@
 	padding: 0;
 	width: 100%;
 }
-.deleteHandicaps {
-	background-color: var(--button-color-delete);
-	border: 0px;
-	border-radius: 0.3em;
-	padding: 0.3em;
-	text-decoration: none;
-	margin: 0.3em;
-	color: white;
-}
-.deleteHandicaps:hover {
-	color: rgb(2, 2, 2);
-	background-color: var(--button-color-hover);
-}
-.addHandicaps {
-	background-color: var(--button-color-add);
-	color: white;
-	border: 0px;
-	border-radius: 0.3em;
-	padding: 0.3em;
-	margin: 0.2em 0 1em;
-}
-.linkButton {
-	background-color: var(--button-color);
-	border: 0px;
-	border-radius: 0.3em;
-	padding: 0.3em;
-	color: white;
-	margin: 1em 0 1em;
-	text-decoration: none;
-}
-.linkButton:hover,
-.addHandicaps:hover {
-	background-color: var(--button-color-hover);
-}
-.linkText {
-	text-decoration: none;
-	text-align: left;
-	width: 100%;
-}
-.linkText:hover {
-	color: black;
-}
 @media (max-width: 650px) {
 	.accountContainer {
 		width: 98%;

@@ -75,7 +75,7 @@ const Account = () => {
 			jwtDecode(jwt_token).role === "owner"
 		) {
 			return (
-				<Link to="/account/etablissement" className={styles.linkButton}>
+				<Link to="/account/etablissement" className="linkButton">
 					Voir mes établissements
 				</Link>
 			);
@@ -125,7 +125,7 @@ const Account = () => {
 	}, [navigate, jwt_token]);
 	return (
 		<div className={styles.backgroundBlured}>
-			<Link to="/" className={styles.linkText}>
+			<Link to="/" className="linkText">
 				Revenir sur la carte
 			</Link>
 			<div className={styles.accountContainer}>
@@ -136,10 +136,7 @@ const Account = () => {
 					</li>
 					<li>{userInfo.email}</li>
 				</ul>
-				<button
-					className={styles.linkButton}
-					onClick={() => disconnet()}
-				>
+				<button className="linkButton" onClick={() => disconnet()}>
 					me deconnecter
 				</button>
 				<h3>Mes handicaps</h3>
@@ -149,7 +146,7 @@ const Account = () => {
 							<li key={value.id_user_handicap}>
 								{value.nom} | type : {value.type}{" "}
 								<button
-									className={styles.deleteHandicaps}
+									className="deleteButton"
 									onClick={() =>
 										handleDeleteHandicaps(value.id_handicap)
 									}
@@ -188,13 +185,13 @@ const Account = () => {
 					})}
 				</select>
 				<button
-					className={styles.addHandicaps}
+					className="addButton"
 					onClick={() => handleAddHandicaps()}
 				>
 					Ajouter
 				</button>
 
-				<Link to="/account/avis" className={styles.linkButton}>
+				<Link to="/account/avis" className="linkButton">
 					Voir mes avis
 				</Link>
 				{showEtablissementBtn()}

@@ -108,7 +108,7 @@ const OwnerAddEtablissement = () => {
 					/>
 					<button
 						type="button"
-						className={styles.addButton}
+						className="linkButton"
 						onClick={() => handleAddEtablissement()}
 					>
 						Rajouter

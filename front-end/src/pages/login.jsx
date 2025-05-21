@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { api_url } from "../config/const";
@@ -35,6 +35,14 @@ const Login = () => {
 			[e.target.name]: e.target.value
 		});
 	};
+
+	useEffect(() => {
+		const jwt_token = localStorage.getItem("token");
+		if (jwt_token) {
+			navigate("/");
+		}
+	}, [navigate]);
+	
 	return (
 		<div className={styles.backgroundBlured}>
 			<div className={styles.authContainer}>
@@ -60,7 +68,9 @@ const Login = () => {
 						onChange={handleChange}
 						required
 					/>
-					<button type="submit" className={styles.authButton}>Se connecter</button>
+					<button type="submit" className="linkButton">
+						Se connecter
+					</button>
 				</form>
 
 				<div className="auth-links">

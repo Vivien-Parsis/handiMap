@@ -3,34 +3,51 @@ import axios from "axios";
 import { api_url } from "../config/const";
 import { Link, useNavigate, useLocation } from "react-router";
 import TwoBtnBar from "../components/TwoButtonBar";
-import styles from "../assets/css/etablissement.module.css";
+import styles from "../assets/css/etablissementAvisNew.module.css";
 import { ReactComponent as Star } from "../assets/images/star-svgrepo-com.svg";
 import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
 
-const Etablissement = () => {
-	const [etablisement, setEtablisement] = useState({});
+const EtablissementAvisNew = () => {
 	const location = useLocation();
-
 	const id_etablissement = location.state?.id_etablissement || "";
+	const jwt_token = localStorage.getItem("token");
+
+	const [etablisement, setEtablisement] = useState({});
+	const [newAvis, setNewAvis] = useState({
+		note: 0,
+		commentaire: "",
+		photo: "",
+		id_etablissement: id_etablissement
+	});
 	const navigate = useNavigate();
+
+	const handleChange = (e) => {
+		if (e.target.name === "note" && e.target.value > 5) {
+			setNewAvis({
+				...newAvis,
+				note: 5
+			});
+		} else if (e.target.name === "photo") {
+			setNewAvis({
+				...newAvis,
+				photo: e.target.files[0]
+			});
+		} else {
+			setNewAvis({
+				...newAvis,
+				[e.target.name]: e.target.value
+			});
+		}
+	};
 
 	const forStars = (note) => {
 		let content = [];
 		for (let i = 0; i < note; i++) {
-			content.push(<Star className="startIcon" />);
+			content.push(<Star className="startIcon" key={i} />);
 		}
 		return content;
 	};
 
-	const getImageAvis = (avis) => {
-		if(!avis){
-			return
-		}else if(!avis.photo_avis){
-			return
-		}else{
-			return <img src={avis.photo_avis} alt="avis"/>
-		}
-	}
 	const getAvisAverage = (avis) => {
 		let average = 0;
 		if (!avis) {
@@ -48,43 +65,28 @@ const Etablissement = () => {
 		return avis ? avis.length : 0;
 	};
 
-	const getHandicaps = (handicaps) => {
-		if (!handicaps) {
-			return;
-		}
-		const content = [];
-		for (let handi of handicaps) {
-			content.push(
-				<li key={handi.id_handicap}>
-					{handi.nom_handicap} | type : {handi.type_handicap}
-				</li>
-			);
-		}
-		return content;
+	const handleAddAvis = async (e) => {
+		e.preventDefault();
+		const formData = new FormData();
+		formData.append("note", newAvis.note);
+		formData.append("commentaire", newAvis.commentaire);
+		formData.append("id_etablissement", newAvis.id_etablissement);
+		formData.append("photo", newAvis.photo);
+		await axios
+			.post(`${api_url}/user/avis`, formData, {
+				headers: {
+					"Content-Type": "multipart/form-data",
+					authorization: jwt_token
+				}
+			})
+			.then(() => {
+				navigate("/etablissement");
+			})
+			.catch((err) => {
+				console.log("err");
+			});
 	};
-	const getAvis = (avis) => {
-		if (!avis) {
-			return;
-		}
-		const content = [];
-		for (let a of avis) {
-			const currentDate = new Date(a.date);
-			content.push(
-				<div className={styles.avisListItem} key={a.id_avis}>
-					<div>
-						<span>{forStars(a.note)}</span>
-						<span>{a.commentaire} </span>
-						<span>
-							de {a.nom_auteur_avis} {a.prenom_auteur_avis} le{" "}
-							{currentDate.toLocaleDateString("fr-FR")}
-						</span>
-					</div>
-					{getImageAvis(a)}
-				</div>
-			);
-		}
-		return content;
-	};
+
 	useEffect(() => {
 		if (!id_etablissement) {
 			navigate("/");
@@ -146,24 +148,40 @@ const Etablissement = () => {
 									{getAvisAverage(etablisement.avis)}/5 sur{" "}
 									{getAvisNumber(etablisement.avis)} avis
 								</span>
-								<span>
-									<Link
-										to="/etablissement/avis/new"
-										state={{
-											id_etablissement: id_etablissement
-										}}
-									>
-										Ecrire un avis
-									</Link>
-								</span>
 							</div>
 						</div>
-						<div className={styles.handicapContainer}>
-							<h3>Handicaps</h3>
-							<ul>{getHandicaps(etablisement.handicaps)}</ul>
-						</div>
-						<div className={styles.avisListContainer}>
-							{getAvis(etablisement.avis)}
+						<div className={styles.formContainer}>
+							<h3>Nouveau avis</h3>
+							<form onSubmit={handleAddAvis}>
+								<label htmlFor="note">Note</label>
+								<input
+									id="note"
+									type="number"
+									min="0"
+									max="5"
+									step="1"
+									name="note"
+									value={newAvis.note}
+									onChange={handleChange}
+								></input>
+								<label>Commentaire</label>
+								<textarea
+									id="commentaire"
+									name="commentaire"
+									className={styles.avisCommentaire}
+									value={newAvis.commentaire}
+									onChange={handleChange}
+								></textarea>
+								<label>photo</label>
+								<input
+									type="file"
+									id="photo"
+									name="photo"
+									accept="image/*"
+									onChange={handleChange}
+								></input>
+								<input type="submit" value="Envoyer"></input>
+							</form>
 						</div>
 					</span>
 				</div>
@@ -172,4 +190,4 @@ const Etablissement = () => {
 	);
 };
 
-export default Etablissement;
+export default EtablissementAvisNew;

@@ -1,6 +1,7 @@
 import { etablissementModel } from "../models/etablissement.model.js"
 import vine from '@vinejs/vine'
 import { pool } from '../config/db.config.js'
+import { avisModel } from "../models/avis.model.js"
 
 const getAllOwnerEtablissement = async (req, res) => {
     const schema = vine.object({
@@ -197,11 +198,68 @@ const deleteHandicapToEtablissement = async (req, res) => {
         res.status(500).json({ message: "Erreur serveur", error: err })
     }
 }
+
+const getAllAvisFromEtablissement = async (req, res) => {
+    const schema = vine.object({
+        id_user: vine.number().withoutDecimals(),
+        id_etablissement: vine.number().withoutDecimals()
+    })
+    try {
+        const validator = vine.compile(schema)
+        await validator.validate({
+            id_user: req.user.id_user,
+            id_etablissement: Number(req.query.id_etablissement)
+        })
+
+        const avis = await avisModel.findAllFromEtablissementIfOwner(Number(req.query.id_etablissement), req.user.id_user)
+
+        if (!avis.length) {
+            return res.status(403).json({ message: "Cet établissement ne vous appartient pas ou aucun avis trouvé." })
+        }
+
+        res.json(avis)
+    } catch (err) {
+        res.status(500).json({ message: "Erreur serveur", error: err })
+    }
+}
+
+const deleteAvisFromEtablissement = async (req, res) => {
+    const schema = vine.object({
+        id_user: vine.number().withoutDecimals(),
+        id_etablissement: vine.number().withoutDecimals(),
+        id_avis: vine.number().withoutDecimals()
+    })
+
+    try {
+        const validator = vine.compile(schema)
+        await validator.validate({
+            id_user: req.user.id_user,
+            id_etablissement: req.body.id_etablissement,
+            id_avis: req.body.id_avis
+        })
+
+        const deleted = await avisModel.deleteIfOwner(
+            req.body.id_avis,
+            req.body.id_etablissement,
+            req.user.id_user
+        )
+
+        if (!deleted) {
+            return res.status(403).json({ message: "Cet avis n'existe pas ou ne vous appartient pas." })
+        }
+
+        res.json(deleted)
+    } catch (err) {
+        res.status(500).json({ message: "Erreur serveur", error: err })
+    }
+}
 export {
     getAllOwnerEtablissement,
     addHandicapToEtablissement,
     deleteHandicapToEtablissement,
     createEtablissement,
     updateEtablissement,
-    deleteEtablissement
+    deleteEtablissement,
+    getAllAvisFromEtablissement,
+    deleteAvisFromEtablissement
 }

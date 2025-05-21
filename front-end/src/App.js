@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router';
+import { Routes, Route, useLocation } from 'react-router';
 import ProtectedRoute from './components/protectedRoute';
 import Login from './pages/login';
 import './App.css';
@@ -14,6 +14,8 @@ import OwnerAddEtablissement from './pages/ownerAddEtablissement';
 import Header from './components/header';
 import OwnerModifyEtablissement from './pages/ownerModifyEtablissement';
 import Etablissement from './pages/etablissement';
+import EtablissementAvisNew from './pages/etablissementAvisNew';
+import OwnerEtablissementAvis from './pages/ownerEtablissementAvis';
 
 function App() {
   const location = useLocation()
@@ -28,6 +30,13 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Maps />} />
         <Route path="/etablissement" element={<Etablissement />} />
+        <Route path="/etablissement/avis/new"
+          element={
+            <ProtectedRoute>
+              <EtablissementAvisNew />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/account"
           element={
@@ -65,6 +74,14 @@ function App() {
           element={
             <ProtectedOwnerRoute>
               <OwnerModifyEtablissement />
+            </ProtectedOwnerRoute>
+          }
+        />
+        <Route
+          path="/account/etablissement/avis"
+          element={
+            <ProtectedOwnerRoute>
+              <OwnerEtablissementAvis />
             </ProtectedOwnerRoute>
           }
         />

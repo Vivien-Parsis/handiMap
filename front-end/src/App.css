@@ -1,30 +1,37 @@
-.App {
-  text-align: center;
-  min-height: 100vh;
+.startIcon {
+	width: 1em;
+	height: 1em;
+	color: var(--avis-icon-color);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.addButton,
+.deleteButton,
+.linkButton {
+	border: 0px;
+	border-radius: 0.3em;
+	padding: 0.3em;
+	text-decoration: none;
+	margin: 1em;
+	color: white;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.linkButton {
+	background-color: var(--button-color);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.deleteButton {
+	background-color: var(--button-color-delete);
 }
-
-.App-link {
-  color: #61dafb;
+.addButton {
+	background-color: var(--button-color-add);
+}
+.deleteButton:hover,
+.addButton:hover,
+.linkButton:hover {
+	background-color: var(--button-color-hover);
+}
+.linkText{
+  text-decoration: none;
+  text-align: left;
+  width: 100%;
+}
+.linkText:hover{
+  color:black
 }

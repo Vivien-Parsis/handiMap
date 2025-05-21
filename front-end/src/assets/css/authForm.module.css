@@ -31,15 +31,3 @@
 .formLogin * {
 	margin: 0.3em 0 0.3em;
 }
-.authButton {
-	background-color: var(--button-color);
-	border: 0px;
-	border-radius: 0.3em;
-	padding: 0.3em;
-	color: white;
-	text-decoration: none;
-}
-
-.authButton:hover {
-	background-color: var(--button-color-hover);
-}

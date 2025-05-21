@@ -23,41 +23,6 @@
 	border-radius: 10px;
 	width: 60%;
 }
-.linkButton {
-	background-color: var(--button-color);
-	border: 0px;
-	border-radius: 0.3em;
-	padding: 0.3em;
-	color: white;
-	text-decoration: none;
-}
-.linkButton:hover {
-	background-color: var(--button-color-hover);
-}
-.addHandicaps {
-	background-color: var(--button-color-add);
-	border: 0px;
-	border-radius: 0.3em;
-	padding: 0.3em;
-	text-decoration: none;
-	margin: 1em 0;
-	color: white;
-}
-.addHandicaps:hover {
-	background-color: var(--button-color-hover);
-}
-.DeleteButton {
-	background-color: var(--button-color-delete);
-	border: 0px;
-	border-radius: 0.3em;
-	padding: 0.3em;
-	text-decoration: none;
-	margin: 1em;
-	color: white;
-}
-.DeleteButton:hover {
-	background-color: var(--button-color-hover);
-}
 .etablissementsContainer {
 	background-color: var(--background-color-light);
 	margin: 1em 0 1em;
@@ -79,11 +44,6 @@
 .etablissementsContainer .etablissementsPhoto {
 	width: 30%;
 }
-.startIcon {
-	width: 1em;
-	height: 1em;
-	color:var(--avis-icon-color);
-}
 .handicapsLine {
 	margin: 0.1em 0 0.1em;
 }
@@ -91,14 +51,6 @@
 	width: 99%;
 	border: none;
 	border-radius: 5px;
-}
-.linkText{
-  text-decoration: none;
-  text-align: left;
-  width: 100%;
-}
-.linkText:hover{
-  color:black
 }
 @media (max-width: 650px) {
 	.ownerContainer {

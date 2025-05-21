@@ -4,7 +4,9 @@ import {
     deleteHandicapToEtablissement,
     getAllOwnerEtablissement,
     updateEtablissement,
-    deleteEtablissement
+    deleteEtablissement,
+    getAllAvisFromEtablissement,
+    deleteAvisFromEtablissement
 } from '../controllers/owner.controller.js'
 import { Router } from 'express'
 import { upload } from '../middlewares/upload.middleware.js'
@@ -19,6 +21,9 @@ ownerRouter.delete("/etablissements", checkOwnerRouteJwt, deleteEtablissement)
 
 ownerRouter.post("/etablissements/handicaps", checkOwnerRouteJwt, addHandicapToEtablissement)
 ownerRouter.delete("/etablissements/handicaps", checkOwnerRouteJwt, deleteHandicapToEtablissement)
+
+ownerRouter.get("/etablissements/avis", checkOwnerRouteJwt, getAllAvisFromEtablissement)
+ownerRouter.delete("/etablissements/avis", checkOwnerRouteJwt, deleteAvisFromEtablissement)
 
 export {
     ownerRouter

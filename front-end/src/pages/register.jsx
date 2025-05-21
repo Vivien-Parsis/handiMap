@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { api_url } from "../config/const";
@@ -39,6 +39,13 @@ const Register = () => {
 				setError("Erreur de connexion");
 			});
 	};
+
+	useEffect(() => {
+		const jwt_token = localStorage.getItem("token");
+		if (jwt_token) {
+			navigate("/");
+		}
+	}, [navigate]);
 
 	return (
 		<div className={styles.backgroundBlured}>
@@ -98,7 +105,9 @@ const Register = () => {
 					/>
 					<input type="checkbox" required name="rgpd" id="rgpd" />
 					<label htmlFor="rgpd">J'accepte le RGPD</label>
-					<button type="submit">S'inscrire</button>
+					<button type="submit" className="linkButton">
+						S'inscrire
+					</button>
 				</form>
 
 				<div className="auth-links">

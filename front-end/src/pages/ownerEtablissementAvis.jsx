@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { api_url } from "../config/const";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import styles from "../assets/css/accountAvis.module.css";
 import { ReactComponent as Star } from "../assets/images/star-svgrepo-com.svg";
 
-const AccountAvis = () => {
+const OwnerEtablissementAvis = () => {
 	const [userAvis, setUserAvis] = useState([]);
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	const id_etablissement = location.state?.id_etablissement || "";
+	const nom_etablissement = location.state?.nom_etablissement || "";
 	const forStars = (note) => {
 		let content = [];
 		for (let i = 0; i < note; i++) {
@@ -17,29 +21,32 @@ const AccountAvis = () => {
 	};
 	const handleDeleteAvis = (id) => {
 		const jwt_token = localStorage.getItem("token");
+
 		axios
-			.delete(`${api_url}/user/avis`, {
-				data: { id_avis: id },
+			.delete(`${api_url}/owner/etablissements/avis`, {
+				data: { id_avis: id, id_etablissement: id_etablissement },
 				headers: { authorization: jwt_token }
 			})
-			.then((res) => {});
-		axios
-			.get(`${api_url}/user/avis`, {
-				headers: { authorization: jwt_token }
+			.then(() => {
+				axios
+					.get(`${api_url}/owner/etablissements/avis`, {
+						params: { id_etablissement },
+						headers: { authorization: jwt_token }
+					})
+					.then((res) => {
+						if (res.data) {
+							setUserAvis(res.data);
+						}
+					})
+					.catch(() => {
+						navigate("/login");
+					});
 			})
-			.then((res) => {
-				if (res.data) {
-					setUserAvis(res.data);
-				} else {
-					navigate("/login");
-				}
-			})
-			.catch((err) => {
-				navigate("/login");
+			.catch(() => {
+				console.log("err");
 			});
 	};
 	const getAvisPhoto = (avis) => {
-		console.log(avis);
 		if (!avis) {
 			return;
 		} else if (!avis.photo_avis) {
@@ -50,28 +57,33 @@ const AccountAvis = () => {
 	};
 	useEffect(() => {
 		const jwt_token = localStorage.getItem("token");
-		axios
-			.get(`${api_url}/user/avis`, {
-				headers: { authorization: jwt_token }
-			})
-			.then((res) => {
-				if (res.data) {
-					setUserAvis(res.data);
-				} else {
+		if (!id_etablissement || !nom_etablissement) {
+			navigate("/account/etablissement");
+		} else {
+			axios
+				.get(`${api_url}/owner/etablissements/avis`, {
+					params: { id_etablissement: id_etablissement },
+					headers: { authorization: jwt_token }
+				})
+				.then((res) => {
+					if (res.data) {
+						setUserAvis(res.data);
+					} else {
+						navigate("/login");
+					}
+				})
+				.catch((err) => {
 					navigate("/login");
-				}
-			})
-			.catch((err) => {
-				navigate("/login");
-			});
-	}, [navigate]);
+				});
+		}
+	}, [navigate, id_etablissement, nom_etablissement]);
 	return (
 		<div className={styles.backgroundBlured}>
-			<Link to="/account" className="linkText">
-				Revenir sur mon compte
+			<Link to="/account/etablissement" className="linkText">
+				Revenir sur mes etablissements
 			</Link>
 			<div className={styles.accountContainer}>
-				<h2>Mes avis</h2>
+				<h2>Les avis de {nom_etablissement}</h2>
 				<ul className={styles.avisContainer}>
 					{userAvis.map((el) => {
 						return (
@@ -80,16 +92,10 @@ const AccountAvis = () => {
 									<span>{forStars(el.note)}</span>
 									<p>{el.commentaire}</p>
 									<span className={styles.avisNotice}>
-										<Link
-											to={"/etablissement"}
-											state={{
-												id_etablissement:
-													el.id_etablissement
-											}}
-										>
-											{el.nom_etablissement}
-										</Link>{" "}
-										le {new Date(el.date).toLocaleDateString("fr-FR")}
+										{el.avis} le{" "}
+										{new Date(el.date).toLocaleDateString(
+											"fr-FR"
+										)}
 									</span>
 									<button
 										className="deleteButton"
@@ -110,4 +116,4 @@ const AccountAvis = () => {
 	);
 };
 
-export default AccountAvis;
+export default OwnerEtablissementAvis;

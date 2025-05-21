@@ -16,7 +16,7 @@ const OwnerEtablissement = () => {
 	const forStars = (note) => {
 		let content = [];
 		for (let i = 0; i < Math.round(getAvisAverage(note)); i++) {
-			content.push(<Star className={styles.startIcon} />);
+			content.push(<Star className="startIcon" key={i} />);
 		}
 		return content;
 	};
@@ -156,7 +156,7 @@ const OwnerEtablissement = () => {
 	return (
 		<div>
 			<div className={styles.backgroundBlured}>
-				<Link to="/account" className={styles.linkText}>
+				<Link to="/account" className="linkText">
 					Revenir sur mon compte
 				</Link>
 				<div className={styles.ownerContainer}>
@@ -189,14 +189,20 @@ const OwnerEtablissement = () => {
 										{getAvisNumber(et.avis)} avis
 									</p>
 									<Link
-										className={styles.linkButton}
-										to="/account/etablissement"
+										className="linkButton"
+										to="/account/etablissement/avis"
+										state={{
+											id_etablissement:
+												et.id_etablissement,
+											nom_etablissement:
+												et.nom_etablissement
+										}}
 									>
 										Voir les avis
 									</Link>
 									<div>
 										<Link
-											className={styles.linkButton}
+											className="linkButton"
 											to="/account/etablissement/modify"
 											state={{
 												id_etablissement:
@@ -211,7 +217,7 @@ const OwnerEtablissement = () => {
 											Modifier
 										</Link>
 										<button
-											className={styles.DeleteButton}
+											className="deleteButton"
 											onClick={() =>
 												handleDeleteEtablissement(
 													et.id_etablissement
@@ -232,9 +238,7 @@ const OwnerEtablissement = () => {
 											>
 												{ha.nom_handicap}
 												<button
-													className={
-														styles.DeleteButton
-													}
+													className="deleteButton"
 													onClick={() =>
 														handleDeleteHandicaps(
 															ha.id_handicap,
@@ -289,7 +293,7 @@ const OwnerEtablissement = () => {
 									</select>
 
 									<button
-										className={styles.addHandicaps}
+										className="addButton"
 										onClick={() =>
 											handleAddHandicaps(
 												et.id_etablissement
@@ -303,10 +307,7 @@ const OwnerEtablissement = () => {
 						);
 					})}
 				</div>
-				<Link
-					className={styles.linkButton}
-					to="/account/etablissement/add"
-				>
+				<Link className="linkButton" to="/account/etablissement/add">
 					Rajouter un etablissement
 				</Link>
 			</div>

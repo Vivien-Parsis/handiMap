@@ -24,7 +24,10 @@ const OwnerModifyEtablissement = () => {
 			return;
 		}
 		const formData = new FormData();
-		formData.append("id_etablissement",modifyEtablissement.id_etablissement);
+		formData.append(
+			"id_etablissement",
+			modifyEtablissement.id_etablissement
+		);
 		formData.append("nom", modifyEtablissement.nom);
 		formData.append("adresse", modifyEtablissement.adresse);
 		formData.append("type", modifyEtablissement.type);
@@ -112,7 +115,7 @@ const OwnerModifyEtablissement = () => {
 					/>
 					<button
 						type="button"
-						className={styles.addButton}
+						className="linkButton"
 						onClick={() => handleModifyEtablissement()}
 					>
 						Rajouter
