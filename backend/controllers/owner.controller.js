@@ -65,11 +65,15 @@ const createEtablissement = async (req, res) => {
         coordonnees: vine.string(),
         id_user: vine.number().withoutDecimals()
     })
+    let photo = ""
+    if (req.file) {
+        photo = req.file.path || ""
+    }
     const currentEtablissement = {
         nom: req.body.nom,
         adresse: req.body.adresse,
         type: req.body.type,
-        photo: req.file ? req.file.path ? req.file.path : "" : "",
+        photo: photo,
         coordonnees: req.body.coordonnees,
         id_user: req.user.id_user
     }
@@ -95,17 +99,19 @@ const updateEtablissement = async (req, res) => {
         coordonnees: vine.string(),
         id_user: vine.number().withoutDecimals()
     })
-    console.log(req.file)
+    let photo = ""
+    if (req.file) {
+        photo = req.file.path || ""
+    }
     const currentEtablissement = {
         id_etablissement: req.body.id_etablissement,
         nom: req.body.nom,
         adresse: req.body.adresse,
         type: req.body.type,
-        photo: req.file ? req.file.path : req.body.photo,
+        photo: photo,
         coordonnees: req.body.coordonnees,
         id_user: req.user.id_user
     }
-    console.log(currentEtablissement)
     try {
         const validator = vine.compile(schema)
         await validator.validate(currentEtablissement)

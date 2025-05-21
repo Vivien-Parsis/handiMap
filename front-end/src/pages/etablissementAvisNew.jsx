@@ -164,7 +164,7 @@ const EtablissementAvisNew = () => {
 									value={newAvis.note}
 									onChange={handleChange}
 								></input>
-								<label>Commentaire</label>
+								<label htmlFor="commentaire">Commentaire</label>
 								<textarea
 									id="commentaire"
 									name="commentaire"
@@ -172,7 +172,7 @@ const EtablissementAvisNew = () => {
 									value={newAvis.commentaire}
 									onChange={handleChange}
 								></textarea>
-								<label>photo</label>
+								<label htmlFor="photo">photo</label>
 								<input
 									type="file"
 									id="photo"

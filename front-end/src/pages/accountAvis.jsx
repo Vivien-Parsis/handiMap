@@ -39,7 +39,6 @@ const AccountAvis = () => {
 			});
 	};
 	const getAvisPhoto = (avis) => {
-		console.log(avis);
 		if (!avis) {
 			return;
 		} else if (!avis.photo_avis) {

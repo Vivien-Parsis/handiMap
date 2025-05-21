@@ -119,12 +119,15 @@ const createUserAvis = async (req, res) => {
         id_etablissement: vine.number().withoutDecimals(),
         commentaire: vine.string(),
     })
-    console.log(req.file, "eaeae")
+    let photo = ""
+    if(req.file){
+        photo = req.file.path || ""
+    }
     const currentAvis = {
         note: req.body.note,
         id_user: req.user.id_user,
         id_etablissement: req.body.id_etablissement,
-        photo: req.file ? req.file.path ? req.file.path : "" : "",
+        photo: photo,
         commentaire: req.body.commentaire,
         date: new Date()
     }
