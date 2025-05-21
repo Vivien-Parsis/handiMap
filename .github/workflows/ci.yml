@@ -3,28 +3,33 @@ name: Node.js CI
 on: [push]
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20.x"
 
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
+            - name: Install dependencies on back
+              run: |
+                  cd backend
+                  npm install
 
-      - name: Install dependencies on back
-        run: |
-          cd backend
-          npm install
+            - name: Install dependencies on front
+              run: |
+                  cd backend
+                  npm install
 
-      - name: Install dependencies on front
-        run: |
-          cd backend
-          npm install
-
-      - name: Run tests on back
-        run: |
-          cd backend
-          npm run test    
+            - name: Run tests on back
+              env:
+                  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+                  DB_URL: ${{ secrets.DB_URL }}
+                  CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+                  CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+                  CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+              run: |
+                  cd backend
+                  npm run test
