@@ -61,7 +61,6 @@ const createEtablissement = async (req, res) => {
         nom: vine.string(),
         adresse: vine.string(),
         type: vine.string(),
-        photo: vine.string(),
         coordonnees: vine.string(),
         id_user: vine.number().withoutDecimals()
     })
@@ -69,17 +68,19 @@ const createEtablissement = async (req, res) => {
         nom: req.body.nom,
         adresse: req.body.adresse,
         type: req.body.type,
-        photo: req.file.path ? req.file.path : "",
+        photo: req.file ? req.file.path ? req.file.path : "" : "",
         coordonnees: req.body.coordonnees,
         id_user: req.user.id_user
     }
     try {
         const validator = vine.compile(schema)
         await validator.validate(currentEtablissement)
+
         const etablissement = await etablissementModel.create(currentEtablissement)
         res.status(201).json(etablissement)
     } catch (err) {
-        res.status(500).json({ message: "Erreur serveur", error: err })
+        console.error("Validation or DB error:", err)
+        res.status(500).json({ message: "Erreur serveur", error: err.message })
     }
 }
 

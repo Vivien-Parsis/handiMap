@@ -20,7 +20,7 @@ jobs:
 
             - name: Install dependencies on front
               run: |
-                  cd backend
+                  cd front-end
                   npm install
 
             - name: Run tests on back

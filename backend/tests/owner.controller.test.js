@@ -1,5 +1,10 @@
 import request from "supertest"
 import { jest } from "@jest/globals"
+import path from "path"
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 jest.unstable_mockModule('../config/db.config.js', () => ({
     pool: {
@@ -81,25 +86,26 @@ describe("Routes /owner/etablissements", () => {
 
     describe("POST /owner/etablissements", () => {
         it("doit créer un établissement", async () => {
-            etablissementModel.create.mockResolvedValue({
+
+            const mockValue = {
                 id_etablissement: 1,
                 nom: "Nouveau Etab",
-                adresse: "123 rue test",
-                type: "restaurant",
-                photo: "photo.jpg",
-                coordonnees: "coords"
-            })
+                adresse: "Adresse",
+                type: "magasin",
+                photo: "test.jpg",
+                coordonnees: "coords2"
+            }
+            etablissementModel.create.mockResolvedValue(mockValue)
 
             const res = await request(app)
                 .post("/owner/etablissements")
                 .set(headers)
-                .send({
-                    nom: "Nouveau Etab",
-                    adresse: "123 rue test",
-                    type: "restaurant",
-                    photo: "photo.jpg",
-                    coordonnees: "coords"
-                })
+                .attach("photo", path.join(__dirname, mockValue.photo))
+                .field("nom", mockValue.nom)
+                .field("adresse", mockValue.adresse)
+                .field("type", mockValue.type)
+                .field("coordonnees", mockValue.coordonnees)
+
 
             expect(res.statusCode).toBe(201)
             expect(res.body.nom).toBe("Nouveau Etab")
@@ -111,26 +117,25 @@ describe("Routes /owner/etablissements", () => {
             pool.query.mockResolvedValueOnce({
                 rows: [{ id_etablissement: 1, id_user: 1 }]
             })
-            etablissementModel.update.mockResolvedValue({
+            const mockValue = {
                 id_etablissement: 1,
                 nom: "Modifié",
                 adresse: "Adresse modif",
                 type: "magasin",
-                photo: "photo2.jpg",
+                photo: "test.jpg",
                 coordonnees: "coords2"
-            })
+            }
+            etablissementModel.update.mockResolvedValue(mockValue)
 
             const res = await request(app)
                 .put("/owner/etablissements")
                 .set(headers)
-                .send({
-                    id_etablissement: 1,
-                    nom: "Modifié",
-                    adresse: "Adresse modif",
-                    type: "magasin",
-                    photo: "photo2.jpg",
-                    coordonnees: "coords2"
-                })
+                .attach("photo", path.join(__dirname, mockValue.photo))
+                .field("id_etablissement", mockValue.id_etablissement)
+                .field("nom", mockValue.nom)
+                .field("adresse", mockValue.adresse)
+                .field("type", mockValue.type)
+                .field("coordonnees", mockValue.coordonnees)
 
             expect(res.statusCode).toBe(200)
             expect(res.body.nom).toBe("Modifié")
@@ -145,14 +150,12 @@ describe("Routes /owner/etablissements", () => {
             const res = await request(app)
                 .put("/owner/etablissements")
                 .set(headers)
-                .send({
-                    id_etablissement: 99,
-                    nom: "Hacker Etab",
-                    adresse: "H4ck Street",
-                    type: "bar",
-                    photo: "hack.jpg",
-                    coordonnees: "h4ck"
-                })
+                .attach("photo", path.join(__dirname, "test.jpg"))
+                .field("id_etablissement", 99)
+                .field("nom", "Hacker Etab")
+                .field("adresse", "H4ck Street")
+                .field("type", "bar")
+                .field("coordonnees", "h4ck")
 
             expect(res.statusCode).toBe(403)
             expect(res.body.message).toBe("cet etablissement ne vous appartient pas")
