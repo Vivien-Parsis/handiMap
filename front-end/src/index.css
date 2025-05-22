@@ -27,7 +27,7 @@ code {
   --button-color-add: #4e9e58;
   --button-color-hover: #b1b1b1;
 
-  --avis-icon-color:yellow;
+  --avis-icon-color:rgb(216, 216, 53);
 }
 [data-theme='monocolor'] {
   --background-color-dark: #757575;
@@ -38,5 +38,5 @@ code {
   --button-color-add: #a0a0a0;
   --button-color-hover: #b1b1b1;
 
-  --avis-icon-color:rgb(255, 255, 255);
+  --avis-icon-color:#ffffff;
 }
