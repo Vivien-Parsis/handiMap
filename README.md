@@ -12,6 +12,7 @@ Application web avec serveur frontend React et serveur backend en node et expres
 - git
 - node et npm, ou Docker
 - Une base de donnée postgreSQL
+- Un espace cloudinary
 
 ## Instruction d'installation
 

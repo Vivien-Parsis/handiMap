@@ -109,7 +109,7 @@ describe("Routes /owner/etablissements", () => {
 
             expect(res.statusCode).toBe(201)
             expect(res.body.nom).toBe("Nouveau Etab")
-        })
+        }, 10000)
     })
 
     describe("PUT /owner/etablissements", () => {

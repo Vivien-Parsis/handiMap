@@ -9,7 +9,7 @@ const Footer = () => {
 		document.documentElement.setAttribute("data-theme", e.target.value);
 	};
 	return (
-		<footer>
+		<footer style={styles}>
 			<Link to="/">Mention légales</Link>
 
 			<form>
