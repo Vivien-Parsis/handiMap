@@ -26,7 +26,7 @@ const Register = () => {
 	const handleRegister = async (e) => {
 		e.preventDefault();
 		axios
-			.post(`${api_url}/auth/register`, formData)
+			.post(`${api_url}/api/v1/auth/register`, formData)
 			.then((res) => {
 				if (res.data) {
 					localStorage.setItem("token", res.data);

@@ -1,21 +1,21 @@
-import { Routes, Route, useLocation } from 'react-router';
-import ProtectedRoute from './components/protectedRoute';
-import Login from './pages/login';
-import './App.css';
-import Register from './pages/register';
-import Maps from './pages/map';
-import Footer from './components/footer';
-import Error404 from './pages/error404';
-import Account from './pages/account';
-import AccountAvis from './pages/accountAvis';
-import ProtectedOwnerRoute from './components/protectedOwnerRoute';
-import OwnerEtablissement from './pages/ownerEtablissement';
-import OwnerAddEtablissement from './pages/ownerAddEtablissement';
-import Header from './components/header';
-import OwnerModifyEtablissement from './pages/ownerModifyEtablissement';
-import Etablissement from './pages/etablissement';
-import EtablissementAvisNew from './pages/etablissementAvisNew';
-import OwnerEtablissementAvis from './pages/ownerEtablissementAvis';
+import { Routes, Route, useLocation } from "react-router";
+import ProtectedRoute from "./components/protectedRoute";
+import Login from "./pages/login";
+import "./App.css";
+import Register from "./pages/register";
+import Maps from "./pages/map";
+import Footer from "./components/footer";
+import Error404 from "./pages/error404";
+import Account from "./pages/account";
+import AccountAvis from "./pages/accountAvis";
+import ProtectedOwnerRoute from "./components/protectedOwnerRoute";
+import OwnerEtablissement from "./pages/ownerEtablissement";
+import OwnerAddEtablissement from "./pages/ownerAddEtablissement";
+import Header from "./components/header";
+import OwnerModifyEtablissement from "./pages/ownerModifyEtablissement";
+import Etablissement from "./pages/etablissement";
+import EtablissementAvisNew from "./pages/etablissementAvisNew";
+import OwnerEtablissementAvis from "./pages/ownerEtablissementAvis";
 
 function App() {
   const location = useLocation()

@@ -1,7 +1,5 @@
-import vine from '@vinejs/vine'
-import { userModel } from "../models/user.model.js"
-import { avisModel } from '../models/avis.model.js'
-import { handicapModel } from '../models/handicap.model.js'
+import vine from "@vinejs/vine"
+import { handicapModel, avisModel, userModel } from "../models/index.js"
 
 const getCurrentUser = async (req, res) => {
     const schema = vine.object({
@@ -120,7 +118,7 @@ const createUserAvis = async (req, res) => {
         commentaire: vine.string(),
     })
     let photo = ""
-    if(req.file){
+    if (req.file) {
         photo = req.file.path || ""
     }
     const currentAvis = {

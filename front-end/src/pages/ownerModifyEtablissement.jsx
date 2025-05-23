@@ -34,7 +34,7 @@ const OwnerModifyEtablissement = () => {
 		formData.append("coordonnees", modifyEtablissement.coordonnees);
 		formData.append("photo", modifyEtablissement.photo);
 		await axios
-			.put(`${api_url}/owner/etablissements`, formData, {
+			.put(`${api_url}/api/v1/owners/etablissements`, formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
 					authorization: jwt_token

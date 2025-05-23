@@ -1,7 +1,6 @@
-import { etablissementModel } from "../models/etablissement.model.js"
-import vine from '@vinejs/vine'
-import { pool } from '../config/db.config.js'
-import { avisModel } from "../models/avis.model.js"
+import { avisModel, etablissementModel } from "../models/index.js"
+import vine from "@vinejs/vine"
+import { pool } from "../config/db.config.js"
 
 const getAllOwnerEtablissement = async (req, res) => {
     const schema = vine.object({

@@ -1,9 +1,9 @@
-import { getAllHandicaps } from '../controllers/handicap.controller.js'
-import { Router } from 'express'
+import { getAllHandicaps } from "../controllers/handicap.controller.js"
+import { Router } from "express"
 const handicapRouter = Router()
 
-handicapRouter.get("/",getAllHandicaps)
+handicapRouter.get("/", getAllHandicaps)
 
-export{
+export {
     handicapRouter
 }

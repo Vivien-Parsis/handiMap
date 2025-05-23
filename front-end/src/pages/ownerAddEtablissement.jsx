@@ -27,7 +27,7 @@ const OwnerAddEtablissement = () => {
 		formData.append("coordonnees", newEtablissement.coordonnees);
 		formData.append("photo", newEtablissement.photo);
 		await axios
-			.post(`${api_url}/owner/etablissements`, formData, {
+			.post(`${api_url}/api/v1/owner/etablissements`, formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
 					authorization: jwt_token

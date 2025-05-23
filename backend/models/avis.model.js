@@ -1,4 +1,4 @@
-import { pool } from '../config/db.config.js'
+import { pool } from "../config/db.config.js"
 
 const avisModel = {
     create: async ({ note, date, commentaire, photo, id_user, id_etablissement }) => {

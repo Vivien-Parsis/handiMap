@@ -7,9 +7,9 @@ import { api_url } from "../config/const";
 
 const Maps = () => {
 	const [etablisements, setEtablisements] = useState([]);
-  
+
 	useEffect(() => {
-		axios.get(`${api_url}/etablissement`).then((res) => {
+		axios.get(`${api_url}/api/v1/etablissements`).then((res) => {
 			if (res.data) {
 				setEtablisements(res.data);
 			}
@@ -22,7 +22,8 @@ const Maps = () => {
 				<Link
 					to="/etablissement"
 					state={{
-						id_etablissement: etablisements[0]?.id_etablissement || ""
+						id_etablissement:
+							etablisements[0]?.id_etablissement || ""
 					}}
 				>
 					Voir etablissement {etablisements[0]?.nom || ""}

@@ -6,11 +6,11 @@ import {
     getUserAvis,
     deleteAvisFromUser,
     createUserAvis
-} from '../controllers/user.controller.js'
+} from "../controllers/user.controller.js"
 
-import { Router } from 'express'
-import { checkRouteJwt } from '../middlewares/auth.middleware.js'
-import { upload } from '../middlewares/upload.middleware.js'
+import { Router } from "express"
+import { checkRouteJwt } from "../middlewares/auth.middleware.js"
+import { upload } from "../middlewares/upload.middleware.js"
 const userRouter = Router()
 
 userRouter.get("/", checkRouteJwt, getCurrentUser)

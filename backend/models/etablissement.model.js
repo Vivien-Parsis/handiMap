@@ -1,4 +1,4 @@
-import { pool } from '../config/db.config.js'
+import { pool } from "../config/db.config.js"
 
 const etablissementModel = {
     create: async ({ nom, adresse, type, photo, coordonnees, id_user }) => {

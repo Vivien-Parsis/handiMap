@@ -15,7 +15,7 @@ const Login = () => {
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		axios
-			.post(`${api_url}/auth/login`, formData)
+			.post(`${api_url}/api/v1/auth/login`, formData)
 			.then((res) => {
 				if (res.data.token) {
 					localStorage.setItem("token", res.data.token);
@@ -42,7 +42,7 @@ const Login = () => {
 			navigate("/");
 		}
 	}, [navigate]);
-	
+
 	return (
 		<div className={styles.backgroundBlured}>
 			<div className={styles.authContainer}>

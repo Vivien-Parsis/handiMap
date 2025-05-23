@@ -1,6 +1,6 @@
 import request from "supertest"
-import bcrypt from 'bcrypt'
-import { jest } from '@jest/globals'
+import bcrypt from "bcrypt"
+import { jest } from "@jest/globals"
 
 jest.unstable_mockModule('../models/user.model', () => ({
     userModel: {
@@ -19,7 +19,7 @@ const { generateToken } = await import('../services/auth.service.js')
 
 
 describe('Auth Routes', () => {
-    describe('POST /auth/register', () => {
+    describe('POST /api/v1/auth/register', () => {
         it('doit créer un utilisateur et retourner un token', async () => {
             const mockUser = {
                 nom: 'John',
@@ -33,7 +33,7 @@ describe('Auth Routes', () => {
             generateToken.mockReturnValue('fake-jwt-token')
 
             const res = await request(app)
-                .post('/auth/register')
+                .post('/api/v1/auth/register')
                 .send(mockUser)
 
             expect(res.statusCode).toBe(201)
@@ -51,7 +51,7 @@ describe('Auth Routes', () => {
             userModel.findByEmail.mockResolvedValue({ id_user: 1 })
 
             const res = await request(app)
-                .post('/auth/register')
+                .post('/api/v1/auth/register')
                 .send(mockUser)
 
             expect(res.statusCode).toBe(409)
@@ -59,7 +59,7 @@ describe('Auth Routes', () => {
         })
     })
 
-    describe('POST /auth/login', () => {
+    describe('POST /api/v1/auth/login', () => {
         it('doit connecter un utilisateur avec le bon mot de passe', async () => {
             const mockUser = {
                 email: 'test@example.com',
@@ -74,7 +74,7 @@ describe('Auth Routes', () => {
             generateToken.mockReturnValue('login-token')
 
             const res = await request(app)
-                .post('/auth/login')
+                .post('/api/v1/auth/login')
                 .send(mockUser)
 
             expect(res.statusCode).toBe(200)
@@ -94,7 +94,7 @@ describe('Auth Routes', () => {
             })
 
             const res = await request(app)
-                .post('/auth/login')
+                .post('/api/v1/auth/login')
                 .send(mockUser)
 
             expect(res.statusCode).toBe(401)

@@ -19,13 +19,13 @@ const Account = () => {
 	};
 	const handleDeleteHandicaps = (id) => {
 		axios
-			.delete(`${api_url}/user/handicaps`, {
+			.delete(`${api_url}/api/v1/users/handicaps`, {
 				data: { id_handicap: id },
 				headers: { authorization: jwt_token }
 			})
 			.then((res) => {});
 		axios
-			.get(`${api_url}/user/handicaps`, {
+			.get(`${api_url}/api/v1/users/handicaps`, {
 				headers: { authorization: jwt_token }
 			})
 			.then((res) => {
@@ -45,13 +45,13 @@ const Account = () => {
 		}
 		await axios
 			.post(
-				`${api_url}/user/handicaps`,
+				`${api_url}/api/v1/users/handicaps`,
 				{ id_handicap: newHandicap },
 				{ headers: { authorization: jwt_token } }
 			)
 			.then();
 		await axios
-			.get(`${api_url}/user/handicaps`, {
+			.get(`${api_url}/api/v1/users/handicaps`, {
 				headers: { authorization: jwt_token }
 			})
 			.then((res) => {
@@ -83,7 +83,9 @@ const Account = () => {
 	};
 	useEffect(() => {
 		axios
-			.get(`${api_url}/user/`, { headers: { authorization: jwt_token } })
+			.get(`${api_url}/api/v1/users/`, {
+				headers: { authorization: jwt_token }
+			})
 			.then((res) => {
 				if (res.data) {
 					setUserInfo(res.data);
@@ -95,7 +97,7 @@ const Account = () => {
 				navigate("/login");
 			});
 		axios
-			.get(`${api_url}/user/handicaps`, {
+			.get(`${api_url}/api/v1/users/handicaps`, {
 				headers: { authorization: jwt_token }
 			})
 			.then((res) => {
@@ -109,7 +111,7 @@ const Account = () => {
 				navigate("/login");
 			});
 		axios
-			.get(`${api_url}/handicap`, {
+			.get(`${api_url}/api/v1/handicaps`, {
 				headers: { authorization: jwt_token }
 			})
 			.then((res) => {

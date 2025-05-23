@@ -1,7 +1,7 @@
 import request from "supertest"
 import { jest } from "@jest/globals"
 import path from "path"
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from "url"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -57,9 +57,8 @@ const { etablissementModel } = await import("../models/etablissement.model.js")
 const token = "fake-jwt-token"
 const headers = { Authorization: token }
 
-describe("Routes /owner/etablissements", () => {
-
-    describe("GET /owner/etablissements", () => {
+describe("Routes /api/v1/owners/etablissements", () => {
+    describe("GET /api/v1/owners/etablissements", () => {
         it("doit retourner tous les établissements de l'utilisateur", async () => {
             etablissementModel.findAllOwnerEtablissement.mockResolvedValue([
                 {
@@ -75,7 +74,7 @@ describe("Routes /owner/etablissements", () => {
             ])
 
             const res = await request(app)
-                .get("/owner/etablissements")
+                .get("/api/v1/owners/etablissements")
                 .set(headers)
 
             expect(res.statusCode).toBe(200)
@@ -84,7 +83,7 @@ describe("Routes /owner/etablissements", () => {
         })
     })
 
-    describe("POST /owner/etablissements", () => {
+    describe("POST /api/v1/owners/etablissements", () => {
         it("doit créer un établissement", async () => {
 
             const mockValue = {
@@ -98,7 +97,7 @@ describe("Routes /owner/etablissements", () => {
             etablissementModel.create.mockResolvedValue(mockValue)
 
             const res = await request(app)
-                .post("/owner/etablissements")
+                .post("/api/v1/owners/etablissements")
                 .set(headers)
                 .attach("photo", path.join(__dirname, mockValue.photo))
                 .field("nom", mockValue.nom)
@@ -112,7 +111,7 @@ describe("Routes /owner/etablissements", () => {
         }, 10000)
     })
 
-    describe("PUT /owner/etablissements", () => {
+    describe("PUT /api/v1/owners/etablissements", () => {
         it("doit mettre à jour un établissement appartenant à l'utilisateur", async () => {
             pool.query.mockResolvedValueOnce({
                 rows: [{ id_etablissement: 1, id_user: 1 }]
@@ -128,7 +127,7 @@ describe("Routes /owner/etablissements", () => {
             etablissementModel.update.mockResolvedValue(mockValue)
 
             const res = await request(app)
-                .put("/owner/etablissements")
+                .put("/api/v1/owners/etablissements")
                 .set(headers)
                 .attach("photo", path.join(__dirname, mockValue.photo))
                 .field("id_etablissement", mockValue.id_etablissement)
@@ -148,7 +147,7 @@ describe("Routes /owner/etablissements", () => {
             etablissementModel.update.mockResolvedValue(null)
 
             const res = await request(app)
-                .put("/owner/etablissements")
+                .put("/api/v1/owners/etablissements")
                 .set(headers)
                 .attach("photo", path.join(__dirname, "test.jpg"))
                 .field("id_etablissement", 99)
@@ -162,7 +161,7 @@ describe("Routes /owner/etablissements", () => {
         })
     })
 
-    describe("DELETE /owner/etablissements", () => {
+    describe("DELETE /api/v1/owners/etablissements", () => {
         it("doit supprimer un établissement appartenant à l'utilisateur", async () => {
             etablissementModel.deleteIfOwner.mockResolvedValue({
                 id_etablissement: 1,
@@ -170,7 +169,7 @@ describe("Routes /owner/etablissements", () => {
             })
 
             const res = await request(app)
-                .delete("/owner/etablissements")
+                .delete("/api/v1/owners/etablissements")
                 .set(headers)
                 .send({ id_etablissement: 1 })
 
@@ -182,7 +181,7 @@ describe("Routes /owner/etablissements", () => {
             etablissementModel.deleteIfOwner.mockResolvedValue(null)
 
             const res = await request(app)
-                .delete("/owner/etablissements")
+                .delete("/api/v1/owners/etablissements")
                 .set(headers)
                 .send({ id_etablissement: 999 })
 

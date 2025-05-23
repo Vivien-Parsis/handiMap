@@ -1,5 +1,5 @@
-import vine from '@vinejs/vine'
-import { etablissementModel } from "../models/etablissement.model.js"
+import vine from "@vinejs/vine"
+import { etablissementModel } from "../models/index.js"
 
 const getAllEtablissements = async (req, res) => {
     try {

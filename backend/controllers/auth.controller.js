@@ -1,7 +1,7 @@
-import { generateToken } from '../services/auth.service.js'
-import { userModel } from '../models/user.model.js'
-import bcrypt from 'bcrypt'
-import vine, { errors } from '@vinejs/vine'
+import { generateToken } from "../services/auth.service.js"
+import { userModel } from "../models/index.js"
+import bcrypt from "bcrypt"
+import vine, { errors } from "@vinejs/vine"
 
 const login = async (req, res) => {
     const schema = vine.object({
