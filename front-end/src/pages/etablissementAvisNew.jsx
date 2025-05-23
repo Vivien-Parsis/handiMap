@@ -4,7 +4,7 @@ import { api_url } from "../config/const";
 import { Link, useNavigate, useLocation } from "react-router";
 import TwoBtnBar from "../components/TwoButtonBar";
 import styles from "../assets/css/etablissementAvisNew.module.css";
-import starIcon from "/src/assets/images/star-svgrepo-com.svg";
+import starIcon from "../assets/images/star-svgrepo-com.svg";
 import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
 
 const EtablissementAvisNew = () => {
