@@ -4,26 +4,28 @@ on: [push]
 
 jobs:
     build:
+        name: Build & Test
         runs-on: ubuntu-latest
 
         steps:
             - uses: actions/checkout@v4
-            - name: Use Node.js
+
+            - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
                   node-version: "20.x"
 
-            - name: Install dependencies on back
+            - name: Install dependencies on backend
               run: |
                   cd backend
                   npm install
 
-            - name: Install dependencies on front
+            - name: Install dependencies on frontend
               run: |
                   cd front-end
                   npm install
 
-            - name: Run tests on back
+            - name: Run backend tests
               env:
                   JWT_SECRET: ${{ secrets.JWT_SECRET }}
                   DB_URL: ${{ secrets.DB_URL }}
@@ -33,3 +35,16 @@ jobs:
               run: |
                   cd backend
                   npm run test
+
+    sonarqube:
+        name: SonarCloud Scan
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: SonarCloud Scan
+              uses: SonarSource/sonarqube-scan-action@v5
+              env:
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
