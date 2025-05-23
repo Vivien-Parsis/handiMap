@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { host, port, frontend_url } from "./config/server.config.js"
+import { host, port, frontend_url, node_env } from "./config/server.config.js"
 import { rateLimit } from "express-rate-limit"
 import morgan from "morgan"
 import helmet from "helmet"
@@ -20,9 +20,9 @@ app.use(cors({
     credentials: true
 }))
 app.use(express.json())
-
-app.use(morgan(':status || :method :date[clf] || :response-time || :url || :user-agent'))
-
+if (node_env == "development" || node_env == "test") {
+    app.use(morgan('HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :user-agent'))
+}
 //route
 app.use('/api/v1', apiRouter)
 
