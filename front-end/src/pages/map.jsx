@@ -3,11 +3,11 @@ import styles from "../assets/css/map.module.css";
 import TwoBtnBar from "../components/TwoButtonBar";
 import { Link } from "react-router";
 import axios from "axios";
-import { api_url } from "../config/const";
+import { api_url } from "../config/const.js";
 
 const Maps = () => {
 	const [etablisements, setEtablisements] = useState([]);
-
+ console.log(api_url)
 	useEffect(() => {
 		axios.get(`${api_url}/api/v1/etablissements`).then((res) => {
 			if (res.data) {
