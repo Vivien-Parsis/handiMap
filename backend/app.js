@@ -10,10 +10,6 @@ const app = express()
 
 //middleware
 app.use(helmet())
-app.use(rateLimit({
-    windowMs: 60 * 1000,
-    limit: 100,
-}))
 
 app.use(cors({
     origin: [`http://${host}:${port}`, frontend_url],
