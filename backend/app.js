@@ -1,7 +1,6 @@
 import express from "express"
 import cors from "cors"
 import { host, port, frontend_url, node_env } from "./config/server.config.js"
-import { rateLimit } from "express-rate-limit"
 import morgan from "morgan"
 import helmet from "helmet"
 import { apiRouter } from "./routes/index.js"
