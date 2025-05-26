@@ -1,10 +1,10 @@
 import { login, register } from "../controllers/auth.controller.js"
 import { Router } from "express"
-import { rateLimit } from "../middlewares/rateLimiter.middleware.js"
+import { rateLimiter } from "../middlewares/rateLimiter.middleware.js"
 const authRouter = Router()
 
-authRouter.post("/login", login, rateLimit)
-authRouter.post("/register", register, rateLimit)
+authRouter.post("/login", login, rateLimiter)
+authRouter.post("/register", register, rateLimiter)
 
 export{
     authRouter
