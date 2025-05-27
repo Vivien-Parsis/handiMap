@@ -21,13 +21,13 @@ const OwnerEtablissement = () => {
 		}
 		await axios
 			.post(
-				`${api_url}/api/v1/owner/etablissements/handicaps`,
+				`${api_url}/api/v1/owners/etablissements/handicaps`,
 				{ id_handicap: newHandicap, id_etablissement: etablissement },
 				{ headers: { authorization: jwt_token } }
 			)
 			.then();
 		await axios
-			.get(`${api_url}/api/v1/owner/etablissements`, {
+			.get(`${api_url}/api/v1/owners/etablissements`, {
 				headers: { authorization: jwt_token }
 			})
 			.then((res) => {
@@ -46,7 +46,7 @@ const OwnerEtablissement = () => {
 			return;
 		}
 		await axios
-			.delete(`${api_url}/api/v1/owner/etablissements`, {
+			.delete(`${api_url}/api/v1/owners/etablissements`, {
 				data: { id_etablissement: id_etablissement },
 				headers: {
 					authorization: jwt_token
@@ -57,7 +57,7 @@ const OwnerEtablissement = () => {
 				console.log("err");
 			});
 		await axios
-			.get(`${api_url}/api/v1/owner/etablissements`, {
+			.get(`${api_url}/api/v1/owners/etablissements`, {
 				headers: { authorization: jwt_token }
 			})
 			.then((res) => {
@@ -73,7 +73,7 @@ const OwnerEtablissement = () => {
 	};
 	const handleDeleteHandicaps = async (handicap, etablissement) => {
 		await axios
-			.delete(`${api_url}/api/v1/owner/etablissements/handicaps`, {
+			.delete(`${api_url}/api/v1/owners/etablissements/handicaps`, {
 				data: {
 					id_handicap: handicap,
 					id_etablissement: etablissement
@@ -82,7 +82,7 @@ const OwnerEtablissement = () => {
 			})
 			.then((res) => {});
 		await axios
-			.get(`${api_url}/api/v1/owner/etablissements`, {
+			.get(`${api_url}/api/v1/owners/etablissements`, {
 				headers: { authorization: jwt_token }
 			})
 			.then((res) => {
@@ -102,7 +102,7 @@ const OwnerEtablissement = () => {
 	};
 	useEffect(() => {
 		axios
-			.get(`${api_url}/api/v1/owner/etablissements`, {
+			.get(`${api_url}/api/v1/owners/etablissements`, {
 				headers: { authorization: jwt_token }
 			})
 			.then((res) => {
