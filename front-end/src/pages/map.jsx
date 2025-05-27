@@ -4,7 +4,7 @@ import TwoBtnBar from "../components/TwoButtonBar";
 import { Link } from "react-router";
 import axios from "axios";
 import { api_url } from "../config/const.js";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 
 const Maps = () => {
 	const [etablisements, setEtablisements] = useState([]);
