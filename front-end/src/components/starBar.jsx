@@ -1,5 +1,5 @@
 import React from "react";
-import starIcon from "../assets/images/star-svgrepo-com.svg";
+import { ReactComponent as StarIcon } from "../assets/images/star-svgrepo-com.svg";
 
 const starBar = ({note}) => {
     const forStars = (note) => {
@@ -9,7 +9,7 @@ const starBar = ({note}) => {
             return
         }
 		for (let i = 0; i < note; i++) {
-			content.push(<img src={starIcon} alt="Star avis" key={i} className="starIcons"/>);
+			content.push(<StarIcon key={i} className="starIcons"/>);
 		}
 		return content;
 	};

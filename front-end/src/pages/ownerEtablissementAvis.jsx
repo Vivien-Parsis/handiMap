@@ -45,7 +45,7 @@ const OwnerEtablissementAvis = () => {
 		} else if (!avis.photo_avis) {
 			return;
 		} else {
-			return <img src={avis.photo_avis} alt="avis" />;
+			return <img src={avis.photo_avis} className={styles.photoAvis} alt="avis" />;
 		}
 	};
 	useEffect(() => {

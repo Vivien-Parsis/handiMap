@@ -42,7 +42,7 @@
 	flex-direction: column;
 	align-items: baseline;
 }
-.avisContainer li img {
+.photoAvis {
 	width: 25%;
 	height: fit-content;
 }
