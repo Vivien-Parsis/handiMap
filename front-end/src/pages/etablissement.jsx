@@ -64,7 +64,7 @@ const Etablissement = () => {
 			content.push(
 				<div className={styles.avisListItem} key={a.id_avis}>
 					<div>
-						<span><starBar note={a.note}/></span>
+						<span><StarBar note={a.note}/></span>
 						<span>{a.commentaire} </span>
 						<span>
 							de {a.nom_auteur_avis} {a.prenom_auteur_avis} le{" "}
@@ -128,7 +128,7 @@ const Etablissement = () => {
 							</div>
 							<div className={styles.avisContainer}>
 								<span>
-									<starBar note={Math.round(getAvisAverage(etablisement.avis))}/>
+									<StarBar note={Math.round(getAvisAverage(etablisement.avis))}/>
 								</span>
 								<span>
 									{getAvisAverage(etablisement.avis)}/5 sur{" "}
