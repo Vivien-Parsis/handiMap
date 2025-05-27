@@ -8,6 +8,30 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 const Maps = () => {
 	const [etablisements, setEtablisements] = useState([]);
+	const villejuif = [48.78857099922142, 2.363715058956779]
+
+	const forMarker = (etablisementsList) => {
+		content = []
+		if(!etablisementsList){
+			return
+		}
+		for(let et of etablisementsList){
+			const currentCoordonnees = et.coordonnees ? et.coordonnees.includes(";") ? [et.coordonnees.split(";")[0],et.coordonnees.split(";")[1]] : villejuif : villejuif
+			content.push(<Marker position={currentCoordonne}>
+					<Popup>
+						<h3>{et.nom || ""}</h3>					
+						<Link
+							to="/etablissement"
+							state={{ id_etablissement : et.id_etablissement || "" }}
+						>
+							Voir etablissement 
+						</Link>
+					</Popup>
+				</Marker>)
+		}
+		return content
+	}
+
 	useEffect(() => {
 		axios.get(`${api_url}/api/v1/etablissements`).then((res) => {
 			if (res.data) {
@@ -18,25 +42,12 @@ const Maps = () => {
 	return (
 		<div>
 			<TwoBtnBar />
-			{/* <Link
-				to="/etablissement"
-				state={{
-					id_etablissement:
-						etablisements[0]?.id_etablissement || ""
-				}}
-			>
-				Voir etablissement {etablisements[0]?.nom || ""}
-			</Link> */}
-			<MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} className={styles.mapLeaflet}>
+			<MapContainer center={villejuif} zoom={13} scrollWheelZoom={false} className={styles.mapLeaflet}>
 				<TileLayer
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				<Marker position={[51.505, -0.09]}>
-					<Popup>
-						A pretty CSS3 popup. <br /> Easily customizable.
-					</Popup>
-				</Marker>
+				{forMarker(etablisement)}
 			</MapContainer>
 		</div>
 	);
