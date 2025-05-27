@@ -5,7 +5,9 @@ import { Link } from "react-router";
 import axios from "axios";
 import { api_url } from "../config/const.js";
 import leaflet from "leaflet";
-import redPinImg from "../assets/images/pin-red.png"
+import redPinImg from "../assets/images/pin-red.png";
+import StarBar from "../components/starBar";
+import placeholderEtablissement from "../assets/images/etablissementplaceholder.jpg";
 import {
   MapContainer,
   TileLayer,
@@ -13,15 +15,15 @@ import {
   Popup,
   ZoomControl,
 } from "react-leaflet";
+import { getAvisAverage, getAvisNumber } from "../utils/note.js";
 
 const Maps = () => {
   const [etablisements, setEtablisements] = useState([]);
   const villejuif = [48.78857099922142, 2.363715058956779];
   const redPin = leaflet.icon({
     iconUrl: redPinImg,
-
     iconSize: [30, 30],
-    popupAnchor: [0, -15],
+    popupAnchor: [0, 0],
   });
 
   const forMarker = (etablisementsList) => {
@@ -45,14 +47,27 @@ const Maps = () => {
           key={et.id_etablissement}
           icon={redPin}
         >
-          <Popup>
-            <h3>{et.nom || ""}</h3>
-            <Link
-              to="/etablissement"
-              state={{ id_etablissement: et.id_etablissement || "" }}
-            >
-              Voir etablissement
-            </Link>
+          <Popup className={styles.popupEtablissement}>
+            <h3>{et.nom_etablissement || ""}</h3>
+            <div className={styles.infoPopupEtablissement}>
+              <img
+                src={et.photo || placeholderEtablissement}
+                alt="etablissement"
+              />
+              <div>
+                <p>{et.adresse}<br/>{et.type_etablissement}</p>
+                <span>
+                  <StarBar note={Math.floor(getAvisAverage(et.avis))} />
+                  <p>{getAvisAverage(et.avis)}/5 sur {getAvisNumber(et.avis)} avis</p>
+                </span>
+                <Link
+                  to="/etablissement"
+                  state={{ id_etablissement: et.id_etablissement || "" }}
+                >
+                  Voir etablissement
+                </Link>
+              </div>
+            </div>
           </Popup>
         </Marker>
       );
@@ -61,11 +76,13 @@ const Maps = () => {
   };
 
   useEffect(() => {
-    axios.get(`${api_url}/api/v1/etablissements`).then((res) => {
-      if (res.data) {
-        setEtablisements(res.data);
-      }
-    });
+    axios
+      .get(`${api_url}/api/v1/etablissements/all-with-relations`)
+      .then((res) => {
+        if (res.data) {
+          setEtablisements(res.data);
+        }
+      });
   }, []);
   return (
     <div>

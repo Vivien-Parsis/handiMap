@@ -44,3 +44,6 @@
 .leaflet-bottom {
 	margin-bottom: 2em;
 }
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{
+	background-color: var(--background-color-light);
+}

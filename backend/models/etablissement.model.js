@@ -22,8 +22,12 @@ const etablissementModel = {
         return result.rows
     },
 
-    findWithAllJoin: async (id) => {
+    findOneWithAllJoin: async (id) => {
         const result = await pool.query("SELECT Etablissement.id_etablissement, Etablissement.nom AS nom_etablissement, Etablissement.adresse, Etablissement.type AS type_etablissement, Etablissement.photo AS photo_etablissement, Etablissement.coordonnees, Handicap.id_handicap, Handicap.nom AS nom_handicap, Handicap.type AS type_handicap, Avis.id_avis, Avis.note, Avis.date, Avis.commentaire, Avis.photo AS photo_avis, Avis.id_user AS auteur_avis, users.nom AS nom_auteur_avis, users.prenom AS prenom_auteur_avis FROM Etablissement LEFT JOIN Accessibilite ON Etablissement.id_etablissement = Accessibilite.id_etablissement LEFT JOIN Handicap ON Accessibilite.id_handicap = Handicap.id_handicap LEFT JOIN Avis ON Etablissement.id_etablissement = Avis.id_etablissement LEFT JOIN users ON Avis.id_user = users.id_user WHERE Etablissement.id_etablissement = $1;", [id])
+        return result.rows
+    },
+    findAllWithAllJoin: async () => {
+        const result = await pool.query("SELECT Etablissement.id_etablissement, Etablissement.nom AS nom_etablissement, Etablissement.adresse, Etablissement.type AS type_etablissement, Etablissement.photo AS photo_etablissement, Etablissement.coordonnees, Handicap.id_handicap, Handicap.nom AS nom_handicap, Handicap.type AS type_handicap, Avis.id_avis, Avis.note, Avis.date, Avis.commentaire, Avis.photo AS photo_avis, Avis.id_user AS auteur_avis, users.nom AS nom_auteur_avis, users.prenom AS prenom_auteur_avis FROM Etablissement LEFT JOIN Accessibilite ON Etablissement.id_etablissement = Accessibilite.id_etablissement LEFT JOIN Handicap ON Accessibilite.id_handicap = Handicap.id_handicap LEFT JOIN Avis ON Etablissement.id_etablissement = Avis.id_etablissement LEFT JOIN users ON Avis.id_user = users.id_user ")
         return result.rows
     },
     update: async (id, data, id_user) => {
