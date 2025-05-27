@@ -42,7 +42,7 @@ const Maps = () => {
 	return (
 		<div>
 			<TwoBtnBar />
-			<MapContainer center={villejuif} zoom={13} className={styles.mapLeaflet}>
+			<MapContainer center={villejuif} zoom={13} className={styles.mapLeaflet} ZoomControl={false}>
 				<TileLayer
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -40,3 +40,7 @@
   height: 1em;
   color:var(--avis-icon-color);
 }
+
+.leaflet-bottom {
+	margin-bottom: 2em;
+}
