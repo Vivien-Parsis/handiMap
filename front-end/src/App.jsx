@@ -18,10 +18,16 @@ import EtablissementAvisNew from "./pages/etablissementAvisNew";
 import OwnerEtablissementAvis from "./pages/ownerEtablissementAvis";
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
   const showHeader = () => {
-    return (location.pathname.startsWith("/map") || location.pathname.startsWith("/etablissement") || location.pathname === "/") ? "" : <Header />
-  }
+    return location.pathname.startsWith("/map") ||
+      location.pathname.startsWith("/etablissement") ||
+      location.pathname === "/" ? (
+      ""
+    ) : (
+      <Header />
+    );
+  };
   return (
     <>
       {showHeader()}
@@ -30,7 +36,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Maps />} />
         <Route path="/etablissement" element={<Etablissement />} />
-        <Route path="/etablissement/avis/new"
+        <Route
+          path="/etablissement/avis/new"
           element={
             <ProtectedRoute>
               <EtablissementAvisNew />
