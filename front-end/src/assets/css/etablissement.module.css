@@ -55,7 +55,7 @@
 	width: 100%;
 }
 .handicapContainer{
-	width: 20%;
+	height: 20%;
 	overflow-y: auto;
 }
 .handicapContainer,
@@ -80,7 +80,8 @@
 }
 
 .avisListContainer {
-	height: 60%;
+	height: 50%;
 	margin-top: 1em;
 	padding-right: 0.5em;
+	overflow-y: auto;
 }
