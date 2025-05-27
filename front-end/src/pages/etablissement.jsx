@@ -6,7 +6,7 @@ import TwoBtnBar from "../components/TwoButtonBar";
 import styles from "../assets/css/etablissement.module.css";
 import starIcon from "../assets/images/star-svgrepo-com.svg";
 import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
-import StarBar from "../components/starBar";
+import starBar from "../components/starBar";
 
 const Etablissement = () => {
 	const [etablisement, setEtablisement] = useState({});
