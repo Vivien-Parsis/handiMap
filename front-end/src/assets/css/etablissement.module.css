@@ -11,7 +11,7 @@
 }
 .etablisementContainer {
 	width: 90%;
-	max-height: 80%;
+	height: 80%;
 	background-color: var(--background-color-light);
 	border-radius: 10px;
 	display: flex;
@@ -27,13 +27,21 @@
 	width: 58%;
 }
 .titleAndAvisContainer {
+	height:20%;
 	display: flex;
-	align-items: center;
+    align-items: flex-start;
 	justify-content: space-between;
 	flex-wrap: nowrap;
 }
 .infoContainer {
 	width: 75%;
+	display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.infoContainer h2, .infoContainer p{
+	margin : .1em 0 .1em;
 }
 .avisContainer {
 	width: 25%;
@@ -46,7 +54,10 @@
 .avisContainer span {
 	width: 100%;
 }
-
+.handicapContainer{
+	width: 20%;
+	overflow-y: auto;
+}
 .handicapContainer,
 .titleAndAvisContainer {
 	padding: 0.6em 0;
@@ -69,8 +80,7 @@
 }
 
 .avisListContainer {
-	height: 250px;
-	overflow-y: auto;
+	height: 60%;
 	margin-top: 1em;
 	padding-right: 0.5em;
 }
