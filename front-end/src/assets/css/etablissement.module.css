@@ -78,7 +78,9 @@
 .avisListItem div {
 	width: 80%;
 }
-
+.avisListItem img {
+	width: 30%;
+}
 .avisListContainer {
 	height: 50%;
 	margin-top: 1em;
