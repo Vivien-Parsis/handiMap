@@ -37,5 +37,6 @@
 }
 .starIcons{
   width:1em;
+  height: 1em;
   color:var(--avis-icon-color);
 }
