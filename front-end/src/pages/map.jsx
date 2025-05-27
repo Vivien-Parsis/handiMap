@@ -11,7 +11,7 @@ const Maps = () => {
 	const villejuif = [48.78857099922142, 2.363715058956779]
 
 	const forMarker = (etablisementsList) => {
-		content = []
+		let content = []
 		if(!etablisementsList){
 			return
 		}
