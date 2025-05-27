@@ -4,6 +4,7 @@ import starIcon from "../assets/images/star-svgrepo-com.svg";
 const starBar = ({note}) => {
     const forStars = (note) => {
 		let content = [];
+        console.log(note)
         if(!note || note===0){
             return
         }

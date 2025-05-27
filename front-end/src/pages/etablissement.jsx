@@ -5,7 +5,7 @@ import { Link, useNavigate, useLocation } from "react-router";
 import TwoBtnBar from "../components/TwoButtonBar";
 import styles from "../assets/css/etablissement.module.css";
 import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
-import starBar from "../components/starBar";
+import StarBar from "../components/starBar";
 
 const Etablissement = () => {
 	const [etablisement, setEtablisement] = useState({});
