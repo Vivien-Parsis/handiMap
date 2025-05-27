@@ -4,7 +4,6 @@ import { api_url } from "../config/const";
 import { Link, useNavigate, useLocation } from "react-router";
 import TwoBtnBar from "../components/TwoButtonBar";
 import styles from "../assets/css/etablissement.module.css";
-import starIcon from "../assets/images/star-svgrepo-com.svg";
 import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
 import starBar from "../components/starBar";
 
