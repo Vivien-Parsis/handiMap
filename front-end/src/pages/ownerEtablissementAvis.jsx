@@ -3,7 +3,7 @@ import axios from "axios";
 import { api_url } from "../config/const";
 import { Link, useLocation, useNavigate } from "react-router";
 import styles from "../assets/css/accountAvis.module.css";
-import starIcon from "../assets/images/star-svgrepo-com.svg";
+import StarBar from "../components/starBar";
 
 const OwnerEtablissementAvis = () => {
 	const [userAvis, setUserAvis] = useState([]);
@@ -12,13 +12,6 @@ const OwnerEtablissementAvis = () => {
 
 	const id_etablissement = location.state?.id_etablissement || "";
 	const nom_etablissement = location.state?.nom_etablissement || "";
-	const forStars = (note) => {
-		let content = [];
-		for (let i = 0; i < note; i++) {
-			content.push(<img src={starIcon} alt="Star avis" key={i} />);
-		}
-		return content;
-	};
 	const handleDeleteAvis = (id) => {
 		const jwt_token = localStorage.getItem("token");
 
@@ -89,7 +82,7 @@ const OwnerEtablissementAvis = () => {
 						return (
 							<li key={el.id_avis}>
 								<div>
-									<span>{forStars(el.note)}</span>
+									<span><StarBar note={el.note}/></span>
 									<p>{el.commentaire}</p>
 									<span className={styles.avisNotice}>
 										{el.avis} le{" "}

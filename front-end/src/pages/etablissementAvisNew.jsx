@@ -4,8 +4,8 @@ import { api_url } from "../config/const";
 import { Link, useNavigate, useLocation } from "react-router";
 import TwoBtnBar from "../components/TwoButtonBar";
 import styles from "../assets/css/etablissementAvisNew.module.css";
-import starIcon from "../assets/images/star-svgrepo-com.svg";
 import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
+import StarBar from "../components/starBar";
 
 const EtablissementAvisNew = () => {
 	const location = useLocation();
@@ -38,14 +38,6 @@ const EtablissementAvisNew = () => {
 				[e.target.name]: e.target.value
 			});
 		}
-	};
-
-	const forStars = (note) => {
-		let content = [];
-		for (let i = 0; i < note; i++) {
-			content.push(<img src={starIcon} alt="Star avis" key={i} />);
-		}
-		return content;
 	};
 
 	const getAvisAverage = (avis) => {
@@ -138,11 +130,7 @@ const EtablissementAvisNew = () => {
 							</div>
 							<div className={styles.avisContainer}>
 								<span>
-									{forStars(
-										Math.round(
-											getAvisAverage(etablisement.avis)
-										)
-									)}
+									<StarBar note={Math.round(getAvisAverage(etablisement.avis))}/>
 								</span>
 								<span>
 									{getAvisAverage(etablisement.avis)}/5 sur{" "}

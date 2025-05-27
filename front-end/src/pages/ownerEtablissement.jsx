@@ -3,8 +3,8 @@ import axios from "axios";
 import { api_url } from "../config/const";
 import { Link, useNavigate } from "react-router";
 import styles from "../assets/css/ownerEtablissement.module.css";
-import starIcon from "../assets/images/star-svgrepo-com.svg";
 import etablissementplaceholder from "../assets/images/etablissementplaceholder.jpg";
+import StarBar from "../components/starBar";
 
 const OwnerEtablissement = () => {
 	const [ownerEtablisement, setOwnerEtablisement] = useState([]);
@@ -13,13 +13,6 @@ const OwnerEtablissement = () => {
 	const navigate = useNavigate();
 
 	const jwt_token = localStorage.getItem("token");
-	const forStars = (note) => {
-		let content = [];
-		for (let i = 0; i < Math.round(getAvisAverage(note)); i++) {
-			content.push(<img src={starIcon} alt="Star avis" key={i} />);
-		}
-		return content;
-	};
 	const getAvisAverage = (avis) => {
 		let average = 0;
 		if (avis.length === 0) {
@@ -183,7 +176,7 @@ const OwnerEtablissement = () => {
 									<h3>{et.nom_etablissement}</h3>
 									<p>{et.adresse}</p>
 									<p>{et.type_etablissement}</p>
-									{forStars(et.avis)}
+									<StarBar note={Math.round(getAvisAverage(et.avis))}/>
 									<p>
 										{getAvisAverage(et.avis)} sur{" "}
 										{getAvisNumber(et.avis)} avis
