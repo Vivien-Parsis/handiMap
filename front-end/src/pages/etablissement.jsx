@@ -6,6 +6,7 @@ import TwoBtnBar from "../components/TwoButtonBar";
 import styles from "../assets/css/etablissement.module.css";
 import starIcon from "../assets/images/star-svgrepo-com.svg";
 import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
+import StarBar from "../components/starBar";
 
 const Etablissement = () => {
 	const [etablisement, setEtablisement] = useState({});
@@ -13,14 +14,6 @@ const Etablissement = () => {
 
 	const id_etablissement = location.state?.id_etablissement || "";
 	const navigate = useNavigate();
-
-	const forStars = (note) => {
-		let content = [];
-		for (let i = 0; i < note; i++) {
-			content.push(<img src={starIcon} alt="Star avis" key={i} className="starIcons"/>);
-		}
-		return content;
-	};
 
 	const getImageAvis = (avis) => {
 		if (!avis) {
@@ -72,7 +65,7 @@ const Etablissement = () => {
 			content.push(
 				<div className={styles.avisListItem} key={a.id_avis}>
 					<div>
-						<span>{forStars(a.note)}</span>
+						<span><starBar note={a.note}/></span>
 						<span>{a.commentaire} </span>
 						<span>
 							de {a.nom_auteur_avis} {a.prenom_auteur_avis} le{" "}
@@ -136,11 +129,7 @@ const Etablissement = () => {
 							</div>
 							<div className={styles.avisContainer}>
 								<span>
-									{forStars(
-										Math.round(
-											getAvisAverage(etablisement.avis)
-										)
-									)}
+									<starBar note={Math.round(getAvisAverage(etablisement.avis))}/>
 								</span>
 								<span>
 									{getAvisAverage(etablisement.avis)}/5 sur{" "}
