@@ -17,7 +17,7 @@ const Maps = () => {
 		}
 		for(let et of etablisementsList){
 			const currentCoordonnees = et.coordonnees ? et.coordonnees.includes(";") ? [et.coordonnees.split(";")[0],et.coordonnees.split(";")[1]] : villejuif : villejuif
-			content.push(<Marker position={currentCoordonne}>
+			content.push(<Marker position={currentCoordonnees}>
 					<Popup>
 						<h3>{et.nom || ""}</h3>					
 						<Link
@@ -42,11 +42,12 @@ const Maps = () => {
 	return (
 		<div>
 			<TwoBtnBar />
-			<MapContainer center={villejuif} zoom={13} scrollWheelZoom={false} className={styles.mapLeaflet}>
+			<MapContainer center={villejuif} zoom={13} className={styles.mapLeaflet}>
 				<TileLayer
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
+				<ZoomControl position="bottomleft" />
 				{forMarker(etablisements)}
 			</MapContainer>
 		</div>
