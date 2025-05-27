@@ -11,7 +11,7 @@ const starBar = ({note}) => {
 		}
 		return content;
 	};
-    return ({forStars()})
+    return (<>{forStars(note)}</>)
 }
 
 export default starBar;
