@@ -6,6 +6,7 @@ import TwoBtnBar from "../components/TwoButtonBar";
 import styles from "../assets/css/etablissement.module.css";
 import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
 import StarBar from "../components/starBar";
+import { getAvisAverage, getAvisNumber } from "../utils/note.js";
 
 const Etablissement = () => {
 	const [etablisement, setEtablisement] = useState({});
@@ -22,22 +23,6 @@ const Etablissement = () => {
 		} else {
 			return <img src={avis.photo_avis} alt="avis" />;
 		}
-	};
-	const getAvisAverage = (avis) => {
-		let average = 0;
-		if (!avis) {
-			return;
-		}
-		if (avis.length === 0) {
-			return 0;
-		}
-		for (let a of avis) {
-			average += a.note;
-		}
-		return average / avis.length;
-	};
-	const getAvisNumber = (avis) => {
-		return avis ? avis.length : 0;
 	};
 
 	const getHandicaps = (handicaps) => {

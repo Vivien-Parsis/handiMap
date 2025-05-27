@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router";
 import styles from "../assets/css/ownerEtablissement.module.css";
 import etablissementplaceholder from "../assets/images/etablissementplaceholder.jpg";
 import StarBar from "../components/starBar";
+import { getAvisAverage, getAvisNumber } from "../utils/note.js";
 
 const OwnerEtablissement = () => {
 	const [ownerEtablisement, setOwnerEtablisement] = useState([]);
@@ -13,23 +14,6 @@ const OwnerEtablissement = () => {
 	const navigate = useNavigate();
 
 	const jwt_token = localStorage.getItem("token");
-	const getAvisAverage = (avis) => {
-		let average = 0;
-		if (avis.length === 0) {
-			return 0;
-		}
-		for (let a of avis) {
-			average += a.note;
-		}
-		average = average / avis.length;
-		if (average % 1 !== 0) {
-			average = average.toFixed(3);
-		}
-		return average;
-	};
-	const getAvisNumber = (avis) => {
-		return avis ? avis.length : 0;
-	};
 
 	const handleAddHandicaps = async (etablissement) => {
 		if (!newHandicap) {

@@ -6,6 +6,7 @@ import TwoBtnBar from "../components/TwoButtonBar";
 import styles from "../assets/css/etablissementAvisNew.module.css";
 import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
 import StarBar from "../components/starBar";
+import { getAvisAverage, getAvisNumber } from "../utils/note.js";
 
 const EtablissementAvisNew = () => {
 	const location = useLocation();
@@ -38,23 +39,6 @@ const EtablissementAvisNew = () => {
 				[e.target.name]: e.target.value
 			});
 		}
-	};
-
-	const getAvisAverage = (avis) => {
-		let average = 0;
-		if (!avis) {
-			return;
-		}
-		if (avis.length === 0) {
-			return 0;
-		}
-		for (let a of avis) {
-			average += a.note;
-		}
-		return average / avis.length;
-	};
-	const getAvisNumber = (avis) => {
-		return avis ? avis.length : 0;
 	};
 
 	const handleAddAvis = async (e) => {
