@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as StarIcon } from "../assets/images/star-svgrepo-com.svg";
+import StarIcon from "../assets/images/star-svgrepo-com.svg?react";
 
 const starBar = ({note}) => {
     const forStars = (note) => {
