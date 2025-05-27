@@ -18,7 +18,7 @@ const Maps = () => {
 	return (
 		<div>
 			<TwoBtnBar />
-			<Link
+			{/* <Link
 				to="/etablissement"
 				state={{
 					id_etablissement:
@@ -26,7 +26,7 @@ const Maps = () => {
 				}}
 			>
 				Voir etablissement {etablisements[0]?.nom || ""}
-			</Link>
+			</Link> */}
 			<MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} className={styles.mapLeaflet}>
 				<TileLayer
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
