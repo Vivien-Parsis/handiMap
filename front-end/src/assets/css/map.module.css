@@ -8,3 +8,6 @@
 	justify-content: center;
 	flex-wrap: nowrap;
 }
+.mapLeaflet{
+	height: 100%;
+}

@@ -4,6 +4,9 @@ import TwoBtnBar from "../components/TwoButtonBar";
 import { Link } from "react-router";
 import axios from "axios";
 import { api_url } from "../config/const.js";
+import { MapContainer } from "https://cdn.esm.sh/react-leaflet/MapContainer";
+import { TileLayer } from "https://cdn.esm.sh/react-leaflet/TileLayer";
+import { useMap } from "https://cdn.esm.sh/react-leaflet/hooks";
 
 const Maps = () => {
 	const [etablisements, setEtablisements] = useState([]);
@@ -17,17 +20,26 @@ const Maps = () => {
 	return (
 		<div>
 			<TwoBtnBar />
-			<div className={styles.map}>
-				<Link
-					to="/etablissement"
-					state={{
-						id_etablissement:
-							etablisements[0]?.id_etablissement || ""
-					}}
-				>
-					Voir etablissement {etablisements[0]?.nom || ""}
-				</Link>
-			</div>
+			<Link
+				to="/etablissement"
+				state={{
+					id_etablissement:
+						etablisements[0]?.id_etablissement || ""
+				}}
+			>
+				Voir etablissement {etablisements[0]?.nom || ""}
+			</Link>
+			<MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} class={styles.mapLeaflet}>
+				<TileLayer
+					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+				/>
+				<Marker position={[51.505, -0.09]}>
+					<Popup>
+						A pretty CSS3 popup. <br /> Easily customizable.
+					</Popup>
+				</Marker>
+			</MapContainer>
 		</div>
 	);
 };
