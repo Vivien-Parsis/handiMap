@@ -4,6 +4,8 @@ import { host, port, frontend_url, node_env } from "./config/server.config.js"
 import morgan from "morgan"
 import helmet from "helmet"
 import { apiRouter } from "./routes/index.js"
+import swaggerUi from 'swagger-ui-express'
+import { swaggerSpec } from './config/swagger.config.js'
 
 const app = express()
 
@@ -18,6 +20,8 @@ app.use(express.json())
 if (node_env == "development" || node_env == "test") {
     app.use(morgan('HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :user-agent'))
 }
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
 //route
 app.use('/api/v1', apiRouter)
 
