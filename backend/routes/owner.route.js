@@ -45,11 +45,23 @@ const ownerRouter = Router()
  *         multipart/form-data:
  *           schema:
  *             type: object
+ *             required:
+ *               - nom_etablissement
+ *               - adresse
+ *               - type_etablissement
+ *               - coordonnees
  *             properties:
+ *               nom_etablissement:
+ *                 type: string
+ *               adresse:
+ *                 type: string
+ *               type_etablissement:
+ *                 type: string
+ *               coordonnees:
+ *                 type: string
  *               photo:
  *                 type: string
  *                 format: binary
- *               # Autres champs à ajouter ici si nécessaire
  *     responses:
  *       201:
  *         description: Établissement créé
@@ -66,11 +78,22 @@ const ownerRouter = Router()
  *         multipart/form-data:
  *           schema:
  *             type: object
+ *             required:
+ *               - id_etablissement
  *             properties:
+ *               id_etablissement:
+ *                 type: integer
+ *               nom_etablissement:
+ *                 type: string
+ *               adresse:
+ *                 type: string
+ *               type_etablissement:
+ *                 type: string
+ *               coordonnees:
+ *                 type: string
  *               photo:
  *                 type: string
  *                 format: binary
- *               # Autres champs à ajouter ici si nécessaire
  *     responses:
  *       200:
  *         description: Établissement mis à jour
@@ -79,6 +102,17 @@ const ownerRouter = Router()
  *     tags: [Owner]
  *     security:
  *       - jwtToken: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - id_etablissement
+ *             properties:
+ *               id_etablissement:
+ *                 type: integer
  *     responses:
  *       200:
  *         description: Établissement supprimé
@@ -98,6 +132,9 @@ const ownerRouter = Router()
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - id_etablissement
+ *               - id_handicap
  *             properties:
  *               id_etablissement:
  *                 type: integer
@@ -117,6 +154,9 @@ const ownerRouter = Router()
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - id_etablissement
+ *               - id_handicap
  *             properties:
  *               id_etablissement:
  *                 type: integer
@@ -136,11 +176,12 @@ const ownerRouter = Router()
  *     security:
  *       - jwtToken: []
  *     parameters:
- *       - name: id_etablissement
- *         in: query
- *         required: true
+ *       - in: query
+ *         name: id_etablissement
  *         schema:
  *           type: integer
+ *         required: true
+ *         description: ID de l'établissement
  *     responses:
  *       200:
  *         description: Liste des avis
@@ -155,6 +196,8 @@ const ownerRouter = Router()
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - id_avis
  *             properties:
  *               id_avis:
  *                 type: integer
