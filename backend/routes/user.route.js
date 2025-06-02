@@ -13,6 +13,153 @@ import { checkRouteJwt } from "../middlewares/auth.middleware.js"
 import { upload } from "../middlewares/upload.middleware.js"
 const userRouter = Router()
 
+/**
+ * @swagger
+ * tags:
+ *   name: User
+ *   description: Opérations liées à l'utilisateur connecté
+ */
+
+/**
+ * @swagger
+ * /user:
+ *   get:
+ *     summary: Récupérer les informations de l'utilisateur connecté
+ *     tags: [User]
+ *     security:
+ *       - jwtToken: []
+ *     responses:
+ *       200:
+ *         description: Données utilisateur récupérées
+ *       401:
+ *         description: Non autorisé
+ */
+
+/**
+ * @swagger
+ * /user/handicaps:
+ *   get:
+ *     summary: Récupérer les handicaps de l'utilisateur
+ *     tags: [User]
+ *     security:
+ *       - jwtToken: []
+ *     responses:
+ *       200:
+ *         description: Liste des handicaps
+ *   post:
+ *     summary: Ajouter un handicap à l'utilisateur
+ *     tags: [User]
+ *     security:
+ *       - jwtToken: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - id_handicap
+ *             properties:
+ *               id_handicap:
+ *                 type: integer
+ *     responses:
+ *       201:
+ *         description: Handicap ajouté
+ *   delete:
+ *     summary: Supprimer un handicap de l'utilisateur
+ *     tags: [User]
+ *     security:
+ *       - jwtToken: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - id_handicap
+ *             properties:
+ *               id_handicap:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Handicap supprimé
+ */
+
+/**
+ * @swagger
+ * /user/avis:
+ *   get:
+ *     summary: Récupérer les avis créés par l'utilisateur
+ *     tags: [User]
+ *     security:
+ *       - jwtToken: []
+ *     responses:
+ *       200:
+ *         description: Liste des avis
+ *   post:
+ *     summary: Créer un avis
+ *     tags: [User]
+ *     security:
+ *       - jwtToken: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - note
+ *               - id_etablissement
+ *               - commentaire
+ *             properties:
+ *               note:
+ *                 type: number
+ *                 format: int
+ *               id_etablissement:
+ *                 type: integer
+ *               commentaire:
+ *                 type: string
+ *               photo:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       201:
+ *         description: Avis créé
+ *       400:
+ *         description: Données invalides
+ *   delete:
+ *     summary: Supprimer un avis créé par l'utilisateur
+ *     tags: [User]
+ *     security:
+ *       - jwtToken: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - id_avis
+ *             properties:
+ *               id_avis:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Avis supprimé
+ */
+
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     jwtToken:
+ *       type: apiKey
+ *       in: header
+ *       name: Authorization
+ *       description: JWT brut sans préfixe "Bearer"
+ */
+
 userRouter.get("/", checkRouteJwt, getCurrentUser)
 
 userRouter.get("/handicaps", checkRouteJwt, getUserHandicap)
