@@ -12,7 +12,7 @@ const etablissementRouter = Router()
 
 /**
  * @swagger
- * /etablissements:
+ * /api/v1/etablissements:
  *   get:
  *     summary: Récupérer tous les établissements (sans jointures)
  *     tags: [Etablissement]
@@ -44,7 +44,7 @@ const etablissementRouter = Router()
 
 /**
  * @swagger
- * /etablissements/with-relations:
+ * /api/v1/etablissements/with-relations:
  *   get:
  *     summary: Récupérer un établissement avec ses handicaps et avis
  *     tags: [Etablissement]
@@ -66,7 +66,7 @@ const etablissementRouter = Router()
 
 /**
  * @swagger
- * /etablissements/all-with-relations:
+ * /api/v1/etablissements/all-with-relations:
  *   get:
  *     summary: Récupérer tous les établissements avec leurs handicaps et avis
  *     tags: [Etablissement]

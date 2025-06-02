@@ -12,7 +12,7 @@ const authRouter = Router()
 
 /**
  * @swagger
- * /auth/login:
+ * /api/v1/auth/login:
  *   post:
  *     summary: Connexion d’un utilisateur existant
  *     tags: [Auth]
@@ -51,7 +51,7 @@ const authRouter = Router()
 
 /**
  * @swagger
- * /auth/register:
+ * /api/v1/auth/register:
  *   post:
  *     summary: Enregistrement d’un nouvel utilisateur
  *     tags: [Auth]

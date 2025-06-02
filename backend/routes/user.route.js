@@ -22,7 +22,7 @@ const userRouter = Router()
 
 /**
  * @swagger
- * /user:
+ * /api/v1/user:
  *   get:
  *     summary: Récupérer les informations de l'utilisateur connecté
  *     tags: [User]
@@ -37,7 +37,7 @@ const userRouter = Router()
 
 /**
  * @swagger
- * /user/handicaps:
+ * /api/v1/user/handicaps:
  *   get:
  *     summary: Récupérer les handicaps de l'utilisateur
  *     tags: [User]
@@ -88,7 +88,7 @@ const userRouter = Router()
 
 /**
  * @swagger
- * /user/avis:
+ * /api/v1/user/avis:
  *   get:
  *     summary: Récupérer les avis créés par l'utilisateur
  *     tags: [User]

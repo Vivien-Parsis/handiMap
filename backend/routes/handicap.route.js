@@ -11,7 +11,7 @@ const handicapRouter = Router()
 
 /**
  * @swagger
- * /handicaps:
+ * /api/v1/handicaps:
  *   get:
  *     summary: Récupérer tous les types de handicaps
  *     tags: [Handicap]
