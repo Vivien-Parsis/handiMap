@@ -7,7 +7,7 @@ import {
     deleteEtablissement,
     getAllAvisFromEtablissement,
     deleteAvisFromEtablissement
-} from "../controllers/owner.controller.js" 
+} from "../controllers/owner.controller.js"
 import { Router } from "express"
 import { upload } from "../middlewares/upload.middleware.js"
 import { checkOwnerRouteJwt } from "../middlewares/auth.middleware.js"

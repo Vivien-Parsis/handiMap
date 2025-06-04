@@ -102,6 +102,6 @@ const authRouter = Router()
 authRouter.post("/login", login, rateLimiter)
 authRouter.post("/register", register, rateLimiter)
 
-export{
+export {
     authRouter
 }

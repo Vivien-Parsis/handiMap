@@ -6,6 +6,7 @@ import helmet from "helmet"
 import { apiRouter } from "./routes/index.js"
 import swaggerUi from 'swagger-ui-express'
 import { swaggerSpec } from './config/swagger.config.js'
+import fs from 'fs'
 
 const app = express()
 
@@ -17,8 +18,14 @@ app.use(cors({
     credentials: true
 }))
 app.use(express.json())
-if (node_env == "development" || node_env == "test") {
+
+if (node_env == "DEV" || node_env == "TEST") {
+    if (!fs.existsSync('./log')) {
+        fs.mkdirSync('./log', { recursive: true });
+    }
+    const accessLogStream = fs.createWriteStream('./log/access.log', { flags: 'a' })
     app.use(morgan('HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :user-agent'))
+    app.use(morgan('HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :user-agent', { stream: accessLogStream }))
 }
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
