@@ -88,3 +88,16 @@
 	padding-right: 0.5em;
 	overflow-y: auto;
 }
+@media (max-width: 650px) {
+	.etablisementPhoto, .titleAndAvisContainer, .etablisementContainer span{
+		width: 98%;
+	}
+	.etablisementContainer{
+		flex-wrap: wrap;
+		justify-content: center;
+		height: 120vh;
+	}
+	.map{
+		height: 150vh;
+	}
+}

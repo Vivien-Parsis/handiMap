@@ -47,3 +47,30 @@
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{
 	background-color: var(--background-color-light);
 }
+h2{
+	font-size:38px;
+}
+.backgroundBlured {
+	background-image: url("./assets/images/maptemplateblured.png");
+	background-size: cover;
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.backgroundBluredCol{
+	background-image: url("./assets/images/maptemplateblured.png");
+	background-size: cover;
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+}

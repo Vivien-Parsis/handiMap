@@ -54,69 +54,67 @@ const OwnerAddEtablissement = () => {
 	};
 
 	return (
-		<div className={styles.backgroundBlured}>
-			<Link to="/account/etablissement">
-				Revenir sur mes etablissements
-			</Link>
-			<div className={styles.FormAddEtablissement}>
-				<h2>Rajouter un lieu</h2>
-				<form>
-					<label htmlFor="nom">nom</label>
-					<input
-						type="text"
-						id="nom"
-						name="nom"
-						value={newEtablissement.nom}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor="type">type</label>
-					<input
-						type="text"
-						id="type"
-						name="type"
-						value={newEtablissement.type}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor="photo">photo</label>
-					<input
-						type="file"
-						id="photo"
-						name="photo"
-						accept="image/*"
-						onChange={handlePhotoChange}
-						required
-					/>
-					<label htmlFor="adresse">adresse</label>
-					<input
-						type="text"
-						id="adresse"
-						name="adresse"
-						value={newEtablissement.adresse}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor="coordonnees">coordonnees</label>
-					<input
-						type="text"
-						id="coordonnees"
-						name="coordonnees"
-						value={newEtablissement.coordonnees}
-						onChange={handleChange}
-						required
-					/>
-					<button
-						type="button"
-						className="linkButton"
-						onClick={() => handleAddEtablissement()}
-					>
-						Rajouter
-					</button>
-				</form>
-			</div>
-		</div>
-	);
+    <div className="backgroundBlured">
+      <Link to="/account/etablissement">Revenir sur mes etablissements</Link>
+      <div className={styles.FormAddEtablissement}>
+        <h2>Rajouter un lieu</h2>
+        <form>
+          <label htmlFor="nom">nom</label>
+          <input
+            type="text"
+            id="nom"
+            name="nom"
+            value={newEtablissement.nom}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="type">type</label>
+          <input
+            type="text"
+            id="type"
+            name="type"
+            value={newEtablissement.type}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="photo">photo</label>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+            onChange={handlePhotoChange}
+            required
+          />
+          <label htmlFor="adresse">adresse</label>
+          <input
+            type="text"
+            id="adresse"
+            name="adresse"
+            value={newEtablissement.adresse}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="coordonnees">coordonnees</label>
+          <input
+            type="text"
+            id="coordonnees"
+            name="coordonnees"
+            value={newEtablissement.coordonnees}
+            onChange={handleChange}
+            required
+          />
+          <button
+            type="button"
+            className="linkButton"
+            onClick={() => handleAddEtablissement()}
+          >
+            Rajouter
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default OwnerAddEtablissement;

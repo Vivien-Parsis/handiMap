@@ -126,80 +126,69 @@ const Account = () => {
 			});
 	}, [navigate, jwt_token]);
 	return (
-		<div className={styles.backgroundBlured}>
-			<Link to="/" className="linkText">
-				Revenir sur la carte
-			</Link>
-			<div className={styles.accountContainer}>
-				<h2>Mon compte</h2>
-				<ul>
-					<li>
-						{userInfo.nom} {userInfo.prenom}
-					</li>
-					<li>{userInfo.email}</li>
-				</ul>
-				<button className="linkButton" onClick={() => disconnet()}>
-					me deconnecter
-				</button>
-				<h3>Mes handicaps</h3>
-				<ul>
-					{userHandicaps.map((value) => {
-						return (
-							<li key={value.id_user_handicap}>
-								{value.nom} | type : {value.type}{" "}
-								<button
-									className="deleteButton"
-									onClick={() =>
-										handleDeleteHandicaps(value.id_handicap)
-									}
-								>
-									Supprimer
-								</button>
-							</li>
-						);
-					})}
-				</ul>
-				<label htmlFor="addHandicap">Rajouter un handicape</label>
-				<select
-					onChange={handleChangeSelectAddHandicaps}
-					id="addHandicap"
-				>
-					<option value="" selected disabled hidden>
-						Choisisez ici
-					</option>
-					{allHandicaps.map((handicap) => {
-						if (
-							!userHandicaps.some(
-								(el) => el.id_handicap === handicap.id_handicap
-							)
-						) {
-							return (
-								<option
-									value={handicap.id_handicap}
-									key={handicap.id_handicap}
-								>
-									{handicap.nom} (type : {handicap.type})
-								</option>
-							);
-						} else {
-							return "";
-						}
-					})}
-				</select>
-				<button
-					className="addButton"
-					onClick={() => handleAddHandicaps()}
-				>
-					Ajouter
-				</button>
+    <div className="backgroundBlured">
+      <Link to="/" className="linkText">
+        Revenir sur la carte
+      </Link>
+      <div className={styles.accountContainer}>
+        <h2>Mon compte</h2>
+        <ul>
+          <li>
+            {userInfo.nom} {userInfo.prenom}
+          </li>
+          <li>{userInfo.email}</li>
+        </ul>
+        <button className="linkButton" onClick={() => disconnet()}>
+          me deconnecter
+        </button>
+        <h3>Mes handicaps</h3>
+        <ul>
+          {userHandicaps.map((value) => {
+            return (
+              <li key={value.id_user_handicap}>
+                {value.nom} | type : {value.type}{" "}
+                <button
+                  className="deleteButton"
+                  onClick={() => handleDeleteHandicaps(value.id_handicap)}
+                >
+                  Supprimer
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+        <label htmlFor="addHandicap">Rajouter un handicape</label>
+        <select onChange={handleChangeSelectAddHandicaps} id="addHandicap">
+          <option value="" selected disabled hidden>
+            Choisisez ici
+          </option>
+          {allHandicaps.map((handicap) => {
+            if (
+              !userHandicaps.some(
+                (el) => el.id_handicap === handicap.id_handicap
+              )
+            ) {
+              return (
+                <option value={handicap.id_handicap} key={handicap.id_handicap}>
+                  {handicap.nom} (type : {handicap.type})
+                </option>
+              );
+            } else {
+              return "";
+            }
+          })}
+        </select>
+        <button className="addButton" onClick={() => handleAddHandicaps()}>
+          Ajouter
+        </button>
 
-				<Link to="/account/avis" className="linkButton">
-					Voir mes avis
-				</Link>
-				{showEtablissementBtn()}
-			</div>
-		</div>
-	);
+        <Link to="/account/avis" className="linkButton">
+          Voir mes avis
+        </Link>
+        {showEtablissementBtn()}
+      </div>
+    </div>
+  );
 };
 
 export default Account;

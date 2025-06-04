@@ -1,16 +1,3 @@
-.backgroundBlured {
-	background-image: url("../images/maptemplateblured.png");
-	background-size: cover;
-	width: 100%;
-	min-height: 100vh;
-	display: flex;
-	align-content: center;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	flex-direction: column;
-	padding: 8vh 0;
-}
 
 .ownerContainer {
 	display: flex;
@@ -42,7 +29,7 @@
 .etablissementsContainer span div {
 	margin: 1em 0 1em;
 }
-.etablissementsContainer .etablissementsPhoto {
+.etablissementsPhoto {
 	width: 30%;
 }
 .handicapsLine {
@@ -56,5 +43,27 @@
 @media (max-width: 650px) {
 	.ownerContainer {
 		width: 98%;
+	}
+	.etablissementsContainer{
+		justify-content: center;
+	}
+	.etablissementsContainer span{
+		width: 98%;
+		margin:.2em 0;
+	}
+	.etablissementsContainer span p, .etablissementsContainer span h3{
+		margin:.4em 0;
+	}
+	.handicapsLine button{
+		margin:.1em;
+	}
+	.etablissementsPhoto{
+		width:60%;
+	}
+	.etablissementsContainer span div{
+		margin:2em 0;
+	}
+	.etablissementsContainer span div button{
+		margin:0;
 	}
 }

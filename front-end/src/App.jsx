@@ -16,6 +16,7 @@ import OwnerModifyEtablissement from "./pages/ownerModifyEtablissement";
 import Etablissement from "./pages/etablissement";
 import EtablissementAvisNew from "./pages/etablissementAvisNew";
 import OwnerEtablissementAvis from "./pages/ownerEtablissementAvis";
+import MentionsLegales from "./pages/MentionsLegales";
 
 function App() {
   const location = useLocation();
@@ -36,6 +37,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Maps />} />
         <Route path="/etablissement" element={<Etablissement />} />
+        <Route path="/MentionsLegales" element={<MentionsLegales/>}/>
         <Route
           path="/etablissement/avis/new"
           element={
