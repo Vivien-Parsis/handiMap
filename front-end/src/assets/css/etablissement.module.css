@@ -27,21 +27,22 @@
 	width: 58%;
 }
 .titleAndAvisContainer {
-	height:20%;
+	height: 20%;
 	display: flex;
-    align-items: flex-start;
+	align-items: flex-start;
 	justify-content: space-between;
 	flex-wrap: nowrap;
 }
 .infoContainer {
 	width: 75%;
 	display: flex;
-    align-content: flex-start;
-    flex-direction: column;
-    flex-wrap: wrap;
+	align-content: flex-start;
+	flex-direction: column;
+	flex-wrap: wrap;
 }
-.infoContainer h2, .infoContainer p{
-	margin : .1em 0 .1em;
+.infoContainer h2,
+.infoContainer p {
+	margin: 0.1em 0 0.1em;
 }
 .avisContainer {
 	width: 25%;
@@ -54,7 +55,7 @@
 .avisContainer span {
 	width: 100%;
 }
-.handicapContainer{
+.handicapContainer {
 	height: 20%;
 	overflow-y: auto;
 }
@@ -67,7 +68,7 @@
 .avisListItem {
 	display: flex;
 	align-items: center;
-    justify-content: space-between;
+	justify-content: space-between;
 	flex-wrap: wrap;
 	padding: 1em 0;
 }

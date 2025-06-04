@@ -32,7 +32,7 @@
 	align-items: center;
 	align-content: center;
 	border-radius: 10px;
-	width:100%;
+	width: 100%;
 }
 .etablissementsContainer span {
 	background-color: var(--background-color-light);
