@@ -16,7 +16,7 @@ import OwnerModifyEtablissement from "./pages/ownerModifyEtablissement";
 import Etablissement from "./pages/etablissement";
 import EtablissementAvisNew from "./pages/etablissementAvisNew";
 import OwnerEtablissementAvis from "./pages/ownerEtablissementAvis";
-import MentionsLegales from "./pages/MentionsLegales";
+import MentionsLegales from "./pages/mentionsLegales";
 
 function App() {
   const location = useLocation();
