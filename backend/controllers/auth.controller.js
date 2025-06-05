@@ -6,7 +6,7 @@ import vine, { errors } from "@vinejs/vine"
 const login = async (req, res) => {
     const schema = vine.object({
         email: vine.string().email(),
-        password: vine.string().minLength(6).maxLength(30).regex(/[A-Z]/).regex(/[a-z]/).regex(/\d/).regex(/[^a-zA-Z0-9]/),
+        password: vine.string().minLength(12).maxLength(30).regex(/[A-Z]/).regex(/[a-z]/).regex(/\d/).regex(/[^a-zA-Z0-9]/),
     })
     const currentUser = { password: req.body.password, email: req.body.email }
     try {
@@ -28,7 +28,7 @@ const login = async (req, res) => {
 const register = async (req, res) => {
     const schema = vine.object({
         email: vine.string().email(),
-        password: vine.string().minLength(6).maxLength(30).regex(/[A-Z]/).regex(/[a-z]/).regex(/\d/).regex(/[^a-zA-Z0-9]/).confirmed(),
+        password: vine.string().minLength(12).maxLength(30).regex(/[A-Z]/).regex(/[a-z]/).regex(/\d/).regex(/[^a-zA-Z0-9]/).confirmed(),
         nom: vine.string().minLength(1).maxLength(50).regex(/^[a-zA-Z]+$/),
         prenom: vine.string().minLength(1).maxLength(50).regex(/^[a-zA-Z]+$/)
     })

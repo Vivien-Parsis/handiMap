@@ -56,10 +56,10 @@ const EtablissementAvisNew = () => {
 				}
 			})
 			.then(() => {
-				navigate("/etablissement");
+				navigate("/etablissement", {state:{id_etablissement:id_etablissement}});
 			})
 			.catch((err) => {
-				console.log("err");
+				alert("error while add avis");
 			});
 	};
 
@@ -77,10 +77,12 @@ const EtablissementAvisNew = () => {
 					if (res.data) {
 						setEtablisement(res.data);
 					} else {
+						alert("error while getting etablissements");
 						navigate("/");
 					}
 				})
 				.catch((err) => {
+					alert("error while getting etablissements");
 					navigate("/");
 				});
 		}

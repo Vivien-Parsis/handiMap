@@ -33,11 +33,12 @@ const OwnerEtablissementAvis = () => {
             }
           })
           .catch(() => {
+            alert("error while delete avis");
             navigate("/login");
           });
       })
       .catch(() => {
-        console.log("err");
+        alert("error while delete avis");
       });
   };
   const getAvisPhoto = (avis) => {
@@ -65,10 +66,12 @@ const OwnerEtablissementAvis = () => {
           if (res.data) {
             setUserAvis(res.data);
           } else {
+            alert("error while get avis");
             navigate("/login");
           }
         })
         .catch((err) => {
+          alert("error while get avis");
           navigate("/login");
         });
     }

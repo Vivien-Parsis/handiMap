@@ -6,14 +6,14 @@ Application web avec serveur frontend React et serveur backend en node et expres
 
 - Interface utilisateur avec React et Vite
 - API REST avec Node.js & Express
-- Connexion à une base de données PostgreSQL
+- Connexion à une base de données PostgreSQL externe
 - Intégration avec Cloudinary pour la gestion des médias
 
 ## Configuration requise
 
 - git
 - node et npm, ou Docker
-- Une base de donnée postgreSQL
+- Une base de donnée postgreSQL externe
 - Un espace cloudinary
 
 ## Instruction d'installation
@@ -37,6 +37,8 @@ CLOUDINARY_API_KEY={your_secret_here}
 CLOUDINARY_API_SECRET={your_secret_here}
 ```
 
+- Dans votre base de données PostegreSQL externe, utiliser le fichier `schema.sql` pour creer les tables et relations
+
 - dans le répertoire projectn lance le service : `docker-compose up`
 
 ### Option 2 : En local avec Node.js
@@ -57,6 +59,8 @@ CLOUDINARY_API_SECRET={your_secret_here}
   CLOUDINARY_API_KEY={your_secret_here}
   CLOUDINARY_API_SECRET={your_secret_here}
 ```
+
+- Dans votre base de données PostegreSQL externe, utiliser le fichier `schema.sql` pour creer les tables et relations
 
 - Installer et lancer le backend :
 

@@ -11,7 +11,25 @@ import fs from 'fs'
 const app = express()
 
 //middleware
-app.use(helmet())
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            scriptSrc: [
+                "'self'",
+                "https://cdnjs.cloudflare.com",
+                "'unsafe-inline'",
+            ],
+            styleSrc: [
+                "'self'",
+                "https://cdnjs.cloudflare.com",
+                "'unsafe-inline'"
+            ],
+            imgSrc: ["'self'", "data:"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com"],
+            objectSrc: ["'none'"],
+        },
+    }
+}))
 
 app.use(cors({
     origin: [`http://${host}:${port}`, frontend_url],
