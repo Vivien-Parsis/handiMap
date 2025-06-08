@@ -43,7 +43,14 @@ if (node_env == "DEV" || node_env == "TEST") {
     }
     const accessLogStream = fs.createWriteStream('./log/access.log', { flags: 'a' })
     app.use(morgan('HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :user-agent'))
-    app.use(morgan('HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :user-agent', { stream: accessLogStream }))
+    app.use(morgan(':http-version;:status;:method;:date[web];:response-time ms;:url;:user-agent', { stream: accessLogStream }))
+}else if(node_env == "PROD"){
+    if (!fs.existsSync('./log')) {
+        fs.mkdirSync('./log', { recursive: true });
+    }
+    const accessLogStream = fs.createWriteStream('./log/access.log', { flags: 'a' })
+    app.use(morgan('HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url'))
+    app.use(morgan(':http-version;:status;:method;:date[web];:response-time ms;:url', { stream: accessLogStream }))
 }
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
