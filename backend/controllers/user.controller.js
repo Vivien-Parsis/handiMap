@@ -166,6 +166,35 @@ const deleteUserById = async (req, res) => {
 	}
 }
 
+const updateUserNomPrenom = async (req, res) => {
+	const schema = vine.object({
+		id_user: vine.number().withoutDecimals(),
+		nom: vine.string(),
+		prenom: vine.string()
+	})
+
+	const id_user = req.body.id_user
+
+	if (req.user.id_user !== id_user) {
+		return res.status(403).json({ message: "Accès refusé" })
+	}
+
+	try {
+		const validator = vine.compile(schema)
+		await validator.validate({ id_user, nom: req.body.nom, prenom: req.body.prenom })
+
+		const result = await userModel.updateNamePrenom({ id_user, nom: req.body.nom, prenom: req.body.prenom })
+
+		if (!result) {
+			return res.status(404).json({ message: "Utilisateur introuvable" })
+		}
+
+		res.json({ message: "Informations mises à jour", data: result })
+	} catch (err) {
+		res.status(500).json({ message: "Erreur serveur", error: err })
+	}
+}
+
 export {
     getCurrentUser,
     addHandicapToUser,
@@ -174,5 +203,6 @@ export {
     getUserAvis,
     deleteAvisFromUser,
     createUserAvis,
-    deleteUserById
+    deleteUserById,
+    updateUserNomPrenom
 }
