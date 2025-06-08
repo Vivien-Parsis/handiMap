@@ -144,55 +144,49 @@ const createUserAvis = async (req, res) => {
         res.status(500).json({ message: "Erreur serveur", error: err.message })
     }
 }
-
 const deleteUserById = async (req, res) => {
-	const schema = vine.object({
-		id_user: vine.number().withoutDecimals(),
-	})
- const id_user = req.body.id_user
-	if (req.user.id_user !== id_user) {
-		return res.status(403).json({ message: "Accès refusé" })
-	}
-	try {
-		const validator = vine.compile(schema)
-		await validator.validate({ id_user })
-		const result = await userModel.deleteById(id_user)
-		if (!result) {
-			return res.status(404).json({ message: "Utilisateur introuvable" })
-		}
-		res.json({ message: "Utilisateur supprimé", data: result })
-	} catch (err) {
-		res.status(500).json({ message: "Erreur serveur", error: err })
-	}
+    try {
+        const validator = vine.compile(
+            vine.object({ id_user: vine.number().withoutDecimals() })
+        )
+        await validator.validate({ id_user: req.user.id_user })
+
+        const result = await userModel.deleteById(req.user.id_user)
+
+        if (!result) {
+            return res.status(404).json({ message: "Utilisateur introuvable" })
+        }
+
+        res.json({ message: "Utilisateur supprimé", data: result })
+    } catch (err) {
+        res.status(500).json({ message: "Erreur serveur", error: err })
+    }
 }
-
 const updateUserNomPrenom = async (req, res) => {
-	const schema = vine.object({
-		id_user: vine.number().withoutDecimals(),
-		nom: vine.string(),
-		prenom: vine.string()
-	})
+    const newInfo = {nom:req.body.nom, prenom:req.body.prenom}
+    try {
+        const validator = vine.compile(
+            vine.object({
+                nom: vine.string(),
+                prenom: vine.string()
+            })
+        )
+        await validator.validate({ nom, prenom })
 
-	const id_user = req.body.id_user
+        const result = await userModel.updateNamePrenom({
+            id_user: req.user.id_user,
+            nom:newInfo.nom,
+            prenom:newInfo.prenom
+        })
 
-	if (req.user.id_user !== id_user) {
-		return res.status(403).json({ message: "Accès refusé" })
-	}
+        if (!result) {
+            return res.status(404).json({ message: "Utilisateur introuvable" })
+        }
 
-	try {
-		const validator = vine.compile(schema)
-		await validator.validate({ id_user, nom: req.body.nom, prenom: req.body.prenom })
-
-		const result = await userModel.updateNamePrenom({ id_user, nom: req.body.nom, prenom: req.body.prenom })
-
-		if (!result) {
-			return res.status(404).json({ message: "Utilisateur introuvable" })
-		}
-
-		res.json({ message: "Informations mises à jour", data: result })
-	} catch (err) {
-		res.status(500).json({ message: "Erreur serveur", error: err })
-	}
+        res.json({ message: "Informations mises à jour", data: result })
+    } catch (err) {
+        res.status(500).json({ message: "Erreur serveur", error: err })
+    }
 }
 
 export {
