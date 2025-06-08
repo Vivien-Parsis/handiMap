@@ -5,7 +5,9 @@ import {
     getUserHandicap,
     getUserAvis,
     deleteAvisFromUser,
-    createUserAvis
+    createUserAvis,
+    updateUserNomPrenom,
+    deleteUserById
 } from "../controllers/user.controller.js"
 
 import { Router } from "express"
@@ -33,8 +35,43 @@ const userRouter = Router()
  *         description: Données utilisateur récupérées
  *       401:
  *         description: Non autorisé
+ *   put:
+ *     summary: Modifier le nom et prénom de l'utilisateur
+ *     tags: [User]
+ *     security:
+ *       - jwtToken: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nom
+ *               - prenom
+ *             properties:
+ *               nom:
+ *                 type: string
+ *               prenom:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Nom et prénom mis à jour
+ *       403:
+ *         description: Accès refusé
+ *   delete:
+ *     summary: Supprimer définitivement l'utilisateur connecté
+ *     tags: [User]
+ *     security:
+ *       - jwtToken: []
+ *     responses:
+ *       200:
+ *         description: Utilisateur supprimé
+ *       403:
+ *         description: Accès refusé
+ *       404:
+ *         description: Utilisateur non trouvé
  */
-
 /**
  * @swagger
  * /api/v1/user/handicaps:
@@ -161,6 +198,8 @@ const userRouter = Router()
  */
 
 userRouter.get("/", checkRouteJwt, getCurrentUser)
+userRouter.put("/", checkRouteJwt, updateUserNomPrenom)
+userRouter.delete("/", checkRouteJwt, deleteUserById)
 
 userRouter.get("/handicaps", checkRouteJwt, getUserHandicap)
 userRouter.post("/handicaps", checkRouteJwt, addHandicapToUser)
