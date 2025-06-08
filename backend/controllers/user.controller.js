@@ -163,7 +163,8 @@ const deleteUserById = async (req, res) => {
     }
 }
 const updateUserNomPrenom = async (req, res) => {
-    const newInfo = {nom:req.body.nom, prenom:req.body.prenom}
+    const newInfo = { nom: req.body.nom, prenom: req.body.prenom }
+    console.log(newInfo)
     try {
         const validator = vine.compile(
             vine.object({
@@ -171,12 +172,12 @@ const updateUserNomPrenom = async (req, res) => {
                 prenom: vine.string()
             })
         )
-        await validator.validate({ nom, prenom })
+        await validator.validate(newInfo)
 
-        const result = await userModel.updateNamePrenom({
+        const result = await userModel.updateNomPrenom({
             id_user: req.user.id_user,
-            nom:newInfo.nom,
-            prenom:newInfo.prenom
+            nom: newInfo.nom,
+            prenom: newInfo.prenom
         })
 
         if (!result) {

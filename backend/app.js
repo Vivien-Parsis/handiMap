@@ -1,56 +1,22 @@
 import express from "express"
-import cors from "cors"
-import { host, port, frontend_url, node_env } from "./config/server.config.js"
-import morgan from "morgan"
-import helmet from "helmet"
 import { apiRouter } from "./routes/index.js"
 import swaggerUi from 'swagger-ui-express'
 import { swaggerSpec } from './config/swagger.config.js'
-import fs from 'fs'
+import { consoleLogger, writtenLogger } from "./middlewares/logger.middleware.js"
+import { helmetMiddleware } from "./middlewares/helmet.middleware.js"
+import { corsMiddleware } from "./middlewares/cors.middleware.js"
 
 const app = express()
 
 //middleware
-app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            scriptSrc: [
-                "'self'",
-                "https://cdnjs.cloudflare.com",
-                "'unsafe-inline'",
-            ],
-            styleSrc: [
-                "'self'",
-                "https://cdnjs.cloudflare.com",
-                "'unsafe-inline'"
-            ],
-            imgSrc: ["'self'", "data:"],
-            fontSrc: ["'self'", "https://fonts.gstatic.com"],
-            objectSrc: ["'none'"],
-        },
-    }
-}))
+app.use(helmetMiddleware)
 
-app.use(cors({
-    origin: [`http://${host}:${port}`, frontend_url],
-    credentials: true
-}))
+app.use(corsMiddleware)
 app.use(express.json())
 
-if (node_env == "DEV" || node_env == "TEST") {
-    if (!fs.existsSync('./log')) {
-        fs.mkdirSync('./log', { recursive: true });
-    }
-    const accessLogStream = fs.createWriteStream('./log/access.log', { flags: 'a' })
-    app.use(morgan('HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :user-agent'))
-    app.use(morgan(':http-version;:status;:method;:date[web];:response-time ms;:url;:user-agent', { stream: accessLogStream }))
-}else if(node_env == "PROD"){
-    if (!fs.existsSync('./log')) {
-        fs.mkdirSync('./log', { recursive: true });
-    }
-    const accessLogStream = fs.createWriteStream('./log/access.log', { flags: 'a' })
-    app.use(morgan('HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url'))
-    app.use(morgan(':http-version;:status;:method;:date[web];:response-time ms;:url', { stream: accessLogStream }))
+if (consoleLogger && writtenLogger) {
+    app.use(consoleLogger)
+    app.use(writtenLogger)
 }
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 

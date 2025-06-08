@@ -6,126 +6,200 @@ import styles from "../assets/css/account.module.css";
 import { jwtDecode } from "jwt-decode";
 
 const Account = () => {
-	const [userInfo, setUserInfo] = useState({});
-	const [userHandicaps, setUserHandicaps] = useState([]);
-	const [allHandicaps, setAllHandicaps] = useState([]);
-	const [newHandicap, setNewHandicap] = useState();
-	const navigate = useNavigate();
-	const jwt_token = localStorage.getItem("token");
+  const [userInfo, setUserInfo] = useState({});
+  const [userHandicaps, setUserHandicaps] = useState([]);
+  const [allHandicaps, setAllHandicaps] = useState([]);
+  const [newHandicap, setNewHandicap] = useState();
+  const [showModifyName, setShowModifyName] = useState(false);
+  const navigate = useNavigate();
+  const jwt_token = localStorage.getItem("token");
 
-	const disconnet = () => {
-		localStorage.removeItem("token");
-		navigate("/login");
-	};
-	const handleDeleteHandicaps = (id) => {
-		axios
-			.delete(`${api_url}/api/v1/users/handicaps`, {
-				data: { id_handicap: id },
-				headers: { authorization: jwt_token }
-			})
-			.then((res) => {});
-		axios
-			.get(`${api_url}/api/v1/users/handicaps`, {
-				headers: { authorization: jwt_token }
-			})
-			.then((res) => {
-				if (res.data) {
-					setUserHandicaps(res.data);
-				} else {
-					navigate("/login");
-				}
-			})
-			.catch((err) => {
-				navigate("/login");
-			});
-	};
-	const handleAddHandicaps = async () => {
-		if (!newHandicap) {
-			return;
-		}
-		await axios
-			.post(
-				`${api_url}/api/v1/users/handicaps`,
-				{ id_handicap: newHandicap },
-				{ headers: { authorization: jwt_token } }
-			)
-			.then();
-		await axios
-			.get(`${api_url}/api/v1/users/handicaps`, {
-				headers: { authorization: jwt_token }
-			})
-			.then((res) => {
-				if (res.data) {
-					setUserHandicaps(res.data);
-				} else {
-					navigate("/login");
-				}
-			})
-			.catch((err) => {
-				navigate("/login");
-			});
-	};
-	const handleChangeSelectAddHandicaps = (e) => {
-		e.preventDefault();
-		setNewHandicap(e.target.value);
-	};
-	const showEtablissementBtn = () => {
-		if (
-			jwtDecode(jwt_token).role === "admin" ||
-			jwtDecode(jwt_token).role === "owner"
-		) {
-			return (
-				<Link to="/account/etablissement" className="linkButton">
-					Voir mes établissements
-				</Link>
-			);
-		}
-	};
-	useEffect(() => {
-		axios
-			.get(`${api_url}/api/v1/users/`, {
-				headers: { authorization: jwt_token }
-			})
-			.then((res) => {
-				if (res.data) {
-					setUserInfo(res.data);
-				} else {
-					navigate("/login");
-				}
-			})
-			.catch((err) => {
-				navigate("/login");
-			});
-		axios
-			.get(`${api_url}/api/v1/users/handicaps`, {
-				headers: { authorization: jwt_token }
-			})
-			.then((res) => {
-				if (res.data) {
-					setUserHandicaps(res.data);
-				} else {
-					navigate("/login");
-				}
-			})
-			.catch((err) => {
-				navigate("/login");
-			});
-		axios
-			.get(`${api_url}/api/v1/handicaps`, {
-				headers: { authorization: jwt_token }
-			})
-			.then((res) => {
-				if (res.data) {
-					setAllHandicaps(res.data);
-				} else {
-					navigate("/login");
-				}
-			})
-			.catch((err) => {
-				navigate("/login");
-			});
-	}, [navigate, jwt_token]);
-	return (
+  const disconnet = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+  const handleDeleteHandicaps = async (id) => {
+    await axios
+      .delete(`${api_url}/api/v1/users/handicaps`, {
+        data: { id_handicap: id },
+        headers: { authorization: jwt_token },
+      })
+      .then((res) => {});
+    await axios
+      .get(`${api_url}/api/v1/users/handicaps`, {
+        headers: { authorization: jwt_token },
+      })
+      .then((res) => {
+        if (res.data) {
+          setUserHandicaps(res.data);
+        } else {
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
+  };
+  const handleAddHandicaps = async () => {
+    if (!newHandicap) {
+      return;
+    }
+    await axios
+      .post(
+        `${api_url}/api/v1/users/handicaps`,
+        { id_handicap: newHandicap },
+        { headers: { authorization: jwt_token } }
+      )
+      .then()
+      .catch((err) => {
+        navigate("/login");
+      });
+    await axios
+      .get(`${api_url}/api/v1/users/handicaps`, {
+        headers: { authorization: jwt_token },
+      })
+      .then((res) => {
+        if (res.data) {
+          setUserHandicaps(res.data);
+        } else {
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
+  };
+  const handleChangeSelectAddHandicaps = (e) => {
+    setNewHandicap(e.target.value);
+  };
+
+  const handleDeleteAccount = async () => {
+    await axios
+      .delete(`${api_url}/api/v1/users`, {
+        headers: { authorization: jwt_token },
+      })
+      .then((res) => {
+        localStorage.removeItem("token");
+        navigate("/");
+      });
+  };
+
+  const showEtablissementBtn = () => {
+    if (
+      jwtDecode(jwt_token).role === "admin" ||
+      jwtDecode(jwt_token).role === "owner"
+    ) {
+      return (
+        <Link to="/account/etablissement" className="linkButton">
+          Voir mes établissements
+        </Link>
+      );
+    }
+  };
+
+  const switchShowModifyName = () => {
+    setShowModifyName(!showModifyName);
+  };
+  const handleModifyUser = async (e) => {
+    e.preventDefault();
+    await axios
+      .put(
+        `${api_url}/api/v1/users`,
+        { nom: e.target.newNom.value, prenom: e.target.newPrenom.value },
+        { headers: { authorization: jwt_token } }
+      )
+      .then(() => {
+        setShowModifyName(false);
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
+    await axios
+      .get(`${api_url}/api/v1/users/`, {
+        headers: { authorization: jwt_token },
+      })
+      .then((res) => {
+        if (res.data) {
+          setUserInfo(res.data);
+        } else {
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
+  };
+  const getFormModifyName = () => {
+    if (showModifyName) {
+      return (
+        <form className={styles.updateFormUser} onSubmit={handleModifyUser}>
+          <label htmlFor="newNom">Nouveau nom : </label>
+          <input
+            type="text"
+            name="newNom"
+            id="newNom"
+            required
+            defaultValue={userInfo.nom}
+          ></input>
+          <label htmlFor="newPrenom">Nouveau prenom : </label>
+          <input
+            type="text"
+            name="newPrenom"
+            id="newPrenom"
+            required
+            defaultValue={userInfo.prenom}
+          ></input>
+          <input type="submit" className="linkButton"></input>
+        </form>
+      );
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .get(`${api_url}/api/v1/users/`, {
+        headers: { authorization: jwt_token },
+      })
+      .then((res) => {
+        if (res.data) {
+          setUserInfo(res.data);
+        } else {
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
+    axios
+      .get(`${api_url}/api/v1/users/handicaps`, {
+        headers: { authorization: jwt_token },
+      })
+      .then((res) => {
+        if (res.data) {
+          setUserHandicaps(res.data);
+        } else {
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
+    axios
+      .get(`${api_url}/api/v1/handicaps`, {
+        headers: { authorization: jwt_token },
+      })
+      .then((res) => {
+        if (res.data) {
+          setAllHandicaps(res.data);
+        } else {
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        navigate("/login");
+      });
+  }, [navigate, jwt_token]);
+  return (
     <div className="backgroundBlured">
       <Link to="/" className="linkText">
         Revenir sur la carte
@@ -134,12 +208,22 @@ const Account = () => {
         <h2>Mon compte</h2>
         <ul>
           <li>
-            {userInfo.nom} {userInfo.prenom}
+            {userInfo.nom} {userInfo.prenom}{" "}
+            <button
+              className="linkButton"
+              onClick={() => switchShowModifyName()}
+            >
+              modifier
+            </button>
+            {getFormModifyName()}
           </li>
           <li>{userInfo.email}</li>
         </ul>
         <button className="linkButton" onClick={() => disconnet()}>
           me deconnecter
+        </button>
+        <button className="deleteButton" onClick={() => handleDeleteAccount()}>
+          Supprimer mon compte
         </button>
         <h3>Mes handicaps</h3>
         <ul>
