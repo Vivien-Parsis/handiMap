@@ -3,12 +3,12 @@ import morgan from "morgan"
 import fs from 'fs'
 
 if (node_env == "DEV" || node_env == "TEST" || node_env == "PROD"){
-    if (!fs.existsSync('.././log')) {
-        fs.mkdirSync('.././log', { recursive: true })
+    if (!fs.existsSync('../log')) {
+        fs.mkdirSync('../log', { recursive: true })
     }
 }
 
-const accessLogStream = fs.createWriteStream('./log/access.log', { flags: 'a' })
+const accessLogStream = fs.createWriteStream('../log/access.log', { flags: 'a' })
 const DevLogConsole = 'HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :user-agent'
 const DevLogWrite = ':http-version;:status;:method;:date[web];:response-time ms;:url;:user-agent'
 
