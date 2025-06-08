@@ -42,6 +42,13 @@ const userModel = {
    'DELETE FROM users WHERE id_user = $1 RETURNING *', [id_user]
     )
     return result.rows[0]
+ },
+updateNomPrenom: async ({ id_user, nom, prenom }) => {
+	const result = await pool.query(
+		'UPDATE users SET nom = $1, prenom = $2 WHERE id_user = $3 RETURNING *',
+		[nom, prenom, id_user]
+	)
+	return result.rows[0]
 }
 }
 
