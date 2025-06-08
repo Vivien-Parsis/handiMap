@@ -36,7 +36,13 @@ const userModel = {
 			[id_user, id_avis]
 		)
 		return result.rows[0]
-	}
+	},
+ deleteById: async (id_user) => {
+  const result = await pool.query(
+   'DELETE FROM users WHERE id_user = $1 RETURNING *', [id_user]
+    )
+    return result.rows[0]
+}
 }
 
 export {
