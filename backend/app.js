@@ -7,7 +7,7 @@ import { helmetMiddleware } from "./middlewares/helmet.middleware.js"
 import { corsMiddleware } from "./middlewares/cors.middleware.js"
 
 const app = express()
-
+app.disable("x-powered-by")
 //middleware
 app.use(helmetMiddleware)
 
