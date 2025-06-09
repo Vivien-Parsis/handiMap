@@ -97,7 +97,7 @@ const Register = () => {
             required
           />
           <input type="checkbox" required name="rgpd" id="rgpd" />
-          <label htmlFor="rgpd">J'accepte le RGPD</label>
+          <label htmlFor="rgpd">J’ai lu et j’accepte la <Link to="/mentionslegales">politique de confidentialité</Link></label>
           <button type="submit" className="linkButton">
             S'inscrire
           </button>
