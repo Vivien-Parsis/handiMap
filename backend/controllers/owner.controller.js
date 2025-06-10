@@ -62,6 +62,7 @@ const createEtablissement = async (req, res) => {
         adresse: vine.string(),
         type: vine.string(),
         coordonnees: vine.string(),
+        photo: vine.string().url({require_protocol: true,protocols: ['http','https']}),
         id_user: vine.number().withoutDecimals()
     })
     let photo = ""
@@ -94,7 +95,7 @@ const updateEtablissement = async (req, res) => {
         nom: vine.string(),
         adresse: vine.string(),
         type: vine.string(),
-        photo: vine.string(),
+        photo: vine.string().url({require_protocol: true,protocols: ['http','https']}),
         coordonnees: vine.string(),
         id_user: vine.number().withoutDecimals()
     })
@@ -124,7 +125,7 @@ const updateEtablissement = async (req, res) => {
             return res.status(403).json({ message: "cet etablissement ne vous appartient pas" })
         }
 
-        const updated = await etablissementModel.update(currentEtablissement.id_etablissement, {
+        const updated = await etablissementModel.update(Number(currentEtablissement.id_etablissement), {
             nom: currentEtablissement.nom,
             adresse: currentEtablissement.adresse,
             type: currentEtablissement.type,
@@ -150,7 +151,7 @@ const deleteEtablissement = async (req, res) => {
             id_user: req.user.id_user
         })
 
-        const deleted = await etablissementModel.deleteIfOwner(req.body.id_etablissement, req.user.id_user)
+        const deleted = await etablissementModel.deleteIfOwner(Number(req.body.id_etablissement), Number(req.user.id_user))
 
         if (!deleted) {
             return res.status(403).json({ message: "cet etablissement ne vous appartient pas" })
@@ -172,7 +173,7 @@ const addHandicapToEtablissement = async (req, res) => {
         const validator = vine.compile(schema)
 
         await validator.validate({ id_user: req.user.id_user, id_handicap: req.body.id_handicap, id_etablissement: req.body.id_etablissement })
-        const etablissement = await etablissementModel.addHandicaps(req.body.id_etablissement, req.body.id_handicap, req.user.id_user)
+        const etablissement = await etablissementModel.addHandicaps(Number(req.body.id_etablissement), Number(req.body.id_handicap), Number(req.user.id_user))
         if (etablissement.length == 0) {
             return res.status(403).json({ message: "cet etablissement ne vous apartient pas" })
         } else {
@@ -192,7 +193,7 @@ const deleteHandicapToEtablissement = async (req, res) => {
     try {
         const validator = vine.compile(schema)
         await validator.validate({ id_user: req.user.id_user, id_handicap: req.body.id_handicap, id_etablissement: req.body.id_etablissement })
-        const etablissement = await etablissementModel.deleteHandicaps(req.body.id_etablissement, req.body.id_handicap, req.user.id_user)
+        const etablissement = await etablissementModel.deleteHandicaps(Number(req.body.id_etablissement), Number(req.body.id_handicap), Number(req.user.id_user))
         if (etablissement.length == 0) {
             return res.status(403).json({ message: "cet etablissement ne vous apartient pas" })
         } else {
@@ -216,7 +217,7 @@ const getAllAvisFromEtablissement = async (req, res) => {
             id_etablissement: Number(req.query.id_etablissement)
         })
 
-        const avis = await avisModel.findAllFromEtablissementIfOwner(Number(req.query.id_etablissement), req.user.id_user)
+        const avis = await avisModel.findAllFromEtablissementIfOwner(Number(req.query.id_etablissement), Number(req.user.id_user))
 
         if (!avis.length) {
             return res.status(403).json({ message: "Cet établissement ne vous appartient pas ou aucun avis trouvé." })
