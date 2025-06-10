@@ -86,9 +86,9 @@ NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 
 ## Adresse
 
-- backend : `http://localhost:4000`
+Frontend : `http://votre-domaine-ou-ip:3000`
 
-- frontend : `http://localhost:3000`
+Backend : `http://votre-domaine-ou-ip:4000`
 
 ## Déploiement
 
