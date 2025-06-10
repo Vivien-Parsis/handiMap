@@ -62,7 +62,6 @@ const createEtablissement = async (req, res) => {
         adresse: vine.string(),
         type: vine.string(),
         coordonnees: vine.string(),
-        photo: vine.string().url({require_protocol: true,protocols: ['http','https']}),
         id_user: vine.number().withoutDecimals()
     })
     let photo = ""
@@ -95,7 +94,6 @@ const updateEtablissement = async (req, res) => {
         nom: vine.string(),
         adresse: vine.string(),
         type: vine.string(),
-        photo: vine.string().url({require_protocol: true,protocols: ['http','https']}),
         coordonnees: vine.string(),
         id_user: vine.number().withoutDecimals()
     })
