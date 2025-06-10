@@ -28,7 +28,7 @@ const addHandicapToUser = async (req, res) => {
     try {
         const validator = vine.compile(schema)
         await validator.validate({ id_user: req.user.id_user, id_handicap: id_handicap })
-        const result = await userModel.addHandicap({ id_user: req.user.id_user, id_handicap: id_handicap })
+        const result = await userModel.addHandicap({ id_user: Number(req.user.id_user), id_handicap: Number(id_handicap) })
         res.status(201).json(result)
     } catch (err) {
         res.status(500).json({ message: "Erreur serveur", error: err })
@@ -49,7 +49,7 @@ const deleteHandicapFromUser = async (req, res) => {
     try {
         const validator = vine.compile(schema)
         await validator.validate({ id_user: req.user.id_user, id_handicap: id_handicap })
-        const result = await userModel.deleteHandicap({ id_user: req.user.id_user, id_handicap: id_handicap })
+        const result = await userModel.deleteHandicap({ id_user: Number(req.user.id_user), id_handicap: Number(id_handicap) })
         if (!result) {
             return res.status(404).json({ message: "Association non trouvée" })
         } else {
@@ -67,7 +67,7 @@ const getUserHandicap = async (req, res) => {
     try {
         const validator = vine.compile(schema)
         await validator.validate({ id_user: req.user.id_user })
-        const handicaps = await handicapModel.findUserHandicap(req.user.id_user)
+        const handicaps = await handicapModel.findUserHandicap(Number(req.user.id_user))
         if (!handicaps) {
             return res.status(404).json({ message: "Handicap introuvable" })
         } else {
@@ -80,7 +80,7 @@ const getUserHandicap = async (req, res) => {
 
 const getUserAvis = async (req, res) => {
     try {
-        const avis = await avisModel.findUserAvis(req.user.id_user)
+        const avis = await avisModel.findUserAvis(Number(req.user.id_user))
         if (!avis) {
             return res.status(404).json({ message: "Handicap introuvable" })
         } else {
@@ -100,7 +100,7 @@ const deleteAvisFromUser = async (req, res) => {
     try {
         const validator = vine.compile(schema)
         await validator.validate({ id_user: req.user.id_user, id_avis: id_avis })
-        const result = await userModel.deleteAvis({ id_user: req.user.id_user, id_avis: id_avis })
+        const result = await userModel.deleteAvis({ id_user: Number(req.user.id_user), id_avis: Number(id_avis) })
         if (!result) {
             return res.status(404).json({ message: "Association non trouvée" })
         }
@@ -116,6 +116,7 @@ const createUserAvis = async (req, res) => {
         id_user: vine.number().withoutDecimals(),
         id_etablissement: vine.number().withoutDecimals(),
         commentaire: vine.string(),
+        photo: vine.string().url()
     })
     let photo = ""
     if (req.file) {
@@ -135,7 +136,8 @@ const createUserAvis = async (req, res) => {
             note: currentAvis.note,
             id_user: currentAvis.id_user,
             id_etablissement: currentAvis.id_etablissement,
-            commentaire: currentAvis.commentaire
+            commentaire: currentAvis.commentaire,
+            photo:photo
         })
         const avis = await avisModel.create(currentAvis)
         res.status(201).json(avis)
@@ -151,7 +153,7 @@ const deleteUserById = async (req, res) => {
         )
         await validator.validate({ id_user: req.user.id_user })
 
-        const result = await userModel.deleteById(req.user.id_user)
+        const result = await userModel.deleteById(Number(req.user.id_user))
 
         if (!result) {
             return res.status(404).json({ message: "Utilisateur introuvable" })
@@ -175,7 +177,7 @@ const updateUserNomPrenom = async (req, res) => {
         await validator.validate(newInfo)
 
         const result = await userModel.updateNomPrenom({
-            id_user: req.user.id_user,
+            id_user: Number(req.user.id_user),
             nom: newInfo.nom,
             prenom: newInfo.prenom
         })
