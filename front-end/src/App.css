@@ -11,7 +11,7 @@
 	padding: 0.3em;
 	text-decoration: none;
 	margin: 1em;
-	color: white;
+	color: #000000;
 }
 .linkButton {
 	background-color: var(--button-color);
