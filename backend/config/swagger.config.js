@@ -6,7 +6,7 @@ const swaggerOptions = {
     info: {
       title: 'API Project B3',
       version: '1.0.0',
-      description: 'Documentation Swagger pour les routes propriétaires',
+      description: "Documentation Swagger de l'API de Handi'Map",
     },
     components: {
       securitySchemes: {
@@ -14,7 +14,7 @@ const swaggerOptions = {
           type: 'apiKey',
           in: 'header',
           name: 'Authorization',
-          description: 'JWT sans le préfixe Bearer, juste le token brut',
+          description: 'JWT brut',
         },
       },
     },
