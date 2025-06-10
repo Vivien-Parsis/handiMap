@@ -19,8 +19,9 @@ const MentionsLegales = () => {
 
         <h3>Hébergement</h3>
         <p>Hébergeur : Render.com</p>
-        <p>Adresse : [Adresse de l'hébergeur]</p>
-        <p>Téléphone : [Numéro de téléphone de l'hébergeur]</p>
+        <p>Adresse du siege social : 525 Brannan St Suite 300, San Francisco, CA 94107, États-Unis</p>
+        <p>Adresse de l'hébergement : Frankfurt, Allemagne</p>
+        <p>Téléphone : (+1) 415-319-8186</p>
 
         <h3>Données personnelles</h3>
         <p>
