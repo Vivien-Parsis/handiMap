@@ -32,7 +32,7 @@ const authRouter = Router()
  *               password:
  *                 type: string
  *                 description: >
- *                   Mot de passe entre 6 et 30 caractères, contenant au moins une majuscule, une minuscule, un chiffre et un caractère spécial.
+ *                   Mot de passe entre 12 et 30 caractères, contenant au moins une majuscule, une minuscule, un chiffre et un caractère spécial.
  *     responses:
  *       200:
  *         description: Authentification réussie, retourne un token JWT
@@ -74,7 +74,7 @@ const authRouter = Router()
  *               password:
  *                 type: string
  *                 description: >
- *                   Mot de passe entre 6 et 30 caractères, contenant au moins une majuscule, une minuscule, un chiffre et un caractère spécial.
+ *                   Mot de passe entre 12 et 30 caractères, contenant au moins une majuscule, une minuscule, un chiffre et un caractère spécial.
  *               password_confirmation:
  *                 type: string
  *               nom:
