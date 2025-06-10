@@ -115,8 +115,7 @@ const createUserAvis = async (req, res) => {
         note: vine.number().withoutDecimals(),
         id_user: vine.number().withoutDecimals(),
         id_etablissement: vine.number().withoutDecimals(),
-        commentaire: vine.string(),
-        photo: vine.string().url()
+        commentaire: vine.string()
     })
     let photo = ""
     if (req.file) {
