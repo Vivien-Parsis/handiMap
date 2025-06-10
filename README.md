@@ -32,6 +32,8 @@ Application web avec serveur frontend React et serveur backend en node et expres
 ```none
 JWT_SECRET={your_secret_here}
 DB_URL={your_secret_here}
+HOST={your_secret_here}
+FRONT_URL={your_secret_here}
 CLOUDINARY_CLOUD_NAME={your_secret_here}
 CLOUDINARY_API_KEY={your_secret_here}
 CLOUDINARY_API_SECRET={your_secret_here}
