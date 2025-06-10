@@ -73,7 +73,7 @@ NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 ```bash
   cd ../backend
   npm install
-  npm run dev
+  npm run start
 ```
 
 - Installer et lancer le frontend :
@@ -81,7 +81,7 @@ NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 ```bash
   cd ../front-end
   npm install
-  npm run start
+  npm run preview
 ```
 
 ## Adresse
