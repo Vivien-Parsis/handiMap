@@ -56,12 +56,14 @@ NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 - creer un fichier .env dans le backend :
 
 ```none
-  JWT_SECRET={your_secret_here}
-  DB_URL={your_secret_here}
-  CLOUDINARY_CLOUD_NAME={your_secret_here}
-  CLOUDINARY_API_KEY={your_secret_here}
-  CLOUDINARY_API_SECRET={your_secret_here}
-  NODE_ENV={"DEV" OR "TEST" OR "PROD"}
+JWT_SECRET={your_secret_here}
+DB_URL={your_secret_here}
+HOST={your_secret_here}
+FRONT_URL={your_secret_here}
+CLOUDINARY_CLOUD_NAME={your_secret_here}
+CLOUDINARY_API_KEY={your_secret_here}
+CLOUDINARY_API_SECRET={your_secret_here}
+NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 ```
 
 - Dans votre base de données PostegreSQL externe, utiliser le fichier `schema.sql` pour creer les tables et relations
