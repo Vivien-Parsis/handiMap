@@ -152,7 +152,7 @@ const EtablissementAvisNew = () => {
                   accept="image/*"
                   onChange={handleChange}
                 ></input>
-                <input type="submit" value="Envoyer"></input>
+                <input type="submit" value="Envoyer" className="linkButton"></input>
               </form>
             </div>
           </span>
