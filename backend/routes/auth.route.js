@@ -99,8 +99,8 @@ const authRouter = Router()
  *         description: Erreur de validation
  */
 
-authRouter.post("/login", login, rateLimiter)
-authRouter.post("/register", register, rateLimiter)
+authRouter.post("/login", rateLimiter, login)
+authRouter.post("/register", rateLimiter, register)
 
 export {
     authRouter
