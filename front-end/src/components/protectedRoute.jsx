@@ -7,10 +7,8 @@ const protectedRoute = ({ children }) => {
 		return <Navigate to="/login" />;
 	}
 	const decoded = jwtDecode(auth);
-	if (!decoded) {
-		return <Navigate to="/login" />;
-	} else if (!decoded.role || !decoded.email || !decoded.id_user) {
-		localStorage.setItem("token", "");
+	if (!decoded.role || !decoded.email || !decoded.id_user) {
+		localStorage.removeItem("token");
 		return <Navigate to="/login" />;
 	} else {
 		return children;

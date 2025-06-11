@@ -3,10 +3,13 @@ import { jwtDecode } from "jwt-decode";
 
 const protectedOwnerRoute = ({ children }) => {
 	let auth = localStorage.getItem("token");
+	if (!auth) {
+		return <Navigate to="/login" />;
+	}
 	const decode = jwtDecode(auth);
 	if (decode) {
 		if (!decode.role || !decode.id_user || !decode.email) {
-			localStorage.setItem("token", "");
+			localStorage.removeItem("token");
 			return <Navigate to="/login" />;
 		} else if (decode.role === "owner" || decode.role === "admin") {
 			return children;
