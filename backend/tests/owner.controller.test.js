@@ -55,7 +55,7 @@ const { app } = await import('../app.js')
 const { etablissementModel } = await import("../models/etablissement.model.js")
 
 const token = "fake-jwt-token"
-const headers = { Authorization: token }
+const headers = { Authorization: "Bearer " + token }
 
 describe("Routes /api/v1/owners/etablissements", () => {
     describe("GET /api/v1/owners/etablissements", () => {

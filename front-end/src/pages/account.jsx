@@ -22,12 +22,12 @@ const Account = () => {
     await axios
       .delete(`${api_url}/api/v1/users/handicaps`, {
         data: { id_handicap: id },
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {});
     await axios
       .get(`${api_url}/api/v1/users/handicaps`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -48,7 +48,7 @@ const Account = () => {
       .post(
         `${api_url}/api/v1/users/handicaps`,
         { id_handicap: newHandicap },
-        { headers: { authorization: jwt_token } }
+        { headers: { authorization: "Bearer " + jwt_token } }
       )
       .then()
       .catch((err) => {
@@ -56,7 +56,7 @@ const Account = () => {
       });
     await axios
       .get(`${api_url}/api/v1/users/handicaps`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -76,7 +76,7 @@ const Account = () => {
   const handleDeleteAccount = async () => {
     await axios
       .delete(`${api_url}/api/v1/users`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         localStorage.removeItem("token");
@@ -106,7 +106,7 @@ const Account = () => {
       .put(
         `${api_url}/api/v1/users`,
         { nom: e.target.newNom.value, prenom: e.target.newPrenom.value },
-        { headers: { authorization: jwt_token } }
+        { headers: { authorization: "Bearer " + jwt_token } }
       )
       .then(() => {
         setShowModifyName(false);
@@ -116,7 +116,7 @@ const Account = () => {
       });
     await axios
       .get(`${api_url}/api/v1/users/`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -158,7 +158,7 @@ const Account = () => {
   useEffect(() => {
     axios
       .get(`${api_url}/api/v1/users/`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -172,7 +172,7 @@ const Account = () => {
       });
     axios
       .get(`${api_url}/api/v1/users/handicaps`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -186,7 +186,7 @@ const Account = () => {
       });
     axios
       .get(`${api_url}/api/v1/handicaps`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {

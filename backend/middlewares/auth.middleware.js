@@ -3,11 +3,15 @@ import jwt from "jsonwebtoken"
 import { userModel } from "../models/user.model.js"
 
 const checkRouteJwt = async (req, res, next) => {
-    const token = req.headers.authorization || ""
-    if (!token) {
+    const authHeader = req.headers.authorization || ""
+    if (!authHeader) {
         return res.status(401).send({ "message": "missing jwt token" })
     }
+    if (!authHeader.startsWith("Bearer ")) {
+        return res.status(401).send({ "message": "missing bearer key" })
+    }
     try {
+        const token = authHeader.split(' ')[1]
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
         if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email) {
@@ -21,15 +25,19 @@ const checkRouteJwt = async (req, res, next) => {
     }
 }
 
-const checkAdminRouteJwt = async (req, res, next) => {
-    const token = req.headers.authorization || ""
-    if (!token) {
+const checkOwnerRouteJwt = async (req, res, next) => {
+    const authHeader = req.headers.authorization || ""
+    if (!authHeader) {
         return res.status(401).send({ "message": "missing jwt token" })
     }
+    if (!authHeader.startsWith("Bearer ")) {
+        return res.status(401).send({ "message": "missing bearer key" })
+    }
     try {
+        const token = authHeader.split(' ')[1]
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email && userSearch.role == "admin") {
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email && (userSearch.role == "owner" || userSearch.role == "admin")) {
             req.user = decoded
             next()
         } else {
@@ -40,15 +48,19 @@ const checkAdminRouteJwt = async (req, res, next) => {
     }
 }
 
-const checkOwnerRouteJwt = async (req, res, next) => {
-    const token = req.headers.authorization || ""
-    if (!token) {
+const checkAdminRouteJwt = async (req, res, next) => {
+    const authHeader = req.headers.authorization || ""
+    if (!authHeader) {
         return res.status(401).send({ "message": "missing jwt token" })
     }
+    if (!authHeader.startsWith("Bearer ")) {
+        return res.status(401).send({ "message": "missing bearer key" })
+    }
     try {
+        const token = authHeader.split(' ')[1]
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email && (userSearch.role == "owner" || userSearch.role == "admin")) {
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email && userSearch.role == "admin") {
             req.user = decoded
             next()
         } else {

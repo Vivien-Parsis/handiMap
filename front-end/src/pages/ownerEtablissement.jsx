@@ -24,12 +24,12 @@ const OwnerEtablissement = () => {
       .post(
         `${api_url}/api/v1/owners/etablissements/handicaps`,
         { id_handicap: newHandicap, id_etablissement: etablissement },
-        { headers: { authorization: jwt_token } }
+        { headers: { authorization: "Bearer " + jwt_token } }
       )
       .then();
     await axios
       .get(`${api_url}/api/v1/owners/etablissements`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -50,7 +50,7 @@ const OwnerEtablissement = () => {
       .delete(`${api_url}/api/v1/owners/etablissements`, {
         data: { id_etablissement: id_etablissement },
         headers: {
-          authorization: jwt_token,
+          authorization: "Bearer " + jwt_token,
         },
       })
       .then(() => {})
@@ -59,7 +59,7 @@ const OwnerEtablissement = () => {
       });
     await axios
       .get(`${api_url}/api/v1/owners/etablissements`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -79,12 +79,12 @@ const OwnerEtablissement = () => {
           id_handicap: handicap,
           id_etablissement: etablissement,
         },
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {});
     await axios
       .get(`${api_url}/api/v1/owners/etablissements`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -106,7 +106,7 @@ const OwnerEtablissement = () => {
   useEffect(() => {
     axios
       .get(`${api_url}/api/v1/owners/etablissements`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -122,7 +122,7 @@ const OwnerEtablissement = () => {
       });
     axios
       .get(`${api_url}/api/v1/handicaps`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {

@@ -14,12 +14,12 @@ const AccountAvis = () => {
     axios
       .delete(`${api_url}/api/v1/users/avis`, {
         data: { id_avis: id },
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {});
     axios
       .get(`${api_url}/api/v1/users/avis`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {
@@ -45,7 +45,7 @@ const AccountAvis = () => {
     const jwt_token = localStorage.getItem("token");
     axios
       .get(`${api_url}/api/v1/users/avis`, {
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
         if (res.data) {

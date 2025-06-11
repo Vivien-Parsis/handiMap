@@ -34,7 +34,7 @@ const OwnerModifyEtablissement = () => {
       .put(`${api_url}/api/v1/owners/etablissements`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          authorization: jwt_token,
+          authorization: "Bearer " + jwt_token,
         },
       })
       .then(() => {

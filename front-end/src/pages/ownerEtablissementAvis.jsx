@@ -19,13 +19,13 @@ const OwnerEtablissementAvis = () => {
     axios
       .delete(`${api_url}/api/v1/owners/etablissements/avis`, {
         data: { id_avis: id, id_etablissement: id_etablissement },
-        headers: { authorization: jwt_token },
+        headers: { authorization: "Bearer " + jwt_token },
       })
       .then(() => {
         axios
           .get(`${api_url}/api/v1/owners/etablissements/avis`, {
             params: { id_etablissement },
-            headers: { authorization: jwt_token },
+            headers: { authorization: "Bearer " + jwt_token },
           })
           .then((res) => {
             if (res.data) {
@@ -60,7 +60,7 @@ const OwnerEtablissementAvis = () => {
       axios
         .get(`${api_url}/api/v1/owners/etablissements/avis`, {
           params: { id_etablissement: id_etablissement },
-          headers: { authorization: jwt_token },
+          headers: { authorization: "Bearer " + jwt_token },
         })
         .then((res) => {
           if (res.data) {

@@ -52,7 +52,7 @@ const EtablissementAvisNew = () => {
       .post(`${api_url}/api/v1/users/avis`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          authorization: jwt_token,
+          authorization: "Bearer " + jwt_token,
         },
       })
       .then(() => {
@@ -152,7 +152,11 @@ const EtablissementAvisNew = () => {
                   accept="image/*"
                   onChange={handleChange}
                 ></input>
-                <input type="submit" value="Envoyer" className="linkButton"></input>
+                <input
+                  type="submit"
+                  value="Envoyer"
+                  className="linkButton"
+                ></input>
               </form>
             </div>
           </span>
