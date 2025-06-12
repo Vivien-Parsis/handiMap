@@ -61,7 +61,7 @@ const createEtablissement = async (req, res) => {
         nom: vine.string(),
         adresse: vine.string(),
         type: vine.string(),
-        coordonnees: vine.string(),
+        coordonnees: vine.string().regex(/^\d+(\.\d+)?\d+(\.\d+)?$/),
         id_user: vine.number().withoutDecimals()
     })
     let photo = ""
@@ -83,7 +83,6 @@ const createEtablissement = async (req, res) => {
         const etablissement = await etablissementModel.create(currentEtablissement)
         res.status(201).json(etablissement)
     } catch (err) {
-        console.error("Validation or DB error:", err)
         res.status(500).json({ message: "Erreur serveur", error: err.message })
     }
 }
@@ -94,7 +93,7 @@ const updateEtablissement = async (req, res) => {
         nom: vine.string(),
         adresse: vine.string(),
         type: vine.string(),
-        coordonnees: vine.string(),
+        coordonnees: vine.string().regex(/^\d+(\.\d+)?\d+(\.\d+)?$/),
         id_user: vine.number().withoutDecimals()
     })
     let photo = ""
