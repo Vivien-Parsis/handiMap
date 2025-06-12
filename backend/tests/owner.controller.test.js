@@ -154,7 +154,7 @@ describe("Routes /api/v1/owners/etablissements", () => {
                 .field("nom", "Hacker Etab")
                 .field("adresse", "H4ck Street")
                 .field("type", "bar")
-                .field("coordonnees", "h4ck")
+                .field("coordonnees", "1.1;1.1")
 
             expect(res.statusCode).toBe(403)
             expect(res.body.message).toBe("cet etablissement ne vous appartient pas")
