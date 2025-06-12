@@ -23,7 +23,7 @@ const ownerRouter = Router()
 
 /**
  * @swagger
- * /api/v1/etablissements:
+ * /api/v1/owners/etablissements:
  *   get:
  *     summary: Récupérer tous les établissements du propriétaire
  *     tags: [Owner]
@@ -120,7 +120,7 @@ const ownerRouter = Router()
 
 /**
  * @swagger
- * /api/v1/etablissements/handicaps:
+ * /api/v1/owners/etablissements/handicaps:
  *   post:
  *     summary: Ajouter un handicap à un établissement
  *     tags: [Owner]
@@ -169,7 +169,7 @@ const ownerRouter = Router()
 
 /**
  * @swagger
- * /api/v1/etablissements/avis:
+ * /api/v1/owners/etablissements/avis:
  *   get:
  *     summary: Récupérer tous les avis d’un établissement
  *     tags: [Owner]
