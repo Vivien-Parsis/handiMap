@@ -23,6 +23,10 @@ const OwnerModifyEtablissement = () => {
     if (!modifyEtablissement) {
       return;
     }
+    if(!/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/.test(newEtablissement.coordonnees)){
+      alert('incorect format for coordonnes');
+      return;
+    }
     const formData = new FormData();
     formData.append("id_etablissement", modifyEtablissement.id_etablissement);
     formData.append("nom", modifyEtablissement.nom);
@@ -99,7 +103,7 @@ const OwnerModifyEtablissement = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="coordonnees">coordonnees</label>
+          <label htmlFor="coordonnees">coordonnees (format : "nombre;nombre")</label>
           <input
             type="text"
             id="coordonnees"
