@@ -67,7 +67,7 @@ describe("Routes /api/v1/owners/etablissements", () => {
                     adresse: "Adresse 1",
                     type_etablissement: "restaurant",
                     photo_etablissement: "photo.jpg",
-                    coordonnees: "coord",
+                    coordonnees: "1.1;1.1",
                     id_handicap: null,
                     id_avis: null
                 }
@@ -92,7 +92,7 @@ describe("Routes /api/v1/owners/etablissements", () => {
                 adresse: "Adresse",
                 type: "magasin",
                 photo: "test.jpg",
-                coordonnees: "coords2"
+                coordonnees: "1.1;1.1"
             }
             etablissementModel.create.mockResolvedValue(mockValue)
 
@@ -122,7 +122,7 @@ describe("Routes /api/v1/owners/etablissements", () => {
                 adresse: "Adresse modif",
                 type: "magasin",
                 photo: "test.jpg",
-                coordonnees: "coords2"
+                coordonnees: "1.1;1.1"
             }
             etablissementModel.update.mockResolvedValue(mockValue)
 
