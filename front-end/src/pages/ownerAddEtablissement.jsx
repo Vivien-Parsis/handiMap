@@ -18,6 +18,15 @@ const OwnerAddEtablissement = () => {
 
   const handleAddEtablissement = async () => {
     if (!newEtablissement) {
+      alert('missing new etablissement');
+      return;
+    }
+    if (!newEtablissement.nom || !newEtablissement.adresse || !newEtablissement.type || !newEtablissement.coordonnees){
+      alert('missing required field');
+      return;
+    }
+    if(!/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/.test(newEtablissement.coordonnees)){
+      alert('incorect format for coordonnes');
       return;
     }
     const formData = new FormData();
@@ -37,7 +46,7 @@ const OwnerAddEtablissement = () => {
         navigate("/account/etablissement");
       })
       .catch((err) => {
-        console.log("err");
+        alert("error");
       });
   };
   const handleChange = (e) => {
