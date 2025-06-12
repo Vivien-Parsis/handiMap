@@ -46,7 +46,7 @@ const OwnerAddEtablissement = () => {
         navigate("/account/etablissement");
       })
       .catch((err) => {
-        alert("error");
+        alert("erreur lors de l'ajout de l'etablissement");
       });
   };
   const handleChange = (e) => {

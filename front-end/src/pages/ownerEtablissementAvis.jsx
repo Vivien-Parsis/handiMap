@@ -33,12 +33,12 @@ const OwnerEtablissementAvis = () => {
             }
           })
           .catch(() => {
-            alert("error while delete avis");
+            alert("erreur lors de la suppression avis");
             navigate("/login");
           });
       })
       .catch(() => {
-        alert("error while delete avis");
+        alert("erreur lors de la suppression avis");
       });
   };
   const getAvisPhoto = (avis) => {

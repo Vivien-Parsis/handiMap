@@ -84,10 +84,12 @@ const Etablissement = () => {
           if (res.data) {
             setEtablisement(res.data);
           } else {
+            alert("erreur lors de la recupération de l'etablissement");
             navigate("/");
           }
         })
         .catch((err) => {
+          alert("erreur lors de la recupération de l'etablissement");
           navigate("/");
         });
     }

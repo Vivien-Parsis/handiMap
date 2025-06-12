@@ -45,7 +45,7 @@ const OwnerModifyEtablissement = () => {
         navigate("/account/etablissement");
       })
       .catch((err) => {
-        alert("error while modify etablissement");
+        alert("erreur lors de la modif d'un etablissement");
       });
   };
   const handleChange = (e) => {

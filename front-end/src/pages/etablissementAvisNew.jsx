@@ -61,7 +61,7 @@ const EtablissementAvisNew = () => {
         });
       })
       .catch((err) => {
-        alert("error while add avis");
+        alert("error lors de l'ajout d'un avis");
       });
   };
 
@@ -79,12 +79,12 @@ const EtablissementAvisNew = () => {
           if (res.data) {
             setEtablisement(res.data);
           } else {
-            alert("error while getting etablissements");
+            alert("erreur lors de la recupération de l'etablissement");
             navigate("/");
           }
         })
         .catch((err) => {
-          alert("error while getting etablissements");
+          alert("erreur lors de la recupération de l'etablissement");
           navigate("/");
         });
     }
