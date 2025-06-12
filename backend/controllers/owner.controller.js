@@ -61,7 +61,7 @@ const createEtablissement = async (req, res) => {
         nom: vine.string(),
         adresse: vine.string(),
         type: vine.string(),
-        coordonnees: vine.string().regex(/^\d+(\.\d+)?\d+(\.\d+)?$/),
+        coordonnees: vine.string().regex(/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/),
         id_user: vine.number().withoutDecimals()
     })
     let photo = ""
@@ -93,7 +93,7 @@ const updateEtablissement = async (req, res) => {
         nom: vine.string(),
         adresse: vine.string(),
         type: vine.string(),
-        coordonnees: vine.string().regex(/^\d+(\.\d+)?\d+(\.\d+)?$/),
+        coordonnees: vine.string().regex(/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/),
         id_user: vine.number().withoutDecimals()
     })
     let photo = ""
