@@ -198,16 +198,16 @@ const userRouter = Router()
  */
 
 userRouter.get("/", checkRouteJwt, getCurrentUser)
-userRouter.put("/", checkRouteJwt, updateUserNomPrenom)
-userRouter.delete("/", checkRouteJwt, deleteUserById)
+userRouter.put("/", rateLimiter, checkRouteJwt, updateUserNomPrenom)
+userRouter.delete("/", rateLimiter, checkRouteJwt, deleteUserById)
 
 userRouter.get("/handicaps", checkRouteJwt, getUserHandicap)
-userRouter.post("/handicaps", checkRouteJwt, addHandicapToUser)
-userRouter.delete("/handicaps", checkRouteJwt, deleteHandicapFromUser)
+userRouter.post("/handicaps", rateLimiter, checkRouteJwt, addHandicapToUser)
+userRouter.delete("/handicaps", rateLimiter, checkRouteJwt, deleteHandicapFromUser)
 
 userRouter.get("/avis", checkRouteJwt, getUserAvis)
-userRouter.post("/avis", checkRouteJwt, upload.single("photo"), createUserAvis)
-userRouter.delete("/avis", checkRouteJwt, deleteAvisFromUser)
+userRouter.post("/avis", rateLimiter, checkRouteJwt, upload.single("photo"), createUserAvis)
+userRouter.delete("/avis", rateLimiter, checkRouteJwt, deleteAvisFromUser)
 
 export {
     userRouter

@@ -11,6 +11,7 @@ import {
 import { Router } from "express"
 import { upload } from "../middlewares/upload.middleware.js"
 import { checkOwnerRouteJwt } from "../middlewares/auth.middleware.js"
+import { rateLimiter } from "../middlewares/rateLimiter.middleware.js"
 
 const ownerRouter = Router()
 
@@ -217,15 +218,15 @@ const ownerRouter = Router()
  *       description: JWT brut sans le préfixe "Bearer"
  */
 ownerRouter.get("/etablissements", checkOwnerRouteJwt, getAllOwnerEtablissement)
-ownerRouter.post("/etablissements", checkOwnerRouteJwt, upload.single('photo'), createEtablissement)
-ownerRouter.put("/etablissements", checkOwnerRouteJwt, upload.single('photo'), updateEtablissement)
-ownerRouter.delete("/etablissements", checkOwnerRouteJwt, deleteEtablissement)
+ownerRouter.post("/etablissements", rateLimiter, checkOwnerRouteJwt, upload.single('photo'), createEtablissement)
+ownerRouter.put("/etablissements", rateLimiter, checkOwnerRouteJwt, upload.single('photo'), updateEtablissement)
+ownerRouter.delete("/etablissements", rateLimiter, checkOwnerRouteJwt, deleteEtablissement)
 
-ownerRouter.post("/etablissements/handicaps", checkOwnerRouteJwt, addHandicapToEtablissement)
-ownerRouter.delete("/etablissements/handicaps", checkOwnerRouteJwt, deleteHandicapToEtablissement)
+ownerRouter.post("/etablissements/handicaps", rateLimiter, checkOwnerRouteJwt, addHandicapToEtablissement)
+ownerRouter.delete("/etablissements/handicaps", rateLimiter, checkOwnerRouteJwt, deleteHandicapToEtablissement)
 
-ownerRouter.get("/etablissements/avis", checkOwnerRouteJwt, getAllAvisFromEtablissement)
-ownerRouter.delete("/etablissements/avis", checkOwnerRouteJwt, deleteAvisFromEtablissement)
+ownerRouter.get("/etablissements/avis", rateLimiter, checkOwnerRouteJwt, getAllAvisFromEtablissement)
+ownerRouter.delete("/etablissements/avis", rateLimiter, checkOwnerRouteJwt, deleteAvisFromEtablissement)
 
 export {
     ownerRouter
