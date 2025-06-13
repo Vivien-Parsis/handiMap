@@ -13,6 +13,7 @@ import {
 import { Router } from "express"
 import { checkRouteJwt } from "../middlewares/auth.middleware.js"
 import { upload } from "../middlewares/upload.middleware.js"
+import { rateLimiter } from "../middlewares/rateLimiter.middleware.js"
 const userRouter = Router()
 
 /**
