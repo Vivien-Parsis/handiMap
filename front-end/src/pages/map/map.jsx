@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import styles from "../assets/css/map.module.css";
-import TwoBtnBar from "../components/TwoButtonBar";
+import styles from "../../assets/css/map/map.module.css";
+import TwoBtnBar from "../../components/TwoButtonBar";
 import { Link } from "react-router";
 import axios from "axios";
-import { api_url } from "../config/const.js";
+import { api_url } from "../../config/const.js";
 import leaflet from "leaflet";
-import redPinImg from "../assets/images/pin-red.png";
-import StarBar from "../components/starBar";
-import placeholderEtablissement from "../assets/images/etablissementplaceholder.jpg";
+import redPinImg from "../../assets/images/pin-red.png";
+import StarBar from "../../components/starBar";
+import placeholderEtablissement from "../../assets/images/etablissementplaceholder.jpg";
 import {
   MapContainer,
   TileLayer,
@@ -15,7 +15,7 @@ import {
   Popup,
   ZoomControl,
 } from "react-leaflet";
-import { getAvisAverage, getAvisNumber } from "../utils/note.js";
+import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
 
 const Maps = () => {
   const [etablisements, setEtablisements] = useState([]);

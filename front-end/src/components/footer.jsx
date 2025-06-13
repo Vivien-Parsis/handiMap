@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router";
-import styles from "../assets/css/footer.module.css";
+import styles from "../assets/css/component/footer.module.css";
 
 const Footer = () => {
-	const handleChangeTheme = (e) => {
-		e.preventDefault();
-		localStorage.setItem("theme", e.target.value);
-		document.documentElement.setAttribute("data-theme", e.target.value);
-	};
-	return (
+  const handleChangeTheme = (e) => {
+    e.preventDefault();
+    localStorage.setItem("theme", e.target.value);
+    document.documentElement.setAttribute("data-theme", e.target.value);
+  };
+  return (
     <footer style={styles}>
       <Link to="/MentionsLegales">Mention légales</Link>
 

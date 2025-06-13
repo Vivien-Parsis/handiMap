@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { api_url } from "../config/const";
+import { api_url } from "../../config/const";
 import { Link, useNavigate } from "react-router";
-import styles from "../assets/css/ownerAddEtablissement.module.css";
+import styles from "../../assets/css/owner/ownerAddEtablissement.module.css";
 
 const OwnerAddEtablissement = () => {
   const [newEtablissement, setNewEtablissement] = useState({

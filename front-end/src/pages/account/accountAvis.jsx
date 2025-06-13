@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { api_url } from "../config/const";
+import { api_url } from "../../config/const";
 import { Link, useNavigate } from "react-router";
-import styles from "../assets/css/accountAvis.module.css";
-import StarBar from "../components/starBar";
-import SearchBar from "../components/searchBar";
+import styles from "../../assets/css/account/accountAvis.module.css";
+import StarBar from "../../components/starBar";
+import SearchBar from "../../components/searchBar";
 
 const AccountAvis = () => {
   const [userAvis, setUserAvis] = useState([]);

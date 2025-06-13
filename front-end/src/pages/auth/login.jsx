@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
-import { api_url } from "../config/const";
-import styles from "../assets/css/authForm.module.css";
+import { api_url } from "../../config/const";
+import styles from "../../assets/css/auth/authForm.module.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { api_url } from "../config/const";
+import { api_url } from "../../config/const";
 import { Link, useNavigate, useLocation } from "react-router";
-import styles from "../assets/css/ownerModifyEtablissement.module.css";
+import styles from "../../assets/css/owner/ownerModifyEtablissement.module.css";
 
 const OwnerModifyEtablissement = () => {
   const location = useLocation();

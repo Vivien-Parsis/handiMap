@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { api_url } from "../config/const";
+import { api_url } from "../../config/const.js";
 import { Link, useNavigate, useLocation } from "react-router";
-import TwoBtnBar from "../components/TwoButtonBar";
-import styles from "../assets/css/etablissementAvisNew.module.css";
-import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
-import StarBar from "../components/starBar";
-import { getAvisAverage, getAvisNumber } from "../utils/note.js";
+import TwoBtnBar from "../../components/TwoButtonBar.jsx";
+import styles from "../../assets/css/etablissement/etablissementAvisNew.module.css";
+import etablissementPlaceholder from "../../assets/images/etablissementplaceholder.jpg";
+import StarBar from "../../components/starBar.jsx";
+import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
 
 const EtablissementAvisNew = () => {
   const location = useLocation();
@@ -69,6 +69,12 @@ const EtablissementAvisNew = () => {
     if (!id_etablissement) {
       navigate("/");
     } else {
+      if (!jwt_token) {
+        alert("Vous devez etre identifié pour écrire un avis");
+        navigate("/etablissement", {
+          state: { id_etablissement: id_etablissement },
+        });
+      }
       axios
         .get(`${api_url}/api/v1/etablissements/with-relations`, {
           params: {

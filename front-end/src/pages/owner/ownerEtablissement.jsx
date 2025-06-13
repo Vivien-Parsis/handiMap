@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { api_url } from "../config/const";
+import { api_url } from "../../config/const.js";
 import { Link, useNavigate } from "react-router";
-import styles from "../assets/css/ownerEtablissement.module.css";
-import etablissementplaceholder from "../assets/images/etablissementplaceholder.jpg";
-import StarBar from "../components/starBar";
-import { getAvisAverage, getAvisNumber } from "../utils/note.js";
-import SearchBar from "../components/searchBar.jsx";
+import styles from "../../assets/css/owner/ownerEtablissement.module.css";
+import etablissementplaceholder from "../../assets/images/etablissementplaceholder.jpg";
+import StarBar from "../../components/starBar.jsx";
+import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
+import SearchBar from "../../components/searchBar.jsx";
 
 const OwnerEtablissement = () => {
   const [ownerEtablisement, setOwnerEtablisement] = useState([]);

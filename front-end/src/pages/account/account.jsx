@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { api_url } from "../config/const";
+import { api_url } from "../../config/const";
 import { Link, useNavigate } from "react-router";
-import styles from "../assets/css/account.module.css";
+import styles from "../../assets/css/account/account.module.css";
 import { jwtDecode } from "jwt-decode";
 
 const Account = () => {

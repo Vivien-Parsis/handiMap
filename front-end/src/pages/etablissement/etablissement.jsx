@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { api_url } from "../config/const";
+import { api_url } from "../../config/const.js";
 import { Link, useNavigate, useLocation } from "react-router";
-import TwoBtnBar from "../components/TwoButtonBar";
-import styles from "../assets/css/etablissement.module.css";
-import etablissementPlaceholder from "../assets/images/etablissementplaceholder.jpg";
-import StarBar from "../components/starBar";
-import { getAvisAverage, getAvisNumber } from "../utils/note.js";
+import TwoBtnBar from "../../components/TwoButtonBar.jsx";
+import styles from "../../assets/css/etablissement/etablissement.module.css";
+import etablissementPlaceholder from "../../assets/images/etablissementplaceholder.jpg";
+import StarBar from "../../components/starBar.jsx";
+import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
 
 const Etablissement = () => {
   const [etablisement, setEtablisement] = useState({});
