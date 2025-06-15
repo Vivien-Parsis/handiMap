@@ -18,15 +18,20 @@ const OwnerAddEtablissement = () => {
 
   const handleAddEtablissement = async () => {
     if (!newEtablissement) {
-      alert('missing new etablissement');
+      alert("missing new etablissement");
       return;
     }
-    if (!newEtablissement.nom || !newEtablissement.adresse || !newEtablissement.type || !newEtablissement.coordonnees){
-      alert('missing required field');
+    if (
+      !newEtablissement.nom ||
+      !newEtablissement.adresse ||
+      !newEtablissement.type ||
+      !newEtablissement.coordonnees
+    ) {
+      alert("missing required field");
       return;
     }
-    if(!/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/.test(newEtablissement.coordonnees)){
-      alert('incorect format for coordonnes');
+    if (!/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/.test(newEtablissement.coordonnees)) {
+      alert("incorect format for coordonnes");
       return;
     }
     const formData = new FormData();
@@ -91,7 +96,7 @@ const OwnerAddEtablissement = () => {
             type="file"
             id="photo"
             name="photo"
-            accept="image/*"
+            accept="image/png, image/jpeg, image/webp"
             onChange={handlePhotoChange}
             required
           />
@@ -104,7 +109,9 @@ const OwnerAddEtablissement = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="coordonnees">coordonnees (format : "nombre;nombre")</label>
+          <label htmlFor="coordonnees">
+            coordonnees (format : "nombre;nombre")
+          </label>
           <input
             type="text"
             id="coordonnees"

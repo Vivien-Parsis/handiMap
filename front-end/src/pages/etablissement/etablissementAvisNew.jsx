@@ -155,7 +155,7 @@ const EtablissementAvisNew = () => {
                   type="file"
                   id="photo"
                   name="photo"
-                  accept="image/*"
+                  accept="image/png, image/jpeg, image/webp"
                   onChange={handleChange}
                 ></input>
                 <input
