@@ -146,12 +146,9 @@ const OwnerEtablissement = () => {
         <div className={styles.ownerContainer}>
           <h2>Mes etablissements</h2>
           <SearchBar />
-          <button
-            className="addButton"
-            onClick={() => handleAddHandicaps(et.id_etablissement)}
-          >
-            Ajouter
-          </button>
+          <Link className="linkButton" to="/account/etablissement/add">
+            Rajouter un etablissement
+          </Link>
           {ownerEtablisement.map((et) => {
             return (
               <div
@@ -264,9 +261,6 @@ const OwnerEtablissement = () => {
             );
           })}
         </div>
-        <Link className="linkButton" to="/account/etablissement/add">
-          Rajouter un etablissement
-        </Link>
       </div>
     </div>
   );
