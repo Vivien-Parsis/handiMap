@@ -3,36 +3,57 @@ name: Node.js CI
 on: [push]
 
 jobs:
-    build:
-        name: Build & Test
-        runs-on: ubuntu-latest
+  backend:
+    name: Backend Tests (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [19, 20, 21, 22, 23]
+    steps:
+      - uses: actions/checkout@v4
 
-        steps:
-            - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "20.x"
+      - name: Install dependencies on backend
+        run: |
+          cd backend
+          npm install
 
-            - name: Install dependencies on backend
-              run: |
-                  cd backend
-                  npm install
+      - name: Run backend tests
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          DB_URL: ${{ secrets.DB_URL }}
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          NODE_ENV: ${{ secrets.NODE_ENV }}
+        run: |
+          cd backend
+          npm run test
 
-            - name: Install dependencies on frontend
-              run: |
-                  cd front-end
-                  npm install
+  frontend:
+    name: Frontend Build (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [19, 20, 21, 22, 23]
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Run backend tests
-              env:
-                  JWT_SECRET: ${{ secrets.JWT_SECRET }}
-                  DB_URL: ${{ secrets.DB_URL }}
-                  CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-                  CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-                  CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-                  NODE_ENV: ${{ secrets.NODE_ENV }}
-              run: |
-                  cd backend
-                  npm run test
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies on frontend
+        run: |
+          cd front-end
+          npm install
+
+      - name: Build frontend
+        run: |
+          cd front-end
+          npm run build
