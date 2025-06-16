@@ -5,8 +5,11 @@ on: [push]
 jobs:
 
   is-my-node-vulnerable:
-    name: is my node v (Node ${{ matrix.node }}) vulnerable
+    name: is Node v ${{ matrix.node }} vulnerable
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22, 24]
     steps:
       - uses: actions/checkout@v3
       - name: Check Node.js
