@@ -12,7 +12,7 @@ Application web avec serveur frontend React et serveur backend en node et expres
 ## Configuration requise
 
 - git
-- node et npm, ou Docker
+- node (>=21) et npm, ou Docker
 - Une base de donnée postgreSQL externe
 - Un espace cloudinary
 
