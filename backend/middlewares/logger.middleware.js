@@ -10,7 +10,7 @@ morgan.token("body", (req, res) => {
 })
 const accessLogStream = fs.createWriteStream(`${(node_env == "DEV" || node_env == "TEST") ? '../log/dev.log' : (node_env == "PROD") ? '../log/access.log' : '../log/log.log'}`, { flags: 'a' })
 const DevLogConsole = 'HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :body || :user-agent'
-const DevLogWrite = ':http-version;:status;:method;:date[web];:response-time ms;:url;:user-agent'
+const DevLogWrite = ':http-version;:status;:method;:date[web];:response-time ms;:url;:user-agent;:body'
 
 const ProdLogConsole = 'HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url'
 const ProdLogWrite = ':http-version;:status;:method;:date[web];:response-time ms;:url'
