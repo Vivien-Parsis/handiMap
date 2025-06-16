@@ -51,7 +51,7 @@ const Maps = () => {
             <h3>{et.nom_etablissement || ""}</h3>
             <div className={styles.infoPopupEtablissement}>
               <img
-                src={et.photo || placeholderEtablissement}
+                src={et.photo_etablissement || placeholderEtablissement}
                 alt="etablissement"
               />
               <div>

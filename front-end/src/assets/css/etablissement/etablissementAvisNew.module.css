@@ -16,7 +16,7 @@
 	width: 58%;
 }
 .titleAndAvisContainer {
-	height: 20%;
+	height: fit-content;
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
@@ -65,9 +65,19 @@
 }
 .formContainer form * {
 	margin: 0.5em 0;
+	width: 92%;
 }
 .avisCommentaire {
 	width: 90%;
 	height: 5em;
 	resize: none;
+}
+@media (max-width: 650px) {
+	.etablisementPhoto, .titleAndAvisContainer, .etablisementContainer span{
+		width: 98%;
+	}
+	.etablisementContainer{
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 }
