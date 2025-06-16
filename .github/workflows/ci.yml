@@ -3,8 +3,20 @@ name: Node.js CI
 on: [push]
 
 jobs:
+
+  is-my-node-vulnerable:
+    name: is my node v (Node ${{ matrix.node }}) vulnerable
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check Node.js
+        uses: nodejs/is-my-node-vulnerable@v1
+        with:
+          node-version: ${{ matrix.node }}
+
   backend:
     name: Backend Tests (Node ${{ matrix.node }})
+    needs: is-my-node-vulnerable
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -36,6 +48,7 @@ jobs:
 
   frontend:
     name: Frontend Build (Node ${{ matrix.node }})
+    needs: is-my-node-vulnerable
     runs-on: ubuntu-latest
     strategy:
       matrix:

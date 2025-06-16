@@ -5,6 +5,9 @@
     "dev": "nodemon server.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
+  "engines": {
+    "node" : ">= 20"
+  },
   "name": "handimap-backend",
   "version": "1.0.0",
   "main": "server.js",
