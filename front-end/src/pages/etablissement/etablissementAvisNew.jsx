@@ -99,7 +99,7 @@ const EtablissementAvisNew = () => {
   return (
     <div>
       <TwoBtnBar />
-      <div className={styles.map}>
+      <div className="backgroundBluredCol">
         <Link to="/" className="linkText">
           Revenir sur la carte
         </Link>

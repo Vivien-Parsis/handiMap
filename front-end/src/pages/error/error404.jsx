@@ -4,7 +4,7 @@ import styles from "../../assets/css/error/error.module.css";
 
 const Error404 = () => {
   return (
-    <div className={styles.errorContainer}>
+    <div className="backgroundBluredCol">
       <h1>404 - Page non trouvée</h1>
       <Link to="/">Revenir sur la page principale</Link>
     </div>
