@@ -34,6 +34,7 @@ const OwnerEtablissement = () => {
       .then((res) => {
         if (res.data) {
           setOwnerEtablisement(res.data);
+          setNewHandicap("");
         } else {
           navigate("/login");
         }
@@ -231,7 +232,7 @@ const OwnerEtablissement = () => {
                   <select
                     onChange={handleChangeSelectAddHandicaps}
                     id="addHandicap"
-                    defaultValue=""
+                    value={newHandicap}
                     className={styles.Selecthandicaps}
                   >
                     <option value="" disabled hidden>
