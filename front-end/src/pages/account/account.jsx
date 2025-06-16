@@ -61,6 +61,7 @@ const Account = () => {
       .then((res) => {
         if (res.data) {
           setUserHandicaps(res.data);
+          setNewHandicap("")
         } else {
           navigate("/login");
         }
@@ -242,7 +243,7 @@ const Account = () => {
           })}
         </ul>
         <label htmlFor="addHandicap">Rajouter un handicape</label>
-        <select onChange={handleChangeSelectAddHandicaps} id="addHandicap">
+        <select onChange={handleChangeSelectAddHandicaps} id="addHandicap" value={newHandicap}>
           <option value="" selected disabled hidden>
             Choisisez ici
           </option>
