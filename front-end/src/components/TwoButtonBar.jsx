@@ -16,7 +16,7 @@ const TwoBtnBar = () => {
         <Link to="/account">
           <img src={accountIcon} alt="profile" />
         </Link>
-        <Link to="/trip">
+        <Link to="/">
           <img src={tripIcon} alt="trajet" />
         </Link>
       </div>
