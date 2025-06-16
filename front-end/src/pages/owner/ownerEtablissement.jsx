@@ -256,6 +256,12 @@ const OwnerEtablissement = () => {
                       }
                     })}
                   </select>
+                  <button
+                    className="addButton"
+                    onClick={() => handleAddHandicaps(et.id_etablissement)}
+                  >
+                    Ajouter un handicap
+                  </button>
                 </span>
               </div>
             );
