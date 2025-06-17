@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="backgroundBlured">
+    <div className="backgroundBluredNoPadding">
       <div className={styles.authContainer}>
         <h2>Connexion</h2>
         {error && <div className="error-message">{error}</div>}

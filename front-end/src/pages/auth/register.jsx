@@ -41,7 +41,7 @@ const Register = () => {
   };
 
   return (
-    <div className="backgroundBlured">
+    <div className="backgroundBluredNoPadding">
       <div className={styles.authContainer}>
         <h2>Inscription</h2>
         {error && <div className="error-message">{error}</div>}
