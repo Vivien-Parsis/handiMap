@@ -12,9 +12,9 @@ Application web avec serveur frontend React et serveur backend en node et expres
 ## Configuration requise
 
 - git
-- node (v24 ou v22 ou v20) et npm, ou Docker
+- node (v24 ou v22 ou v20 recommandé) et npm, ou Docker
 - Une base de donnée postgreSQL externe
-- Un espace cloudinary
+- Un espace cloudinary. Tutoriel pour le config et avoir les variables d'env : [tuto](https://cloudinary.com/documentation/getting_started_with_cloudinary_node_tutorial)
 
 ## Instruction d'installation
 
