@@ -87,3 +87,16 @@ h2{
 	flex-direction: column;
 	padding:75px 0 50px;
 }
+
+.backgroundBluredColNoPadding{
+	background-image: url("./assets/images/maptemplateblured.png");
+	background-size: cover;
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
