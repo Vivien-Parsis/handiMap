@@ -7,6 +7,7 @@ import styles from "../../assets/css/etablissement/etablissement.module.css";
 import etablissementPlaceholder from "../../assets/images/etablissementplaceholder.jpg";
 import StarBar from "../../components/starBar.jsx";
 import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
+import { jwtDecode } from "jwt-decode";
 
 const Etablissement = () => {
   const [etablisement, setEtablisement] = useState({});
@@ -14,6 +15,8 @@ const Etablissement = () => {
 
   const id_etablissement = location.state?.id_etablissement || "";
   const navigate = useNavigate();
+
+  const jwt_token = localStorage.getItem("token");
 
   const getImageAvis = (avis) => {
     if (!avis) {
@@ -70,6 +73,23 @@ const Etablissement = () => {
     }
     return content;
   };
+  
+  const showNewAvisLink = () => {
+    if (jwtDecode(jwt_token).role && jwtDecode(jwt_token).email && jwtDecode(jwt_token).id_user) {
+      return (
+        <Link
+          to="/etablissement/avis/new"
+          state={{
+            id_etablissement: id_etablissement,
+          }}
+        >
+          Ecrire un avis
+        </Link>
+      );
+    }
+  };
+
+
   useEffect(() => {
     if (!id_etablissement) {
       navigate("/");
@@ -126,14 +146,7 @@ const Etablissement = () => {
                   {getAvisNumber(etablisement.avis)} avis
                 </span>
                 <span>
-                  <Link
-                    to="/etablissement/avis/new"
-                    state={{
-                      id_etablissement: id_etablissement,
-                    }}
-                  >
-                    Ecrire un avis
-                  </Link>
+                  {showNewAvisLink()}
                 </span>
               </div>
             </div>

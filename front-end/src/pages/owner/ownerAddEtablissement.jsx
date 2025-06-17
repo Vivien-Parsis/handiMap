@@ -31,7 +31,7 @@ const OwnerAddEtablissement = () => {
       return;
     }
     if (!/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/.test(newEtablissement.coordonnees)) {
-      alert("incorect format for coordonnes");
+      alert("format incorect pour les coordonées");
       return;
     }
     const formData = new FormData();
@@ -51,7 +51,9 @@ const OwnerAddEtablissement = () => {
         navigate("/account/etablissement");
       })
       .catch((err) => {
+        localStorage.removeItem("token");
         alert("erreur lors de l'ajout de l'etablissement");
+        navigate("/login");
       });
   };
   const handleChange = (e) => {

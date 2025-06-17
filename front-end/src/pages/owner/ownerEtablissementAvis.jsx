@@ -33,12 +33,15 @@ const OwnerEtablissementAvis = () => {
             }
           })
           .catch(() => {
+            localStorage.removeItem("token");
             alert("erreur lors de la suppression avis");
             navigate("/login");
           });
       })
       .catch(() => {
+        localStorage.removeItem("token");
         alert("erreur lors de la suppression avis");
+        navigate("/login");
       });
   };
   const getAvisPhoto = (avis) => {
@@ -66,12 +69,14 @@ const OwnerEtablissementAvis = () => {
           if (res.data) {
             setUserAvis(res.data);
           } else {
-            alert("error while get avis");
+            localStorage.removeItem("token");
+            alert("erreur lors de la recupération avis");
             navigate("/login");
           }
         })
         .catch((err) => {
-          alert("error while get avis");
+          localStorage.removeItem("token");
+          alert("erreur lors de la recupération avis");
           navigate("/login");
         });
     }

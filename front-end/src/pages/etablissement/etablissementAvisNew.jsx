@@ -62,6 +62,8 @@ const EtablissementAvisNew = () => {
       })
       .catch((err) => {
         alert("error lors de l'ajout d'un avis");
+        localStorage.removeItem("token");
+        navigate("/login");
       });
   };
 

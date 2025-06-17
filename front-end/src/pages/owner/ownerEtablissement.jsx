@@ -26,7 +26,12 @@ const OwnerEtablissement = () => {
         { id_handicap: newHandicap, id_etablissement: etablissement },
         { headers: { authorization: "Bearer " + jwt_token } }
       )
-      .then();
+      .then()
+      .catch((err)=>{
+        localStorage.removeItem("token");
+        alert("erreur lors de la ajout handicap");
+        navigate("/login");
+      });
     await axios
       .get(`${api_url}/api/v1/owners/etablissements`, {
         headers: { authorization: "Bearer " + jwt_token },
@@ -36,10 +41,14 @@ const OwnerEtablissement = () => {
           setOwnerEtablisement(res.data);
           setNewHandicap("");
         } else {
+          localStorage.removeItem("token");
+          alert("erreur lors de la ajout handicap");
           navigate("/login");
         }
       })
       .catch((err) => {
+        localStorage.removeItem("token");
+        alert("erreur lors de la ajout handicap");
         navigate("/login");
       });
   };
@@ -54,9 +63,11 @@ const OwnerEtablissement = () => {
           authorization: "Bearer " + jwt_token,
         },
       })
-      .then(() => {})
+      .then()
       .catch((err) => {
-        console.log("err");
+        localStorage.removeItem("token");
+        alert("erreur lors de la suppression etablissement");
+        navigate("/login");
       });
     await axios
       .get(`${api_url}/api/v1/owners/etablissements`, {
@@ -66,10 +77,14 @@ const OwnerEtablissement = () => {
         if (res.data) {
           setOwnerEtablisement(res.data);
         } else {
+          localStorage.removeItem("token");
+          alert("erreur lors de la suppression etablissement");
           navigate("/login");
         }
       })
       .catch((err) => {
+        localStorage.removeItem("token");
+        alert("erreur lors de la suppression etablissement");
         navigate("/login");
       });
   };
@@ -82,7 +97,12 @@ const OwnerEtablissement = () => {
         },
         headers: { authorization: "Bearer " + jwt_token },
       })
-      .then((res) => {});
+      .then()
+      .catch((err)=>{
+        localStorage.removeItem("token");
+        alert("erreur lors de la suppression handicap");
+        navigate("/login");
+      });
     await axios
       .get(`${api_url}/api/v1/owners/etablissements`, {
         headers: { authorization: "Bearer " + jwt_token },
@@ -91,13 +111,15 @@ const OwnerEtablissement = () => {
         if (res.data) {
           setOwnerEtablisement(res.data);
         } else {
-          alert("error while getting etablissements");
+          localStorage.removeItem("token");
+          alert("erreur lors de la recuperation etablissement");
           navigate("/login");
         }
       })
       .catch((err) => {
-        alert("error while getting etablissements");
-        navigate("/login");
+          localStorage.removeItem("token");
+          alert("erreur lors de la recuperation etablissement");
+          navigate("/login");
       });
   };
   const handleChangeSelectAddHandicaps = (e) => {
@@ -113,13 +135,15 @@ const OwnerEtablissement = () => {
         if (res.data) {
           setOwnerEtablisement(res.data);
         } else {
-          alert("error while getting etablissements");
+          localStorage.removeItem("token");
+          alert("erreur lors de la recuperation etablissement");
           navigate("/login");
         }
       })
       .catch((err) => {
-        alert("error while getting etablissements");
-        navigate("/login");
+          localStorage.removeItem("token");
+          alert("erreur lors de la recuperation etablissement");
+          navigate("/login");
       });
     axios
       .get(`${api_url}/api/v1/handicaps`, {
@@ -129,13 +153,15 @@ const OwnerEtablissement = () => {
         if (res.data) {
           setAllHandicaps(res.data);
         } else {
-          alert("error while getting etablissements");
+          localStorage.removeItem("token");
+          alert("erreur lors de la recuperation etablissement");
           navigate("/login");
         }
       })
       .catch((err) => {
-        alert("error while getting etablissements");
-        navigate("/login");
+          localStorage.removeItem("token");
+          alert("erreur lors de la recuperation etablissement");
+          navigate("/login");
       });
   }, [navigate, jwt_token]);
   return (

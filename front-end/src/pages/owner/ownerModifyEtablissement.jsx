@@ -24,7 +24,7 @@ const OwnerModifyEtablissement = () => {
       return;
     }
     if(!/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/.test(newEtablissement.coordonnees)){
-      alert('incorect format for coordonnes');
+      alert('format incorrect pour les coordonnées');
       return;
     }
     const formData = new FormData();
@@ -45,7 +45,9 @@ const OwnerModifyEtablissement = () => {
         navigate("/account/etablissement");
       })
       .catch((err) => {
+        localStorage.removeItem("token");
         alert("erreur lors de la modif d'un etablissement");
+        navigate("/login");
       });
   };
   const handleChange = (e) => {

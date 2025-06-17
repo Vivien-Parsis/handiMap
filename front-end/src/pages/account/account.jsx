@@ -24,7 +24,11 @@ const Account = () => {
         data: { id_handicap: id },
         headers: { authorization: "Bearer " + jwt_token },
       })
-      .then((res) => {});
+      .then((res) => {}).catch((err)=>{
+          alert("Erreur lors suppression handicap");
+          localStorage.removeItem("token");
+          navigate("/login");
+      });
     await axios
       .get(`${api_url}/api/v1/users/handicaps`, {
         headers: { authorization: "Bearer " + jwt_token },
@@ -33,10 +37,14 @@ const Account = () => {
         if (res.data) {
           setUserHandicaps(res.data);
         } else {
+          alert("Erreur lors suppression handicap");
+          localStorage.removeItem("token");
           navigate("/login");
         }
       })
       .catch((err) => {
+        alert("Erreur lors suppression handicap");
+        localStorage.removeItem("token");
         navigate("/login");
       });
   };
@@ -50,8 +58,12 @@ const Account = () => {
         { id_handicap: newHandicap },
         { headers: { authorization: "Bearer " + jwt_token } }
       )
-      .then()
+      .then(()=>{
+          alert("handicap ajouté");
+      })
       .catch((err) => {
+        alert("Erreur lors ajout handicap");
+        localStorage.removeItem("token");
         navigate("/login");
       });
     await axios
@@ -63,10 +75,14 @@ const Account = () => {
           setUserHandicaps(res.data);
           setNewHandicap("")
         } else {
+        alert("Erreur lors ajout handicap");
+          localStorage.removeItem("token");
           navigate("/login");
         }
       })
       .catch((err) => {
+        alert("Erreur lors ajout handicap");
+        localStorage.removeItem("token");
         navigate("/login");
       });
   };
@@ -80,6 +96,10 @@ const Account = () => {
         headers: { authorization: "Bearer " + jwt_token },
       })
       .then((res) => {
+        localStorage.removeItem("token");
+        navigate("/");
+      }).catch((err)=>{
+        alert("Erreur lors suppression du compte");
         localStorage.removeItem("token");
         navigate("/");
       });
@@ -113,6 +133,8 @@ const Account = () => {
         setShowModifyName(false);
       })
       .catch((err) => {
+        alert("Erreur lors modification du compte");
+        localStorage.removeItem("token");
         navigate("/login");
       });
     await axios
@@ -123,10 +145,14 @@ const Account = () => {
         if (res.data) {
           setUserInfo(res.data);
         } else {
+          alert("Erreur lors modification du compte");
+          localStorage.removeItem("token");
           navigate("/login");
         }
       })
       .catch((err) => {
+        alert("Erreur lors modification du compte");
+        localStorage.removeItem("token");
         navigate("/login");
       });
   };
@@ -165,10 +191,14 @@ const Account = () => {
         if (res.data) {
           setUserInfo(res.data);
         } else {
+          alert("Erreur lors recupération du compte");
+          localStorage.removeItem("token");
           navigate("/login");
         }
       })
       .catch((err) => {
+        alert("Erreur lors recupération du compte");
+        localStorage.removeItem("token");
         navigate("/login");
       });
     axios
@@ -179,10 +209,14 @@ const Account = () => {
         if (res.data) {
           setUserHandicaps(res.data);
         } else {
+          alert("Erreur lors recupération du compte");
+          localStorage.removeItem("token");
           navigate("/login");
         }
       })
       .catch((err) => {
+        alert("Erreur lors recupération du compte");
+        localStorage.removeItem("token");
         navigate("/login");
       });
     axios
@@ -193,10 +227,14 @@ const Account = () => {
         if (res.data) {
           setAllHandicaps(res.data);
         } else {
+          alert("Erreur lors recupération des handicaps");
+          localStorage.removeItem("token");
           navigate("/login");
         }
       })
       .catch((err) => {
+        alert("Erreur lors recupération des handicaps");
+        localStorage.removeItem("token");
         navigate("/login");
       });
   }, [navigate, jwt_token]);

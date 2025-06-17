@@ -16,7 +16,12 @@ const AccountAvis = () => {
         data: { id_avis: id },
         headers: { authorization: "Bearer " + jwt_token },
       })
-      .then((res) => {});
+      .then((res) => {})
+      .catch((err)=>{
+        alert("Erreur lors suppression avis");
+        localStorage.removeItem("token");
+        navigate("/login");
+      });
     axios
       .get(`${api_url}/api/v1/users/avis`, {
         headers: { authorization: "Bearer " + jwt_token },
@@ -25,10 +30,14 @@ const AccountAvis = () => {
         if (res.data) {
           setUserAvis(res.data);
         } else {
+          alert("Erreur lors recupération des avis");
+          localStorage.removeItem("token");
           navigate("/login");
         }
       })
       .catch((err) => {
+        alert("Erreur lors recupération des avis");
+        localStorage.removeItem("token");
         navigate("/login");
       });
   };
@@ -51,13 +60,18 @@ const AccountAvis = () => {
         if (res.data) {
           setUserAvis(res.data);
         } else {
+          alert("Erreur lors recupération des avis");
+          localStorage.removeItem("token");
           navigate("/login");
         }
       })
       .catch((err) => {
+        alert("Erreur lors recupération des avis");
+        localStorage.removeItem("token");
         navigate("/login");
       });
   }, [navigate]);
+  
   return (
     <div className="backgroundBlured">
       <Link to="/account" className="linkText">
