@@ -2,23 +2,7 @@
   font-family: Montserrat;
   src: url("./assets/font/Montserrat-Regular.ttf");
 }
-body {
-  margin: 0;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-body *{
-  font-family: Montserrat, Arial, Helvetica, sans-serif;
-}
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
-:root {
-  min-height: 100vh;
-}
 [data-theme='defaut'] {
   --background-color-dark: #424362;
   --background-color-light: #ebecff;
@@ -29,9 +13,11 @@ code {
   --button-color-hover: #b1b1b1;
 
   --avis-icon-color:rgb(255, 255, 51);
+
+  --font-title:'Montserrat';
 }
 [data-theme='monocolor'] {
-  --background-color-dark: #757575;
+  --background-color-dark: #484848;
   --background-color-light: #dddddd;
 
   --button-color: #a0a0a0;
@@ -40,4 +26,28 @@ code {
   --button-color-hover: #b1b1b1;
 
   --avis-icon-color:#ffffff;
+  
+  --font-title:Arial;
 }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+:root {
+  min-height: 100vh;
+}
+
+body *{
+  font-family: Arial, Helvetica, sans-serif;
+}
+h1, h2, h3{
+  font-family: var(--font-title), Arial, Helvetica, sans-serif;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
