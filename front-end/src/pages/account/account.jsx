@@ -106,16 +106,16 @@ const Account = () => {
   };
 
   const showEtablissementBtn = () => {
-    if (
-      jwtDecode(jwt_token).role === "admin" ||
-      jwtDecode(jwt_token).role === "owner"
-    ) {
-      return (
-        <Link to="/account/etablissement" className="linkButton">
-          Voir mes établissements
-        </Link>
-      );
-    }
+    try{
+      const decode = jwtDecode(jwt_token);
+      if ( decode.role === "admin" || decode.role === "owner" ) {
+        return (
+          <Link to="/account/etablissement" className="linkButton">
+            Voir mes établissements
+          </Link>
+        );
+      }
+    }catch(err){}
   };
 
   const switchShowModifyName = () => {

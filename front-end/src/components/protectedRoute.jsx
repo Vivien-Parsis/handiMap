@@ -6,13 +6,21 @@ const protectedRoute = ({ children }) => {
   if (!auth) {
     return <Navigate to="/login" />;
   }
-  const decoded = jwtDecode(auth);
-  if (!decoded.role || !decoded.email || !decoded.id_user) {
+  try{
+    const decoded = jwtDecode(auth);
+    if (!decoded.role || !decoded.email || !decoded.id_user) {
+    alert("token jwt invalide");
     localStorage.removeItem("token");
     return <Navigate to="/login" />;
-  } else {
-    return children;
+    } else {
+      return children;
+    }
+  }catch(err){
+    alert("token jwt invalide");
+    localStorage.removeItem("token");
+    return <Navigate to="/login" />;
   }
+  
 };
 
 export default protectedRoute;

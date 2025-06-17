@@ -6,16 +6,24 @@ const protectedOwnerRoute = ({ children }) => {
   if (!auth) {
     return <Navigate to="/login" />;
   }
-  const decode = jwtDecode(auth);
-  if (decode) {
-    if (!decode.role || !decode.id_user || !decode.email) {
-      localStorage.removeItem("token");
-      return <Navigate to="/login" />;
-    } else if (decode.role === "owner" || decode.role === "admin") {
-      return children;
-    } else {
-      return <Navigate to="/" />;
+  try{
+    const decode = jwtDecode(auth);
+    if (decode) {
+      if (!decode.role || !decode.id_user || !decode.email) {
+        alert("format jwt incorect");
+        localStorage.removeItem("token");
+        return <Navigate to="/login" />;
+      } else if (decode.role === "owner" || decode.role === "admin") {
+        return children;
+      } else {
+        alert("vous êtes pas autorisé a acceder a cette page");
+        return <Navigate to="/" />;
+      }
     }
+  }catch(err){
+    alert("token jwt invalide");
+    localStorage.removeItem("token");
+    return <Navigate to="/login" />;
   }
 };
 

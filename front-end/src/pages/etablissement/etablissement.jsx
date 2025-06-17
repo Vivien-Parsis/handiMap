@@ -75,18 +75,22 @@ const Etablissement = () => {
   };
   
   const showNewAvisLink = () => {
-    if (jwtDecode(jwt_token).role && jwtDecode(jwt_token).email && jwtDecode(jwt_token).id_user) {
-      return (
-        <Link
-          to="/etablissement/avis/new"
-          state={{
-            id_etablissement: id_etablissement,
-          }}
-        >
-          Ecrire un avis
-        </Link>
-      );
-    }
+    try{
+      const decode = jwtDecode(jwt_token);
+      if (decode.role && decode.email && decode.id_user) {
+        return (
+          <Link
+            to="/etablissement/avis/new"
+            state={{
+              id_etablissement: id_etablissement,
+            }}
+          >
+            Ecrire un avis
+          </Link>
+        );
+      }
+    }catch(err){}
+  
   };
 
 
