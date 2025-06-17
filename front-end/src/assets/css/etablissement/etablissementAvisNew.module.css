@@ -63,9 +63,14 @@
 	flex-direction: column;
 	align-items: baseline;
 }
-.formContainer form * {
-	margin: 0.5em 0;
+.formContainer form *:not(input){
 	width: 92%;
+}
+.formContainer form *{
+	margin: 0.5em 0;
+}
+.formContainer form input:not(.linkButton){
+	border-radius: 10px;
 }
 .avisCommentaire {
 	width: 90%;
