@@ -2,13 +2,13 @@ import { node_env } from "../config/server.config.js"
 import morgan from "morgan"
 import fs from 'fs'
 
-if (!fs.existsSync('../log')) {
-    fs.mkdirSync('../log', { recursive: true })
+if (!fs.existsSync('./log')) {
+    fs.mkdirSync('./log', { recursive: true })
 }
 morgan.token("body", (req, res) => {
     return JSON.stringify(req.body)   
 })
-const accessLogStream = fs.createWriteStream(`${(node_env == "DEV" || node_env == "TEST") ? '../log/dev.log' : (node_env == "PROD") ? '../log/access.log' : '../log/log.log'}`, { flags: 'a' })
+const accessLogStream = fs.createWriteStream(`${(node_env == "DEV" || node_env == "TEST") ? './log/dev.log' : (node_env == "PROD") ? './log/access.log' : './log/log.log'}`, { flags: 'a' })
 const DevLogConsole = 'HTTP :http-version || status code :status || method :method || :date[web] || response time :response-time ms || url :url || :body || :user-agent'
 const DevLogWrite = ':http-version;:status;:method;:date[web];:response-time ms;:url;:user-agent;:body'
 
