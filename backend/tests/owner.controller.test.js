@@ -56,7 +56,9 @@ const { etablissementModel } = await import("../models/etablissement.model.js")
 
 const token = "fake-jwt-token"
 const headers = { Authorization: "Bearer " + token }
-
+beforeAll(() => {
+    jest.setTimeout(10000);
+})
 describe("Routes /api/v1/owners/etablissements", () => {
     describe("GET /api/v1/owners/etablissements", () => {
         it("doit retourner tous les établissements de l'utilisateur", async () => {

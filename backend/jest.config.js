@@ -1,4 +1,4 @@
 export default {
-  testPathIgnorePatterns: ["/node_modules/", "/examples"],
+  testPathIgnorePatterns: ["/node_modules/"],
   transform: {},
 }
