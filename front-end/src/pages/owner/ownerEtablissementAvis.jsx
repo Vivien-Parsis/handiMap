@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { api_url } from "../../config/const";
-import { Link, useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import styles from "../../assets/css/owner/ownerEtablissementAvis.module.css";
 import StarBar from "../../components/starBar";
 import SearchBar from "../../components/searchBar";
+import LinkBar from "../../components/linkBar";
 
 const OwnerEtablissementAvis = () => {
   const [userAvis, setUserAvis] = useState([]);
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const jwt_token = localStorage.getItem("token");
 
   const id_etablissement = location.state?.id_etablissement || "";
   const nom_etablissement = location.state?.nom_etablissement || "";
   const handleDeleteAvis = (id) => {
-    const jwt_token = localStorage.getItem("token");
-
     axios
       .delete(`${api_url}/api/v1/owners/etablissements/avis`, {
         data: { id_avis: id, id_etablissement: id_etablissement },
@@ -56,7 +57,6 @@ const OwnerEtablissementAvis = () => {
     }
   };
   useEffect(() => {
-    const jwt_token = localStorage.getItem("token");
     if (!id_etablissement || !nom_etablissement) {
       navigate("/account/etablissement");
     } else {
@@ -83,34 +83,43 @@ const OwnerEtablissementAvis = () => {
   }, [navigate, id_etablissement, nom_etablissement]);
   return (
     <div className="backgroundBlured">
-      <Link to="/account/etablissement" className="linkText">
-        Revenir sur mes etablissements
-      </Link>
+      <LinkBar
+        link="/account/etablissement"
+        text="Revenir sur mes etablissements"
+      />
       <h2>Les avis de {nom_etablissement}</h2>
-      <SearchBar />
+      <SearchBar
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+      />
       <div className={styles.accountContainer}>
         <ul className={styles.avisContainer}>
           {userAvis.map((el) => {
-            return (
-              <li key={el.id_avis}>
-                <div>
-                  <span>
-                    <StarBar note={el.note} />
-                  </span>
-                  <p>{el.commentaire}</p>
-                  {getAvisPhoto(el)}
-                  <span className={styles.avisNotice}>
-                    {el.avis} le {new Date(el.date).toLocaleDateString("fr-FR")}
-                  </span>
-                  <button
-                    className="deleteButton"
-                    onClick={() => handleDeleteAvis(el.id_avis)}
-                  >
-                    Supprimer
-                  </button>
-                </div>
-              </li>
-            );
+            if (el.commentaire.toLowerCase().includes(search.toLowerCase())) {
+              return (
+                <li key={el.id_avis}>
+                  <div>
+                    <span>
+                      <StarBar note={el.note} />
+                    </span>
+                    <p>{el.commentaire}</p>
+                    {getAvisPhoto(el)}
+                    <span className={styles.avisNotice}>
+                      {el.avis} le{" "}
+                      {new Date(el.date).toLocaleDateString("fr-FR")}
+                    </span>
+                    <button
+                      className="deleteButton"
+                      onClick={() => handleDeleteAvis(el.id_avis)}
+                    >
+                      Supprimer
+                    </button>
+                  </div>
+                </li>
+              );
+            }
           })}
         </ul>
       </div>

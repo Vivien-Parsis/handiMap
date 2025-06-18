@@ -1,13 +1,9 @@
-import React from "react";
 import styles from "../assets/css/mentionsLegales.module.css";
-import { Link } from "react-router";
 
 const MentionsLegales = () => {
   return (
     <div className="backgroundBlured">
-      <Link to="/" className="linkText">
-        Revenir sur l'accueil
-      </Link>
+      <LinkBar link="/" text="Revenir sur la carte" />
       <section className={styles.mentionsLegales}>
         <h2>Mentions Légales</h2>
 
@@ -19,7 +15,10 @@ const MentionsLegales = () => {
 
         <h3>Hébergement</h3>
         <p>Hébergeur : Render.com</p>
-        <p>Adresse du siege social : 525 Brannan St Suite 300, San Francisco, CA 94107, États-Unis</p>
+        <p>
+          Adresse du siege social : 525 Brannan St Suite 300, San Francisco, CA
+          94107, États-Unis
+        </p>
         <p>Adresse de l'hébergement : Frankfurt, Allemagne</p>
         <p>Téléphone : (+1) 415-319-8186</p>
 

@@ -1,12 +1,13 @@
 import { Navigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
+import PropTypes from "prop-types";
 
-const protectedOwnerRoute = ({ children }) => {
+const ProtectedOwnerRoute = ({ children }) => {
   let auth = localStorage.getItem("token");
   if (!auth) {
     return <Navigate to="/login" />;
   }
-  try{
+  try {
     const decode = jwtDecode(auth);
     if (decode) {
       if (!decode.role || !decode.id_user || !decode.email) {
@@ -20,11 +21,16 @@ const protectedOwnerRoute = ({ children }) => {
         return <Navigate to="/" />;
       }
     }
-  }catch(err){
+  } catch (err) {
+    console.log(err);
     alert("token jwt invalide");
     localStorage.removeItem("token");
     return <Navigate to="/login" />;
   }
 };
 
-export default protectedOwnerRoute;
+ProtectedOwnerRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default ProtectedOwnerRoute;

@@ -90,7 +90,12 @@ const Maps = () => {
       .then((res) => {
         if (res.data) {
           setEtablisements(res.data);
+        } else {
+          alert("Erreur lors de la recuperations des etablissements");
         }
+      })
+      .catch(() => {
+        alert("Erreur lors de la recuperations des etablissements");
       });
   }, []);
   return (

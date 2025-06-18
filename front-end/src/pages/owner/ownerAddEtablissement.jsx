@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { api_url } from "../../config/const";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import styles from "../../assets/css/owner/ownerAddEtablissement.module.css";
+import LinkBar from "../../components/linkBar";
 
 const OwnerAddEtablissement = () => {
   const [newEtablissement, setNewEtablissement] = useState({
@@ -71,7 +72,10 @@ const OwnerAddEtablissement = () => {
 
   return (
     <div className="backgroundBlured">
-      <Link to="/account/etablissement">Revenir sur mes etablissements</Link>
+      <LinkBar
+        link="/account/etablissement"
+        text="Revenir sur mes etablissements"
+      />
       <div className={styles.FormAddEtablissement}>
         <h2>Rajouter un lieu</h2>
         <form>

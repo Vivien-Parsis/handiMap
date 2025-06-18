@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { api_url } from "../../config/const";
-import { Link, useNavigate, useLocation } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import styles from "../../assets/css/owner/ownerModifyEtablissement.module.css";
 
 const OwnerModifyEtablissement = () => {
@@ -23,8 +23,8 @@ const OwnerModifyEtablissement = () => {
     if (!modifyEtablissement) {
       return;
     }
-    if(!/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/.test(newEtablissement.coordonnees)){
-      alert('format incorrect pour les coordonnées');
+    if (!/^-?\d+(\.\d+)?;-?\d+(\.\d+)?$/.test(newEtablissement.coordonnees)) {
+      alert("format incorrect pour les coordonnées");
       return;
     }
     const formData = new FormData();
@@ -65,7 +65,10 @@ const OwnerModifyEtablissement = () => {
 
   return (
     <div className="backgroundBlured">
-      <Link to="/account/etablissement">Revenir sur mes etablissements</Link>
+      <LinkBar
+        link="/account/etablissement"
+        text="Revenir sur mes etablissements"
+      />
       <div className={styles.FormModifyEtablissement}>
         <h2>Modifier un lieu</h2>
         <form>
@@ -105,7 +108,9 @@ const OwnerModifyEtablissement = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="coordonnees">coordonnees (format : "nombre;nombre")</label>
+          <label htmlFor="coordonnees">
+            coordonnees (format : "nombre;nombre")
+          </label>
           <input
             type="text"
             id="coordonnees"

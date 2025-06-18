@@ -1,7 +1,7 @@
-import React from "react";
+import PropTypes from "prop-types";
 import StarIcon from "../assets/images/star-svgrepo-com.svg?react";
 
-const starBar = ({ note }) => {
+const StarBar = ({ note }) => {
   const forStars = (note) => {
     let content = [];
     if (!note || note === 0) {
@@ -15,4 +15,8 @@ const starBar = ({ note }) => {
   return <>{forStars(note)}</>;
 };
 
-export default starBar;
+StarBar.propTypes = {
+  note: PropTypes.number.isRequired,
+};
+
+export default StarBar;

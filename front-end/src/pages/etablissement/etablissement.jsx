@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { api_url } from "../../config/const.js";
 import { Link, useNavigate, useLocation } from "react-router";
@@ -8,6 +8,7 @@ import etablissementPlaceholder from "../../assets/images/etablissementplacehold
 import StarBar from "../../components/starBar.jsx";
 import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
 import { jwtDecode } from "jwt-decode";
+import LinkBar from "../../components/linkBar.jsx";
 
 const Etablissement = () => {
   const [etablisement, setEtablisement] = useState({});
@@ -73,9 +74,9 @@ const Etablissement = () => {
     }
     return content;
   };
-  
+
   const showNewAvisLink = () => {
-    try{
+    try {
       const decode = jwtDecode(jwt_token);
       if (decode.role && decode.email && decode.id_user) {
         return (
@@ -89,10 +90,10 @@ const Etablissement = () => {
           </Link>
         );
       }
-    }catch(err){}
-  
+    } catch (err) {
+      console.log("Error lors du décodage du jwt", err);
+    }
   };
-
 
   useEffect(() => {
     if (!id_etablissement) {
@@ -123,9 +124,7 @@ const Etablissement = () => {
     <div>
       <TwoBtnBar />
       <div className="backgroundBluredCol">
-        <Link to="/" className="linkText">
-          Revenir sur la carte
-        </Link>
+      <LinkBar link="/" text="Revenir sur la carte" />
         <div className={styles.etablisementContainer}>
           <img
             alt="etablissement"
@@ -149,9 +148,7 @@ const Etablissement = () => {
                   {getAvisAverage(etablisement.avis)}/5 sur{" "}
                   {getAvisNumber(etablisement.avis)} avis
                 </span>
-                <span>
-                  {showNewAvisLink()}
-                </span>
+                <span>{showNewAvisLink()}</span>
               </div>
             </div>
             <div className={styles.handicapContainer}>

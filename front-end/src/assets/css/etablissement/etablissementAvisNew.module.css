@@ -69,9 +69,6 @@
 .formContainer form *{
 	margin: 0.5em 0;
 }
-.formContainer form input:not(.linkButton){
-	border-radius: 10px;
-}
 .avisCommentaire {
 	width: 90%;
 	height: 5em;

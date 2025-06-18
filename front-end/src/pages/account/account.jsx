@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { api_url } from "../../config/const";
 import { Link, useNavigate } from "react-router";
 import styles from "../../assets/css/account/account.module.css";
 import { jwtDecode } from "jwt-decode";
+import LinkBar from "../../components/linkBar";
 
 const Account = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -24,10 +25,11 @@ const Account = () => {
         data: { id_handicap: id },
         headers: { authorization: "Bearer " + jwt_token },
       })
-      .then((res) => {}).catch((err)=>{
-          alert("Erreur lors suppression handicap");
-          localStorage.removeItem("token");
-          navigate("/login");
+      .then((res) => {})
+      .catch((err) => {
+        alert("Erreur lors suppression handicap");
+        localStorage.removeItem("token");
+        navigate("/login");
       });
     await axios
       .get(`${api_url}/api/v1/users/handicaps`, {
@@ -58,8 +60,8 @@ const Account = () => {
         { id_handicap: newHandicap },
         { headers: { authorization: "Bearer " + jwt_token } }
       )
-      .then(()=>{
-          alert("handicap ajouté");
+      .then(() => {
+        alert("handicap ajouté");
       })
       .catch((err) => {
         alert("Erreur lors ajout handicap");
@@ -73,9 +75,9 @@ const Account = () => {
       .then((res) => {
         if (res.data) {
           setUserHandicaps(res.data);
-          setNewHandicap("")
+          setNewHandicap("");
         } else {
-        alert("Erreur lors ajout handicap");
+          alert("Erreur lors ajout handicap");
           localStorage.removeItem("token");
           navigate("/login");
         }
@@ -98,7 +100,8 @@ const Account = () => {
       .then((res) => {
         localStorage.removeItem("token");
         navigate("/");
-      }).catch((err)=>{
+      })
+      .catch((err) => {
         alert("Erreur lors suppression du compte");
         localStorage.removeItem("token");
         navigate("/");
@@ -106,16 +109,18 @@ const Account = () => {
   };
 
   const showEtablissementBtn = () => {
-    try{
+    try {
       const decode = jwtDecode(jwt_token);
-      if ( decode.role === "admin" || decode.role === "owner" ) {
+      if (decode.role === "admin" || decode.role === "owner") {
         return (
           <Link to="/account/etablissement" className="linkButton">
             Voir mes établissements
           </Link>
         );
       }
-    }catch(err){}
+    } catch (err) {
+      console.log("Error lors du décodage du jwt", err);
+    }
   };
 
   const switchShowModifyName = () => {
@@ -183,66 +188,67 @@ const Account = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`${api_url}/api/v1/users/`, {
-        headers: { authorization: "Bearer " + jwt_token },
-      })
-      .then((res) => {
-        if (res.data) {
-          setUserInfo(res.data);
-        } else {
+    const fetchUserData = async () => {
+      await axios
+        .get(`${api_url}/api/v1/users/`, {
+          headers: { authorization: "Bearer " + jwt_token },
+        })
+        .then((res) => {
+          if (res.data) {
+            setUserInfo(res.data);
+          } else {
+            alert("Erreur lors recupération du compte");
+            localStorage.removeItem("token");
+            navigate("/login");
+          }
+        })
+        .catch((err) => {
           alert("Erreur lors recupération du compte");
           localStorage.removeItem("token");
           navigate("/login");
-        }
-      })
-      .catch((err) => {
-        alert("Erreur lors recupération du compte");
-        localStorage.removeItem("token");
-        navigate("/login");
-      });
-    axios
-      .get(`${api_url}/api/v1/users/handicaps`, {
-        headers: { authorization: "Bearer " + jwt_token },
-      })
-      .then((res) => {
-        if (res.data) {
-          setUserHandicaps(res.data);
-        } else {
+        });
+      await axios
+        .get(`${api_url}/api/v1/users/handicaps`, {
+          headers: { authorization: "Bearer " + jwt_token },
+        })
+        .then((res) => {
+          if (res.data) {
+            setUserHandicaps(res.data);
+          } else {
+            alert("Erreur lors recupération du compte");
+            localStorage.removeItem("token");
+            navigate("/login");
+          }
+        })
+        .catch((err) => {
           alert("Erreur lors recupération du compte");
           localStorage.removeItem("token");
           navigate("/login");
-        }
-      })
-      .catch((err) => {
-        alert("Erreur lors recupération du compte");
-        localStorage.removeItem("token");
-        navigate("/login");
-      });
-    axios
-      .get(`${api_url}/api/v1/handicaps`, {
-        headers: { authorization: "Bearer " + jwt_token },
-      })
-      .then((res) => {
-        if (res.data) {
-          setAllHandicaps(res.data);
-        } else {
+        });
+      await axios
+        .get(`${api_url}/api/v1/handicaps`, {
+          headers: { authorization: "Bearer " + jwt_token },
+        })
+        .then((res) => {
+          if (res.data) {
+            setAllHandicaps(res.data);
+          } else {
+            alert("Erreur lors recupération des handicaps");
+            localStorage.removeItem("token");
+            navigate("/login");
+          }
+        })
+        .catch((err) => {
           alert("Erreur lors recupération des handicaps");
           localStorage.removeItem("token");
           navigate("/login");
-        }
-      })
-      .catch((err) => {
-        alert("Erreur lors recupération des handicaps");
-        localStorage.removeItem("token");
-        navigate("/login");
-      });
+        });
+    };
+    fetchUserData();
   }, [navigate, jwt_token]);
   return (
     <div className="backgroundBlured">
-      <Link to="/" className="linkText">
-        Revenir sur la carte
-      </Link>
+      <LinkBar link="/" text="Revenir sur la carte" />
       <div className={styles.accountContainer}>
         <h2>Mon compte</h2>
         <ul>
@@ -281,8 +287,12 @@ const Account = () => {
           })}
         </ul>
         <label htmlFor="addHandicap">Rajouter un handicape</label>
-        <select onChange={handleChangeSelectAddHandicaps} id="addHandicap" value={newHandicap}>
-          <option value="" selected disabled hidden>
+        <select
+          onChange={handleChangeSelectAddHandicaps}
+          id="addHandicap"
+          value={newHandicap}
+        >
+          <option value="" disabled hidden>
             Choisisez ici
           </option>
           {allHandicaps.map((handicap) => {

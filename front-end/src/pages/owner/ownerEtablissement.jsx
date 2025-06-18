@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { api_url } from "../../config/const.js";
 import { Link, useNavigate } from "react-router";
@@ -7,6 +7,7 @@ import etablissementplaceholder from "../../assets/images/etablissementplacehold
 import StarBar from "../../components/starBar.jsx";
 import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
 import SearchBar from "../../components/searchBar.jsx";
+import LinkBar from "../../components/linkBar.jsx";
 
 const OwnerEtablissement = () => {
   const [ownerEtablisement, setOwnerEtablisement] = useState([]);
@@ -27,7 +28,7 @@ const OwnerEtablissement = () => {
         { headers: { authorization: "Bearer " + jwt_token } }
       )
       .then()
-      .catch((err)=>{
+      .catch((err) => {
         localStorage.removeItem("token");
         alert("erreur lors de la ajout handicap");
         navigate("/login");
@@ -98,7 +99,7 @@ const OwnerEtablissement = () => {
         headers: { authorization: "Bearer " + jwt_token },
       })
       .then()
-      .catch((err)=>{
+      .catch((err) => {
         localStorage.removeItem("token");
         alert("erreur lors de la suppression handicap");
         navigate("/login");
@@ -117,9 +118,9 @@ const OwnerEtablissement = () => {
         }
       })
       .catch((err) => {
-          localStorage.removeItem("token");
-          alert("erreur lors de la recuperation etablissement");
-          navigate("/login");
+        localStorage.removeItem("token");
+        alert("erreur lors de la recuperation etablissement");
+        navigate("/login");
       });
   };
   const handleChangeSelectAddHandicaps = (e) => {
@@ -127,49 +128,50 @@ const OwnerEtablissement = () => {
     setNewHandicap(e.target.value);
   };
   useEffect(() => {
-    axios
-      .get(`${api_url}/api/v1/owners/etablissements`, {
-        headers: { authorization: "Bearer " + jwt_token },
-      })
-      .then((res) => {
-        if (res.data) {
-          setOwnerEtablisement(res.data);
-        } else {
+    const fetchOwnerData = async () => {
+      await axios
+        .get(`${api_url}/api/v1/owners/etablissements`, {
+          headers: { authorization: "Bearer " + jwt_token },
+        })
+        .then((res) => {
+          if (res.data) {
+            setOwnerEtablisement(res.data);
+          } else {
+            localStorage.removeItem("token");
+            alert("erreur lors de la recuperation etablissement");
+            navigate("/login");
+          }
+        })
+        .catch((err) => {
           localStorage.removeItem("token");
           alert("erreur lors de la recuperation etablissement");
           navigate("/login");
-        }
-      })
-      .catch((err) => {
+        });
+      await axios
+        .get(`${api_url}/api/v1/handicaps`, {
+          headers: { authorization: "Bearer " + jwt_token },
+        })
+        .then((res) => {
+          if (res.data) {
+            setAllHandicaps(res.data);
+          } else {
+            localStorage.removeItem("token");
+            alert("erreur lors de la recuperation etablissement");
+            navigate("/login");
+          }
+        })
+        .catch((err) => {
           localStorage.removeItem("token");
           alert("erreur lors de la recuperation etablissement");
           navigate("/login");
-      });
-    axios
-      .get(`${api_url}/api/v1/handicaps`, {
-        headers: { authorization: "Bearer " + jwt_token },
-      })
-      .then((res) => {
-        if (res.data) {
-          setAllHandicaps(res.data);
-        } else {
-          localStorage.removeItem("token");
-          alert("erreur lors de la recuperation etablissement");
-          navigate("/login");
-        }
-      })
-      .catch((err) => {
-          localStorage.removeItem("token");
-          alert("erreur lors de la recuperation etablissement");
-          navigate("/login");
-      });
+        });
+    };
+    fetchOwnerData();
   }, [navigate, jwt_token]);
   return (
     <div>
       <div className="backgroundBluredCol">
-        <Link to="/account" className="linkText">
-          Revenir sur mon compte
-        </Link>
+        <LinkBar link="/account" text="Revenir sur mon compte" />
         <div className={styles.ownerContainer}>
           <h2>Mes etablissements</h2>
           <SearchBar />

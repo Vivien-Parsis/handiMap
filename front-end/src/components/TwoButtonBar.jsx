@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router";
 import styles from "../assets/css/component/twoBtnBar.module.css";
 import accountIcon from "../assets/images/person-svgrepo-com.png";
