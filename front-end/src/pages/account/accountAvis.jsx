@@ -101,12 +101,11 @@ const AccountAvis = () => {
                     {getAvisPhoto(el)}
                     <span className={styles.avisNotice}>
                       <Link
-                        to={"/etablissement"}
-                        state={{
-                          id_etablissement: el.id_etablissement,
-                        }}
-                      >
-                        {el.nom_etablissement}
+                        to={{
+                          pathname: "/etablissement",
+                          search: `?id_etablissement=${el.id_etablissement}`
+                        }}>
+                        Voir etablissement
                       </Link>{" "}
                       le {new Date(el.date).toLocaleDateString("fr-FR")}
                     </span>
