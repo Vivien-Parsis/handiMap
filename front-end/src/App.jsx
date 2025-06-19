@@ -44,7 +44,11 @@ function App() {
             <PageTitle title="Handi'Map - S'inscrire"/>
             <Register />
           </>} />
-        <Route path="/" element={<Maps />} />
+        <Route path="/" element={
+          <>
+            <PageTitle title="Handi'Map - Carte"/>
+            <Maps />
+          </>}/>
         <Route path="/etablissement" element={<Etablissement />} />
         <Route path="/MentionsLegales" element={
           <>

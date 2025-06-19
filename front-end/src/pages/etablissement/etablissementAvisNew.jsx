@@ -8,6 +8,7 @@ import etablissementPlaceholder from "../../assets/images/etablissementplacehold
 import StarBar from "../../components/starBar.jsx";
 import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
 import LinkBar from "../../components/linkBar.jsx";
+import PageTitle from "../../components/pageTitle";
 
 const EtablissementAvisNew = () => {
   const jwt_token = localStorage.getItem("token");

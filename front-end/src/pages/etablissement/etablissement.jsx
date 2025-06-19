@@ -9,6 +9,7 @@ import StarBar from "../../components/starBar.jsx";
 import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
 import { jwtDecode } from "jwt-decode";
 import LinkBar from "../../components/linkBar.jsx";
+import PageTitle from "../../components/pageTitle";
 
 const Etablissement = () => {
   const [etablisement, setEtablisement] = useState({});

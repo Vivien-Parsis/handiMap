@@ -6,6 +6,7 @@ import styles from "../../assets/css/owner/ownerEtablissementAvis.module.css";
 import StarBar from "../../components/starBar";
 import SearchBar from "../../components/searchBar";
 import LinkBar from "../../components/linkBar";
+import PageTitle from "../../components/pageTitle";
 
 const OwnerEtablissementAvis = () => {
   const [userAvis, setUserAvis] = useState([]);
