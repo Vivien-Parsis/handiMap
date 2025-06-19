@@ -109,6 +109,7 @@ const EtablissementAvisNew = () => {
 
   return (
     <div>
+      <PageTitle title={"Handi'Map - " + etablisement.nom_etablissement + " - nouveau avis"}/>
       <TwoBtnBar />
       <div className="backgroundBluredCol">
         <LinkBar

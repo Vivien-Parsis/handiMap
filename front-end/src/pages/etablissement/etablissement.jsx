@@ -124,6 +124,7 @@ const Etablissement = () => {
 
   return (
     <div>
+      <PageTitle title={"Handi'Map - " + etablisement.nom_etablissement}/>
       <TwoBtnBar />
       <div className="backgroundBluredCol">
       <LinkBar link="/" text="Revenir sur la carte" />
