@@ -37,9 +37,8 @@ const MentionsLegales = () => {
 
         <h3>Cookies</h3>
         <p>
-          Ce site utilise uniquement des cookies techniques nécessaires à son
-          bon fonctionnement. Aucun cookie publicitaire ou de suivi n'est
-          utilisé.
+          Ce site utilise aucun cookies techniques à son bon fonctionnement. 
+          Aucun cookie publicitaire ou de suivi n'est utilisé.
         </p>
 
         <h3>Propriété intellectuelle</h3>
