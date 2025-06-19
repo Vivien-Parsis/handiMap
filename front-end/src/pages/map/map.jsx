@@ -16,7 +16,6 @@ import {
   ZoomControl,
 } from "react-leaflet";
 import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
-import MarkerClusterGroup from "react-leaflet-cluster";
 
 const Maps = () => {
   const [etablisements, setEtablisements] = useState([]);
@@ -112,9 +111,7 @@ const Maps = () => {
           url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
         />
         <ZoomControl position="bottomleft" />
-        <MarkerClusterGroup chunkedLoading>
-          {forMarker(etablisements)}
-        </MarkerClusterGroup>
+        {forMarker(etablisements)}
       </MapContainer>
     </div>
   );
