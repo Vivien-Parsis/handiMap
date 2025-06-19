@@ -16,7 +16,7 @@
 	margin: 0 10px 0;
 }
 .twoBtnBar a img:hover {
-	background-color: rgb(223, 209, 255);
+	background-color: var(--button-color-hover);
 }
 .searchBar {
 	display: flex;

@@ -1,4 +1,5 @@
 import styles from "../assets/css/mentionsLegales.module.css";
+import LinkBar from "../components/linkBar";
 
 const MentionsLegales = () => {
   return (

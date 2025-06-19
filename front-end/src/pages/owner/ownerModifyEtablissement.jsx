@@ -3,6 +3,7 @@ import axios from "axios";
 import { api_url } from "../../config/const";
 import { useNavigate, useLocation } from "react-router";
 import styles from "../../assets/css/owner/ownerModifyEtablissement.module.css";
+import LinkBar from "../../components/linkBar";
 
 const OwnerModifyEtablissement = () => {
   const location = useLocation();

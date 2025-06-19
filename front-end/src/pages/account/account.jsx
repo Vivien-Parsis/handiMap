@@ -25,7 +25,7 @@ const Account = () => {
         data: { id_handicap: id },
         headers: { authorization: "Bearer " + jwt_token },
       })
-      .then((res) => {})
+      .then()
       .catch((err) => {
         alert("Erreur lors suppression handicap");
         localStorage.removeItem("token");
@@ -93,19 +93,21 @@ const Account = () => {
   };
 
   const handleDeleteAccount = async () => {
-    await axios
-      .delete(`${api_url}/api/v1/users`, {
-        headers: { authorization: "Bearer " + jwt_token },
-      })
-      .then((res) => {
-        localStorage.removeItem("token");
-        navigate("/");
-      })
-      .catch((err) => {
-        alert("Erreur lors suppression du compte");
-        localStorage.removeItem("token");
-        navigate("/");
-      });
+    if(confirm("Etes vous sûr de supprimer votre compte ? tout donner lié a votre compte seront supprimer.")){
+      await axios
+        .delete(`${api_url}/api/v1/users`, {
+          headers: { authorization: "Bearer " + jwt_token },
+        })
+        .then((res) => {
+          localStorage.removeItem("token");
+          navigate("/");
+        })
+        .catch((err) => {
+          alert("Erreur lors suppression du compte");
+          localStorage.removeItem("token");
+          navigate("/");
+        });
+    }
   };
 
   const showEtablissementBtn = () => {
@@ -286,35 +288,38 @@ const Account = () => {
             );
           })}
         </ul>
-        <label htmlFor="addHandicap">Rajouter un handicape</label>
-        <select
-          onChange={handleChangeSelectAddHandicaps}
-          id="addHandicap"
-          value={newHandicap}
-        >
-          <option value="" disabled hidden>
-            Choisisez ici
-          </option>
-          {allHandicaps.map((handicap) => {
-            if (
-              !userHandicaps.some(
-                (el) => el.id_handicap === handicap.id_handicap
-              )
-            ) {
-              return (
-                <option value={handicap.id_handicap} key={handicap.id_handicap}>
-                  {handicap.nom} (type : {handicap.type})
-                </option>
-              );
-            } else {
-              return "";
-            }
-          })}
-        </select>
-        <button className="addButton" onClick={() => handleAddHandicaps()}>
-          Ajouter
-        </button>
-
+        <div className={styles.addHandicap}>
+          <div className={styles.selectHandicap}>
+            <label htmlFor="addHandicap">Rajouter un handicape</label>
+            <select
+              onChange={handleChangeSelectAddHandicaps}
+              id="addHandicap"
+              value={newHandicap}
+            >
+              <option value="" disabled hidden>
+                Choisisez ici
+              </option>
+              {allHandicaps.map((handicap) => {
+                if (
+                  !userHandicaps.some(
+                    (el) => el.id_handicap === handicap.id_handicap
+                  )
+                ) {
+                  return (
+                    <option value={handicap.id_handicap} key={handicap.id_handicap}>
+                      {handicap.nom} (type : {handicap.type})
+                    </option>
+                  );
+                } else {
+                  return "";
+                }
+              })}
+            </select>
+          </div>
+          <button className="addButton" onClick={() => handleAddHandicaps()}>
+            Ajouter
+          </button>
+        </div>
         <Link to="/account/avis" className="linkButton">
           Voir mes avis
         </Link>
