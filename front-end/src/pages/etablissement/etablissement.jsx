@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { api_url } from "../../config/const.js";
-import { Link, useNavigate, useLocation } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 import TwoBtnBar from "../../components/TwoButtonBar.jsx";
 import styles from "../../assets/css/etablissement/etablissement.module.css";
 import etablissementPlaceholder from "../../assets/images/etablissementplaceholder.jpg";
@@ -12,10 +12,10 @@ import LinkBar from "../../components/linkBar.jsx";
 
 const Etablissement = () => {
   const [etablisement, setEtablisement] = useState({});
-  const location = useLocation();
-
-  const id_etablissement = location.state?.id_etablissement || "";
   const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+  const id_etablissement = searchParams.get('id_etablissement') || "";
 
   const jwt_token = localStorage.getItem("token");
 
@@ -81,9 +81,9 @@ const Etablissement = () => {
       if (decode.role && decode.email && decode.id_user) {
         return (
           <Link
-            to="/etablissement/avis/new"
-            state={{
-              id_etablissement: id_etablissement,
+            to={{
+              pathname: "/etablissement/avis/new",
+              search: `?id_etablissement=${id_etablissement}`
             }}
           >
             Ecrire un avis
@@ -98,7 +98,9 @@ const Etablissement = () => {
   useEffect(() => {
     if (!id_etablissement) {
       navigate("/");
-    } else {
+    } else if(!(/^\d+$/.test(id_etablissement))){
+      navigate("/");
+    }else {
       axios
         .get(`${api_url}/api/v1/etablissements/with-relations`, {
           params: {

@@ -68,11 +68,10 @@ const Maps = () => {
                   </p>
                 </span>
                 <Link
-                  to="/etablissement"
-                  state={{
-                    id_etablissement: et.id_etablissement || "",
-                  }}
-                >
+                  to={{
+                    pathname: "/etablissement",
+                    search: `?id_etablissement=${id_etablissement}`
+                  }}>
                   Voir etablissement
                 </Link>
               </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { api_url } from "../../config/const.js";
-import { useNavigate, useLocation } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import TwoBtnBar from "../../components/TwoButtonBar.jsx";
 import styles from "../../assets/css/etablissement/etablissementAvisNew.module.css";
 import etablissementPlaceholder from "../../assets/images/etablissementplaceholder.jpg";
@@ -10,11 +10,10 @@ import { getAvisAverage, getAvisNumber } from "../../utils/note.js";
 import LinkBar from "../../components/linkBar.jsx";
 
 const EtablissementAvisNew = () => {
-  const location = useLocation();
-  const id_etablissement = location.state?.id_etablissement || "";
   const jwt_token = localStorage.getItem("token");
 
-  const [etablisement, setEtablisement] = useState({});
+  const [searchParams] = useSearchParams();
+  const id_etablissement = searchParams.get('id_etablissement') || "";
   const [newAvis, setNewAvis] = useState({
     note: 0,
     commentaire: "",
@@ -69,6 +68,11 @@ const EtablissementAvisNew = () => {
   };
 
   useEffect(() => {
+    if (!id_etablissement) {
+      navigate("/");
+    } else if(!(/^\d+$/.test(id_etablissement))){
+      navigate("/");
+    }
     const fetchEtablissement = async () => {
       await axios
         .get(`${api_url}/api/v1/etablissements/with-relations`, {
@@ -109,7 +113,8 @@ const EtablissementAvisNew = () => {
         <LinkBar
           link="/etablissement"
           text="Revenir sur l'etablissement"
-          state={{ id_etablissement: id_etablissement }}
+          search="id_etablissement"
+          query={id_etablissement}
         />
         <div className={styles.etablisementContainer}>
           <img
