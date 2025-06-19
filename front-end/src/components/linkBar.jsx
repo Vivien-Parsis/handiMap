@@ -4,10 +4,7 @@ import PropTypes from "prop-types";
 const LinkBar = ({ link, text, state, search, query }) => {
   return (
     <div className="linkBar">
-      <Link to={(search && query)?{{pathname:link, search:(search && query)?`?${search}=${query}`:""}}:link} state={state || {}}>
-        {"> "}
-        {text}
-      </Link>
+      <Link to={search && query ? { pathname: link, search: `?${search}=${query}` } : link} state={state || {}}>{text}</Link>
     </div>
   );
 };
