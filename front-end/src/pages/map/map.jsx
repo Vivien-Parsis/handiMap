@@ -70,7 +70,7 @@ const Maps = () => {
                 <Link
                   to={{
                     pathname: "/etablissement",
-                    search: `?id_etablissement=${id_etablissement}`
+                    search: `?id_etablissement=${et.id_etablissement}`
                   }}>
                   Voir etablissement
                 </Link>
