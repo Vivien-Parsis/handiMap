@@ -8,7 +8,7 @@ const PageTitle = ({ title }) => {
   return null;
 };
 
-ProtectedOwnerRoute.propTypes = {
+PageTitle.propTypes = {
   title: PropTypes.string,
 };
 
