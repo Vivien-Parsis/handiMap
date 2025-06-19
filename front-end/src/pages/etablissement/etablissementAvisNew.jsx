@@ -21,6 +21,7 @@ const EtablissementAvisNew = () => {
     id_etablissement: id_etablissement,
   });
   const navigate = useNavigate();
+  const [etablisement, setEtablisement] = useState({});
 
   const handleChange = (e) => {
     if (e.target.name === "note" && e.target.value > 5) {
