@@ -113,7 +113,7 @@ const EtablissementAvisNew = () => {
         />
         <div className={styles.etablisementContainer}>
           <img
-            alt="etablissement"
+            alt={"etablissement" + etablisement.type_etablissement + " " + etablisement.nom_etablissement}
             className={styles.etablisementPhoto}
             src={etablisement.photo_etablissement || etablissementPlaceholder}
           />

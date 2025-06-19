@@ -52,7 +52,7 @@ const Maps = () => {
             <div className={styles.infoPopupEtablissement}>
               <img
                 src={et.photo_etablissement || placeholderEtablissement}
-                alt="etablissement"
+                alt={"etablissement "+et.type_etablissement+" "+et.nom_etablissement}
               />
               <div>
                 <p>
