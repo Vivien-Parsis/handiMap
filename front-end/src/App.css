@@ -52,7 +52,7 @@
   background-color: var(--background-color-light);
 }
 .leaflet-marker-icon{
-  filter: grayscale(var(--grayscale-level)) brightness(--leaflet-market-brightness);
+  filter: grayscale(var(--grayscale-level)) brightness(var(--leaflet-market-brightness));
 }
 h2 {
   font-size: 38px;
