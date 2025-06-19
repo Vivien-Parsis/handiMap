@@ -42,7 +42,7 @@ NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 
 - Dans votre base de données PostegreSQL externe, utiliser le fichier `schema.sql` pour creer les tables et relations
 
-- dans le répertoire projectn lance le service : `docker-compose up`
+- dans le répertoire projectn lance le service : `docker compose up`
 
 ### Option 2 : En local avec Node.js
 
@@ -126,7 +126,7 @@ cd handiMap
 - Lancer l’application
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 - Vérifier que tout fonctionne
@@ -141,20 +141,20 @@ Backend : `http://votre-domaine-ou-ip:4000`
   
 ```bash
 git pull
-docker-compose down
-docker-compose up -d --build
+docker compose down
+docker compose up -d --build
 ```
 
 ### Arrêter l’application
   
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ### Journalisation
 
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
 
 ## Auteur
