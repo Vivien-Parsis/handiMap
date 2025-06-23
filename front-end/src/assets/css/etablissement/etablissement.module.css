@@ -1,90 +1,138 @@
 .etablisementContainer {
   width: 90%;
-  height: 80%;
+  max-height: 90vh;
   background-color: var(--background-color-light);
   border-radius: 10px;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-}
-.etablisementPhoto {
-  width: 40%;
-  height: fit-content;
-}
-.etablisementContainer span {
-  width: 58%;
-}
-.titleAndAvisContainer {
-  height: fit-content;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: nowrap;
+  overflow: hidden;
+  padding: 1em;
 }
+
+.etablisementPhoto {
+  width: 40%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.etablisementContainer span {
+  width: 58%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.titleAndAvisContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 0.6em 0;
+  border-bottom: 1px solid black;
+}
+
 .infoContainer {
   width: 75%;
   display: flex;
-  align-content: flex-start;
   flex-direction: column;
-  flex-wrap: wrap;
 }
+
 .infoContainer h2,
 .infoContainer p {
-  margin: 0.1em 0 0.1em;
+  margin: 0.1em 0;
 }
+
 .avisContainer {
   width: 25%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  align-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 0.9em;
 }
+
 .avisContainer span {
   width: 100%;
+  flex-direction: unset;
 }
+
 .handicapContainer {
-  height: 20%;
+  max-height: 15vh;
   overflow-y: auto;
-}
-.handicapContainer,
-.titleAndAvisContainer {
   padding: 0.6em 0;
-  border-bottom: 1px black solid;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.avisListContainer {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 0.5em;
 }
 
 .avisListItem {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   padding: 1em 0;
 }
+
+.avisListItem div {
+  max-width: 70%;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
 .avisListItem div span {
   width: 100%;
   display: block;
+  margin-bottom: 0.2em;
 }
-.avisListItem div {
-  width: 80%;
-}
+
 .avisListItem img {
-  width: 30%;
+  max-width: 28%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
 }
-.avisListContainer {
-  height: 50%;
-  margin-top: 1em;
-  padding-right: 0.5em;
-  overflow-y: auto;
-}
+
 @media (max-width: 650px) {
+  .etablisementContainer {
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+    align-items: center;
+    padding: 1em 0.5em;
+  }
+
   .etablisementPhoto,
-  .titleAndAvisContainer,
   .etablisementContainer span {
     width: 98%;
   }
-  .etablisementContainer {
-    flex-wrap: wrap;
-    justify-content: center;
+
+  .avisListItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .avisListItem div{
+    width: 100%;
+    max-width: 100%;
+  }
+  .avisListItem img {
+    width: 50%;
+    max-width: 100%;
+  }
+
+  .handicapContainer {
+    max-height: none;
+  }
+
+  .avisListContainer {
+    max-height: 40vh;
   }
 }
