@@ -7,7 +7,10 @@ const upload = multer({
         fileSize: 10 * 1024 * 1024
     },
     fileFilter: (req, file, callback) => {
-        if ((file.mimetype.startsWith("image/") && file.originalname.endsWith(".png")) || (file.mimetype.startsWith("image/") && file.originalname.endsWith(".webp")) || (file.mimetype.startsWith("image/") && file.originalname.endsWith(".jpeg")) || (file.mimetype.startsWith("image/") && file.originalname.endsWith(".jpg"))) {
+        if ((file.mimetype.startsWith("image/") && file.originalname.endsWith(".png")) ||
+            (file.mimetype.startsWith("image/") && file.originalname.endsWith(".webp")) ||
+            (file.mimetype.startsWith("image/") && file.originalname.endsWith(".jpeg")) ||
+            (file.mimetype.startsWith("image/") && file.originalname.endsWith(".jpg"))) {
             return callback(null, true)
         } else {
             return callback(new Error("Seulement les images sont accepté"), false)
