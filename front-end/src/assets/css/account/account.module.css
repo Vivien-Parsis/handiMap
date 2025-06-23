@@ -33,11 +33,11 @@
   justify-content: center;
   flex-wrap: wrap;
 }
-.addHandicap{
+.addHandicap {
   display: flex;
   width: 100%;
 }
-.selectHandicap{
+.selectHandicap {
   display: flex;
   justify-content: center;
   flex-direction: column;

@@ -9,8 +9,8 @@
 .searchBar img {
   height: 1.5em;
 }
-.searchBar input{
-    border: none;
-    border-radius: .75em;
-    background-color: var(--background-color-light);
+.searchBar input {
+  border: none;
+  border-radius: 0.75em;
+  background-color: var(--background-color-light);
 }

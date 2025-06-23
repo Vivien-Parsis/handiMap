@@ -136,7 +136,7 @@ const createUserAvis = async (req, res) => {
             id_user: currentAvis.id_user,
             id_etablissement: currentAvis.id_etablissement,
             commentaire: currentAvis.commentaire,
-            photo:photo
+            photo: photo
         })
         const avis = await avisModel.create(currentAvis)
         res.status(201).json(avis)

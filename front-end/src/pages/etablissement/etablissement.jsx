@@ -16,7 +16,7 @@ const Etablissement = () => {
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
-  const id_etablissement = searchParams.get('id_etablissement') || "";
+  const id_etablissement = searchParams.get("id_etablissement") || "";
 
   const jwt_token = localStorage.getItem("token");
 
@@ -84,7 +84,7 @@ const Etablissement = () => {
           <Link
             to={{
               pathname: "/etablissement/avis/new",
-              search: `?id_etablissement=${id_etablissement}`
+              search: `?id_etablissement=${id_etablissement}`,
             }}
           >
             Ecrire un avis
@@ -99,9 +99,9 @@ const Etablissement = () => {
   useEffect(() => {
     if (!id_etablissement) {
       navigate("/");
-    } else if(!(/^\d+$/.test(id_etablissement))){
+    } else if (!/^\d+$/.test(id_etablissement)) {
       navigate("/");
-    }else {
+    } else {
       axios
         .get(`${api_url}/api/v1/etablissements/with-relations`, {
           params: {
@@ -125,13 +125,18 @@ const Etablissement = () => {
 
   return (
     <div>
-      <PageTitle title={"Handi'Map - " + etablisement.nom_etablissement}/>
+      <PageTitle title={"Handi'Map - " + etablisement.nom_etablissement} />
       <TwoBtnBar />
       <div className="backgroundBluredCol">
-      <LinkBar link="/" text="Revenir sur la carte" />
+        <LinkBar link="/" text="Revenir sur la carte" />
         <div className={styles.etablisementContainer}>
           <img
-            alt={"etablissement" + etablisement.type_etablissement + " " + etablisement.nom_etablissement}
+            alt={
+              "etablissement" +
+              etablisement.type_etablissement +
+              " " +
+              etablisement.nom_etablissement
+            }
             className={styles.etablisementPhoto}
             src={etablisement.photo_etablissement || etablissementPlaceholder}
           />

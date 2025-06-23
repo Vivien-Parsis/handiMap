@@ -103,8 +103,9 @@ const AccountAvis = () => {
                       <Link
                         to={{
                           pathname: "/etablissement",
-                          search: `?id_etablissement=${el.id_etablissement}`
-                        }}>
+                          search: `?id_etablissement=${el.id_etablissement}`,
+                        }}
+                      >
                         Voir etablissement
                       </Link>{" "}
                       le {new Date(el.date).toLocaleDateString("fr-FR")}

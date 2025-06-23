@@ -3,14 +3,8 @@ import styles from "../../assets/css/map/map.module.css";
 import TwoBtnBar from "../../components/TwoButtonBar";
 import axios from "axios";
 import { api_url } from "../../config/const.js";
-import {
-  MapContainer,
-  TileLayer,
-  ZoomControl,
-} from "react-leaflet";
+import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
 import MarkerGenerator from "../../components/markerGenerator.jsx";
-
-
 
 const Maps = () => {
   const [etablisements, setEtablisements] = useState([]);

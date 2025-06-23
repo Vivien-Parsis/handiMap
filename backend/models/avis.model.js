@@ -33,7 +33,7 @@ const avisModel = {
     },
     deleteIfOwner: async (id_avis, id_etablissement, id_user) => {
         const result = await pool.query(
-            "DELETE FROM Avis USING Etablissement WHERE Avis.id_avis = $1 AND Avis.id_etablissement = Etablissement.id_etablissement AND Etablissement.id_etablissement = $2 AND Etablissement.id_user = $3 RETURNING *",[id_avis, id_etablissement, id_user])
+            "DELETE FROM Avis USING Etablissement WHERE Avis.id_avis = $1 AND Avis.id_etablissement = Etablissement.id_etablissement AND Etablissement.id_etablissement = $2 AND Etablissement.id_user = $3 RETURNING *", [id_avis, id_etablissement, id_user])
         return result.rows[0]
     }
 }

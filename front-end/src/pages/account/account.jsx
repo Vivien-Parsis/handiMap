@@ -93,7 +93,11 @@ const Account = () => {
   };
 
   const handleDeleteAccount = async () => {
-    if(confirm("Etes vous sûr de supprimer votre compte ? tout donner lié a votre compte seront supprimer.")){
+    if (
+      confirm(
+        "Etes vous sûr de supprimer votre compte ? tout donner lié a votre compte seront supprimer."
+      )
+    ) {
       await axios
         .delete(`${api_url}/api/v1/users`, {
           headers: { authorization: "Bearer " + jwt_token },
@@ -306,7 +310,10 @@ const Account = () => {
                   )
                 ) {
                   return (
-                    <option value={handicap.id_handicap} key={handicap.id_handicap}>
+                    <option
+                      value={handicap.id_handicap}
+                      key={handicap.id_handicap}
+                    >
                       {handicap.nom} (type : {handicap.type})
                     </option>
                   );

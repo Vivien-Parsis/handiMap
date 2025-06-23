@@ -38,6 +38,6 @@ const handicapModel = {
     }
 }
 
-export{
+export {
     handicapModel
 }

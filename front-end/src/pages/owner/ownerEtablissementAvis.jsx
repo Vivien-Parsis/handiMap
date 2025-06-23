@@ -84,7 +84,7 @@ const OwnerEtablissementAvis = () => {
   }, [navigate, id_etablissement, nom_etablissement]);
   return (
     <div className="backgroundBlured">
-      <PageTitle title={"Handi'Map - "+nom_etablissement+ " - avis"}/>
+      <PageTitle title={"Handi'Map - " + nom_etablissement + " - avis"} />
       <LinkBar
         link="/account/etablissement"
         text="Revenir sur mes etablissements"

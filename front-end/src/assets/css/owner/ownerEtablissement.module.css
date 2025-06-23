@@ -1,69 +1,69 @@
-
 .ownerContainer {
-	display: flex;
-	align-content: center;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	flex-direction: column;
-	padding: 1em;
-	border-radius: 10px;
-	width: 60%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 1em;
+  border-radius: 10px;
+  width: 60%;
 }
 .etablissementsContainer {
-	background-color: var(--background-color-light);
-	margin: 1em 0 1em;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	align-content: center;
-	border-radius: 10px;
-	width: 100%;
+  background-color: var(--background-color-light);
+  margin: 1em 0 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  border-radius: 10px;
+  width: 100%;
 }
 .etablissementsContainer span {
-	background-color: var(--background-color-light);
-	margin: 1em 0 1em;
-	width: 30%;
+  background-color: var(--background-color-light);
+  margin: 1em 0 1em;
+  width: 30%;
 }
 .etablissementsContainer span div {
-	margin: 1em 0 1em;
+  margin: 1em 0 1em;
 }
 .etablissementsPhoto {
-	width: 30%;
+  width: 30%;
 }
 .handicapsLine {
-	margin: 0.1em 0 0.1em;
+  margin: 0.1em 0 0.1em;
 }
 .Selecthandicaps {
-	width: 99%;
-	border: none;
-	border-radius: 5px;
+  width: 99%;
+  border: none;
+  border-radius: 5px;
 }
 @media (max-width: 650px) {
-	.ownerContainer {
-		width: 98%;
-	}
-	.etablissementsContainer{
-		justify-content: center;
-	}
-	.etablissementsContainer span{
-		width: 98%;
-		margin:.2em 0;
-	}
-	.etablissementsContainer span p, .etablissementsContainer span h3{
-		margin:.4em 0;
-	}
-	.handicapsLine button{
-		margin:.1em;
-	}
-	.etablissementsPhoto{
-		width:60%;
-	}
-	.etablissementsContainer span div{
-		margin:2em 0;
-	}
-	.etablissementsContainer span div button{
-		margin:0;
-	}
+  .ownerContainer {
+    width: 98%;
+  }
+  .etablissementsContainer {
+    justify-content: center;
+  }
+  .etablissementsContainer span {
+    width: 98%;
+    margin: 0.2em 0;
+  }
+  .etablissementsContainer span p,
+  .etablissementsContainer span h3 {
+    margin: 0.4em 0;
+  }
+  .handicapsLine button {
+    margin: 0.1em;
+  }
+  .etablissementsPhoto {
+    width: 60%;
+  }
+  .etablissementsContainer span div {
+    margin: 2em 0;
+  }
+  .etablissementsContainer span div button {
+    margin: 0;
+  }
 }

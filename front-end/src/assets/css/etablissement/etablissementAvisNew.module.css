@@ -1,85 +1,87 @@
 .etablisementContainer {
-	width: 90%;
-	height: 80%;
-	background-color: var(--background-color-light);
-	border-radius: 10px;
-	display: flex;
-	align-items: stretch;
-	justify-content: space-between;
-	flex-wrap: nowrap;
+  width: 90%;
+  height: 80%;
+  background-color: var(--background-color-light);
+  border-radius: 10px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 .etablisementPhoto {
-	width: 40%;
-	height: fit-content;
+  width: 40%;
+  height: fit-content;
 }
 .etablisementContainer span {
-	width: 58%;
+  width: 58%;
 }
 .titleAndAvisContainer {
-	height: fit-content;
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	flex-wrap: nowrap;
+  height: fit-content;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 .infoContainer {
-	width: 75%;
-	display: flex;
-	align-content: flex-start;
-	flex-direction: column;
-	flex-wrap: wrap;
+  width: 75%;
+  display: flex;
+  align-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .infoContainer h2,
 .infoContainer p {
-	margin: 0.1em 0 0.1em;
+  margin: 0.1em 0 0.1em;
 }
 .avisContainer {
-	width: 25%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	align-content: center;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 .avisContainer span {
-	width: 100%;
+  width: 100%;
 }
 .handicapContainer {
-	width: 20%;
-	overflow-y: auto;
+  width: 20%;
+  overflow-y: auto;
 }
 .handicapContainer,
 .titleAndAvisContainer {
-	padding: 0.6em 0;
-	border-bottom: 1px black solid;
+  padding: 0.6em 0;
+  border-bottom: 1px black solid;
 }
 .formContainer {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .formContainer form {
-	display: flex;
-	flex-direction: column;
-	align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
 }
-.formContainer form *:not(input){
-	width: 92%;
+.formContainer form *:not(input) {
+  width: 92%;
 }
-.formContainer form *{
-	margin: 0.5em 0;
+.formContainer form * {
+  margin: 0.5em 0;
 }
 .avisCommentaire {
-	width: 90%;
-	height: 5em;
-	resize: none;
+  width: 90%;
+  height: 5em;
+  resize: none;
 }
 @media (max-width: 650px) {
-	.etablisementPhoto, .titleAndAvisContainer, .etablisementContainer span{
-		width: 98%;
-	}
-	.etablisementContainer{
-		flex-wrap: wrap;
-		justify-content: center;
-	}
+  .etablisementPhoto,
+  .titleAndAvisContainer,
+  .etablisementContainer span {
+    width: 98%;
+  }
+  .etablisementContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

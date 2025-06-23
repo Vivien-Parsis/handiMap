@@ -14,7 +14,7 @@ const EtablissementAvisNew = () => {
   const jwt_token = localStorage.getItem("token");
 
   const [searchParams] = useSearchParams();
-  const id_etablissement = searchParams.get('id_etablissement') || "";
+  const id_etablissement = searchParams.get("id_etablissement") || "";
   const [newAvis, setNewAvis] = useState({
     note: 0,
     commentaire: "",
@@ -72,7 +72,8 @@ const EtablissementAvisNew = () => {
   useEffect(() => {
     if (!id_etablissement) {
       navigate("/");
-    } else if(!(/^\d+$/.test(id_etablissement))){
+    }
+    if (!/^\d+$/.test(id_etablissement)) {
       navigate("/");
     }
     const fetchEtablissement = async () => {
@@ -110,7 +111,11 @@ const EtablissementAvisNew = () => {
 
   return (
     <div>
-      <PageTitle title={"Handi'Map - " + etablisement.nom_etablissement + " - nouveau avis"}/>
+      <PageTitle
+        title={
+          "Handi'Map - " + etablisement.nom_etablissement + " - nouveau avis"
+        }
+      />
       <TwoBtnBar />
       <div className="backgroundBluredCol">
         <LinkBar
@@ -121,7 +126,12 @@ const EtablissementAvisNew = () => {
         />
         <div className={styles.etablisementContainer}>
           <img
-            alt={"etablissement" + etablisement.type_etablissement + " " + etablisement.nom_etablissement}
+            alt={
+              "etablissement" +
+              etablisement.type_etablissement +
+              " " +
+              etablisement.nom_etablissement
+            }
             className={styles.etablisementPhoto}
             src={etablisement.photo_etablissement || etablissementPlaceholder}
           />

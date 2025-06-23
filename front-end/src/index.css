@@ -3,7 +3,7 @@
   src: url("./assets/font/Montserrat-Regular.ttf");
 }
 
-[data-theme='defaut'] {
+[data-theme="defaut"] {
   --background-color-dark: #424362;
   --background-color-light: #ebecff;
 
@@ -12,14 +12,14 @@
   --button-color-add: #4e9e58;
   --button-color-hover: #b1b1b1;
 
-  --avis-icon-color:rgb(255, 255, 51);
+  --avis-icon-color: rgb(255, 255, 51);
 
-  --font-title:'Montserrat';
+  --font-title: "Montserrat";
 
-  --grayscale-level:0;
-  --leaflet-market-brightness:1;
+  --grayscale-level: 0;
+  --leaflet-market-brightness: 1;
 }
-[data-theme='monocolor'] {
+[data-theme="monocolor"] {
   --background-color-dark: #484848;
   --background-color-light: #dddddd;
 
@@ -28,12 +28,12 @@
   --button-color-add: #a0a0a0;
   --button-color-hover: #b1b1b1;
 
-  --avis-icon-color:#ffffff;
-  
-  --font-title:Arial;
+  --avis-icon-color: #ffffff;
 
-  --grayscale-level:1;
-  --leaflet-market-brightness:0;
+  --font-title: Arial;
+
+  --grayscale-level: 1;
+  --leaflet-market-brightness: 0;
 }
 
 body {
@@ -46,14 +46,15 @@ body {
   min-height: 100vh;
 }
 
-body *{
+body * {
   font-family: Arial, Helvetica, sans-serif;
 }
-h1, h2, h3{
+h1,
+h2,
+h3 {
   font-family: var(--font-title), Arial, Helvetica, sans-serif;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-

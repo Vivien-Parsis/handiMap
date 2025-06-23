@@ -1,88 +1,90 @@
 .etablisementContainer {
-	width: 90%;
-	height: 80%;
-	background-color: var(--background-color-light);
-	border-radius: 10px;
-	display: flex;
-	align-items: stretch;
-	justify-content: space-between;
-	flex-wrap: nowrap;
+  width: 90%;
+  height: 80%;
+  background-color: var(--background-color-light);
+  border-radius: 10px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 .etablisementPhoto {
-	width: 40%;
-	height: fit-content;
+  width: 40%;
+  height: fit-content;
 }
 .etablisementContainer span {
-	width: 58%;
+  width: 58%;
 }
 .titleAndAvisContainer {
-	height: fit-content;
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	flex-wrap: nowrap;
+  height: fit-content;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 .infoContainer {
-	width: 75%;
-	display: flex;
-	align-content: flex-start;
-	flex-direction: column;
-	flex-wrap: wrap;
+  width: 75%;
+  display: flex;
+  align-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .infoContainer h2,
 .infoContainer p {
-	margin: 0.1em 0 0.1em;
+  margin: 0.1em 0 0.1em;
 }
 .avisContainer {
-	width: 25%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	align-content: center;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 .avisContainer span {
-	width: 100%;
+  width: 100%;
 }
 .handicapContainer {
-	height: 20%;
-	overflow-y: auto;
+  height: 20%;
+  overflow-y: auto;
 }
 .handicapContainer,
 .titleAndAvisContainer {
-	padding: 0.6em 0;
-	border-bottom: 1px black solid;
+  padding: 0.6em 0;
+  border-bottom: 1px black solid;
 }
 
 .avisListItem {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	padding: 1em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1em 0;
 }
 .avisListItem div span {
-	width: 100%;
-	display: block;
+  width: 100%;
+  display: block;
 }
 .avisListItem div {
-	width: 80%;
+  width: 80%;
 }
 .avisListItem img {
-	width: 30%;
+  width: 30%;
 }
 .avisListContainer {
-	height: 50%;
-	margin-top: 1em;
-	padding-right: 0.5em;
-	overflow-y: auto;
+  height: 50%;
+  margin-top: 1em;
+  padding-right: 0.5em;
+  overflow-y: auto;
 }
 @media (max-width: 650px) {
-	.etablisementPhoto, .titleAndAvisContainer, .etablisementContainer span{
-		width: 98%;
-	}
-	.etablisementContainer{
-		flex-wrap: wrap;
-		justify-content: center;
-	}
+  .etablisementPhoto,
+  .titleAndAvisContainer,
+  .etablisementContainer span {
+    width: 98%;
+  }
+  .etablisementContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

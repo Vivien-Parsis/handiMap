@@ -33,7 +33,7 @@
 }
 .linkBar a {
   text-decoration: none;
-  padding-left: .2em;
+  padding-left: 0.2em;
 }
 .linkBar a:hover {
   color: black;
@@ -51,8 +51,9 @@
 .leaflet-popup-tip {
   background-color: var(--background-color-light);
 }
-.leaflet-marker-icon{
-  filter: grayscale(var(--grayscale-level)) brightness(var(--leaflet-market-brightness));
+.leaflet-marker-icon {
+  filter: grayscale(var(--grayscale-level))
+    brightness(var(--leaflet-market-brightness));
 }
 h2 {
   font-size: 38px;
