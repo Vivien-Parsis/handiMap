@@ -1,3 +1,4 @@
 .vscode
 .secrets
 log/
+backup_db/
