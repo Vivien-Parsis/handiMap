@@ -116,7 +116,7 @@ const OwnerAddEtablissement = () => {
             required
           />
           <label htmlFor="coordonnees">
-            coordonnees (format : "nombre;nombre")
+            coordonnees (format : "lat;lon")
           </label>
           <input
             type="text"

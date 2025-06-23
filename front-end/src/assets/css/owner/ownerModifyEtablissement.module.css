@@ -36,3 +36,15 @@
 .addButton:hover {
   background-color: var(--button-color-hover);
 }
+
+@media (max-width: 650px) {
+	.FormModifyEtablissement {
+	  width: 98%;
+	}
+	.FormModifyEtablissement form {
+	  width: 70%;
+	}
+	.FormModifyEtablissement form input {
+	  width: 100%;
+	}
+  }
