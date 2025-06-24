@@ -32,3 +32,8 @@
   border: 2px black;
   border-radius: 5px;
 }
+@media (max-width: 650px) {
+	.twoBtnBar a img{
+    width: 40px;
+  }
+}
