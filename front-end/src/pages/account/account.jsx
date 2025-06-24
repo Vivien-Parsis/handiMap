@@ -88,7 +88,7 @@ const Account = () => {
 	const handleDeleteAccount = async () => {
 		if (
 			confirm(
-				"Etes vous sûr de supprimer votre compte ? tout donner lié a votre compte seront supprimer."
+				"Etes vous sûr de supprimer votre compte ? toutes données lié a votre compte seront supprimer."
 			)
 		) {
 			await axios
