@@ -7,5 +7,8 @@ export default defineConfig({
     server: {
         port: 80
     },
+    preview: {
+        port: 80
+    },
     base: '/'
 });
