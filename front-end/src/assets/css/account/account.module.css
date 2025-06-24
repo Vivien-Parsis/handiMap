@@ -48,7 +48,7 @@
 	width: 100%;
 }
 
-@media (max-width: 650px) {
+@media only screen and (max-width: 650px) {
 	.accountContainer {
 		width: 90%;
 	}

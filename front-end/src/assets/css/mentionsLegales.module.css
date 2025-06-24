@@ -1,13 +1,13 @@
 .mentionsLegales {
-  background-color: var(--background-color-light);
-  margin: 2em 0;
-  padding: 0.5em;
-  border-radius: 10px;
-  width: 80%;
+	background-color: var(--background-color-light);
+	margin: 2em 0;
+	padding: 0.5em;
+	border-radius: 10px;
+	width: 80%;
 }
 
-@media (max-width: 650px) {
-  .mentionsLegales {
-    width: 95%;
-  }
+@media only screen and (max-width: 650px) {
+	.mentionsLegales {
+		width: 95%;
+	}
 }
