@@ -23,6 +23,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 //route
 app.use('/api/v1', apiRouter)
 
+app.get('/', (req, res) => {
+    res.redirect('/api-docs')
+})
+
 app.use((req, res, next) => {
     return res.status(404).send({ "message": "page not found" })
 })
