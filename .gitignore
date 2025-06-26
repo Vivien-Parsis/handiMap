@@ -2,3 +2,4 @@
 .secrets
 log/
 backup_db/
+secrets/
