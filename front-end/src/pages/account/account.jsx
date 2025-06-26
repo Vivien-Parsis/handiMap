@@ -265,7 +265,7 @@ const Account = () => {
 				<ul>
 					{userHandicaps.map((value) => {
 						return (
-							<li key={value.id_user_handicap}>
+							<li key={value.id_handicap}>
 								{value.nom} | type : {value.type}{" "}
 								<button
 									className="deleteButton"
