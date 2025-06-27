@@ -35,18 +35,17 @@ CREATE TABLE avis (
     CONSTRAINT fk_avis_etab FOREIGN KEY (id_etablissement) REFERENCES etablissement(id_etablissement) ON DELETE CASCADE
 );
 CREATE TABLE accessibilite (
-    id_accessibilite SERIAL PRIMARY KEY,
     id_etablissement INTEGER NOT NULL,
     id_handicap INTEGER NOT NULL,
-    CONSTRAINT uq_accessibilite UNIQUE (id_etablissement, id_handicap),
+    CONSTRAINT pk_accessibilite PRIMARY KEY (id_etablissement, id_handicap),
     CONSTRAINT fk_access_etab FOREIGN KEY (id_etablissement) REFERENCES etablissement(id_etablissement) ON DELETE CASCADE,
     CONSTRAINT fk_access_handicap FOREIGN KEY (id_handicap) REFERENCES handicap(id_handicap) ON DELETE CASCADE
 );
+
 CREATE TABLE user_handicap (
-    id_user_handicap SERIAL PRIMARY KEY,
     id_user INTEGER NOT NULL,
     id_handicap INTEGER NOT NULL,
-    CONSTRAINT uq_user_handicap UNIQUE (id_user, id_handicap),
+    CONSTRAINT pk_user_handicap PRIMARY KEY (id_user, id_handicap),
     CONSTRAINT fk_user_handicap_user FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
     CONSTRAINT fk_user_handicap_handicap FOREIGN KEY (id_handicap) REFERENCES handicap(id_handicap) ON DELETE CASCADE
 );

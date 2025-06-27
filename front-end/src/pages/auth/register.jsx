@@ -11,6 +11,7 @@ const Register = () => {
     email: "",
     password: "",
     password_confirmation: "",
+    rgpd: "",
   });
 
   const [error, setError] = useState(null);
@@ -19,7 +20,8 @@ const Register = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.type == "checkbox" ? e.target.checked : e.target.value,
     });
   };
 
@@ -96,7 +98,13 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <input type="checkbox" required name="rgpd" id="rgpd" />
+          <input
+            type="checkbox"
+            required
+            name="rgpd"
+            id="rgpd"
+            onChange={handleChange}
+          />
           <label htmlFor="rgpd">
             J’ai lu et j’accepte la{" "}
             <Link to="/mentionslegales">politique de confidentialité</Link>
