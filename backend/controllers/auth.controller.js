@@ -30,7 +30,8 @@ const register = async (req, res) => {
         email: vine.string().email(),
         password: vine.string().minLength(12).maxLength(30).regex(/[A-Z]/).regex(/[a-z]/).regex(/\d/).regex(/[^a-zA-Z0-9]/).confirmed().ascii(),
         nom: vine.string().minLength(1).maxLength(50).regex(/^[a-zA-Z]+$/),
-        prenom: vine.string().minLength(1).maxLength(50).regex(/^[a-zA-Z]+$/)
+        prenom: vine.string().minLength(1).maxLength(50).regex(/^[a-zA-Z]+$/),
+        rgpd: vine.accepted()
     })
 
     const currentUser = {
@@ -38,9 +39,9 @@ const register = async (req, res) => {
         password_confirmation: req.body.password_confirmation,
         email: req.body.email,
         nom: req.body.nom,
-        prenom: req.body.prenom
+        prenom: req.body.prenom,
+        rgpd: req.body.rgpd
     }
-
     try {
         const validator = vine.compile(schema)
         await validator.validate(currentUser)
@@ -49,7 +50,7 @@ const register = async (req, res) => {
             const salt = await bcrypt.genSalt(10)
             const hashedPassword = await bcrypt.hash(currentUser.password, salt)
             const newUser = await userModel.create({ email: currentUser.email, passwordHash: hashedPassword, role: 'user', nom: currentUser.nom, prenom: currentUser.prenom })
-            const token = generateToken({ role: newUser.role, id: newUser.id_user, email: newUser.email })
+            const token = generateToken(newUser)
             return res.status(201).json({ token })
         } else {
             return res.status(409).json({ message: 'utilisateur deja existant' })
