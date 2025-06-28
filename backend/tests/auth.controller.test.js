@@ -27,6 +27,7 @@ describe('Auth Routes', () => {
                 email: 'john@example.com',
                 password: 'StrongPass123!',
                 password_confirmation: 'StrongPass123!',
+                rgpd:true
             }
             userModel.findByEmail.mockResolvedValue(null)
             userModel.create.mockResolvedValue(mockUser)
@@ -46,7 +47,8 @@ describe('Auth Routes', () => {
                 password: 'StrongPass123!',
                 password_confirmation: 'StrongPass123!',
                 nom: 'Doe',
-                prenom: 'Jane'
+                prenom: 'Jane',
+                rgpd:true
             }
             userModel.findByEmail.mockResolvedValue({ id_user: 1 })
 
