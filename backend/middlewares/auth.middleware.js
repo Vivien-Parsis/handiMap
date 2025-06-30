@@ -38,11 +38,15 @@ const checkOwnerRouteJwt = async (req, res, next) => {
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
         console.log(decoded, userSearch)
-        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email && (userSearch.role == "owner" || userSearch.role == "admin")) {
-            req.user = decoded
-            next()
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email) {
+            if (userSearch.role == "owner" || userSearch.role == "admin"){
+                req.user = decoded
+                next()
+            }else{
+                return res.status(403).send({ "message": "user does not have required role" })
+            }
         } else {
-            return res.status(403).send({ "message": "forbidden: user does not have required role" })
+            return res.status(403).send({ "message": "incorrect jwt" })
         }
     } catch (err) {
         return res.status(403).send({ "message": "error while decode or search for token", error: err })
@@ -61,11 +65,16 @@ const checkAdminRouteJwt = async (req, res, next) => {
         const token = authHeader.split(' ')[1]
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email && userSearch.role == "admin") {
-            req.user = decoded
-            next()
+        console.log(decoded, userSearch)
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email) {
+            if (userSearch.role == "admin") {
+                req.user = decoded
+                next()
+            } else {
+                return res.status(403).send({ "message": "user does not have required role" })
+            }
         } else {
-            return res.status(403).send({ "message": "forbidden: user does not have required role" })
+            return res.status(403).send({ "message": "incorrect jwt" })
         }
     } catch (err) {
         return res.status(403).send({ "message": "error while decode or search for token", error: err })
