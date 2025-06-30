@@ -37,7 +37,6 @@ const checkOwnerRouteJwt = async (req, res, next) => {
         const token = authHeader.split(' ')[1]
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        console.log(decoded, userSearch)
         if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email) {
             if (userSearch.role == "owner" || userSearch.role == "admin"){
                 req.user = decoded
@@ -65,7 +64,6 @@ const checkAdminRouteJwt = async (req, res, next) => {
         const token = authHeader.split(' ')[1]
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        console.log(decoded, userSearch)
         if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email) {
             if (userSearch.role == "admin") {
                 req.user = decoded

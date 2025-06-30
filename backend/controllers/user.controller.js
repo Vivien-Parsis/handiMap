@@ -165,7 +165,6 @@ const deleteUserById = async (req, res) => {
 }
 const updateUserNomPrenom = async (req, res) => {
     const newInfo = { nom: req.body.nom, prenom: req.body.prenom }
-    console.log(newInfo)
     try {
         const validator = vine.compile(
             vine.object({
