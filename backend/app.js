@@ -8,7 +8,6 @@ import { corsMiddleware } from "./middlewares/cors.middleware.js"
 
 const app = express()
 app.disable("x-powered-by")
-//middleware
 app.use(helmetMiddleware)
 
 app.use(corsMiddleware)
@@ -20,7 +19,6 @@ if (consoleLogger && writtenLogger) {
 }
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
-//route
 app.use('/api/v1', apiRouter)
 
 app.get('/', (req, res) => {

@@ -100,6 +100,7 @@ const authRouter = Router()
  */
 
 authRouter.post("/login", rateLimiter, login)
+
 authRouter.post("/register", rateLimiter, register)
 
 export {
