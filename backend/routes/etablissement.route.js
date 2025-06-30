@@ -78,7 +78,9 @@ const etablissementRouter = Router()
  */
 
 etablissementRouter.get("/", getAllEtablissements)
+
 etablissementRouter.get("/with-relations", getEtablissementWithAllJoin)
+
 etablissementRouter.get("/all-with-relations", getAllEtablissementWithAllJoin)
 
 export {
