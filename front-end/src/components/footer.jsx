@@ -7,10 +7,10 @@ const Footer = () => {
     localStorage.setItem("theme", e.target.value);
     document.documentElement.setAttribute("data-theme", e.target.value);
   };
+
   return (
     <footer style={styles}>
       <Link to="/MentionsLegales">Mention légales</Link>
-
       <form>
         <label htmlFor="theme">Changer de thème : </label>
         <select
