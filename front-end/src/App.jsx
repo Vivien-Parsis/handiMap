@@ -34,27 +34,43 @@ function App() {
     <>
       {showHeader()}
       <Routes>
-        <Route path="/login" element={
-          <>
-            <PageTitle title="Handi'Map - Se connecter"/>
-            <Login />
-          </>} />
-        <Route path="/register" element={
-          <>
-            <PageTitle title="Handi'Map - S'inscrire"/>
-            <Register />
-          </>} />
-        <Route path="/" element={
-          <>
-            <PageTitle title="Handi'Map - Carte"/>
-            <Maps />
-          </>}/>
+        <Route
+          path="/login"
+          element={
+            <>
+              <PageTitle title="Handi'Map - Se connecter" />
+              <Login />
+            </>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <>
+              <PageTitle title="Handi'Map - S'inscrire" />
+              <Register />
+            </>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <>
+              <PageTitle title="Handi'Map - Carte" />
+              <Maps />
+            </>
+          }
+        />
         <Route path="/etablissement" element={<Etablissement />} />
-        <Route path="/MentionsLegales" element={
-          <>
-            <PageTitle title="Handi'Map - Mentions légales"/>
-            <MentionsLegales />
-          </>} />
+        <Route
+          path="/MentionsLegales"
+          element={
+            <>
+              <PageTitle title="Handi'Map - Mentions légales" />
+              <MentionsLegales />
+            </>
+          }
+        />
         <Route
           path="/etablissement/avis/new"
           element={
@@ -67,7 +83,7 @@ function App() {
           path="/account"
           element={
             <ProtectedRoute>
-              <PageTitle title="Handi'Map - Mon compte"/>
+              <PageTitle title="Handi'Map - Mon compte" />
               <Account />
             </ProtectedRoute>
           }
@@ -76,7 +92,7 @@ function App() {
           path="/account/avis"
           element={
             <ProtectedRoute>
-              <PageTitle title="Handi'Map - Mes avis"/>
+              <PageTitle title="Handi'Map - Mes avis" />
               <AccountAvis />
             </ProtectedRoute>
           }
@@ -85,7 +101,7 @@ function App() {
           path="/account/etablissement"
           element={
             <ProtectedOwnerRoute>
-              <PageTitle title="Handi'Map - Mes etablissements"/>
+              <PageTitle title="Handi'Map - Mes etablissements" />
               <OwnerEtablissement />
             </ProtectedOwnerRoute>
           }
@@ -94,7 +110,7 @@ function App() {
           path="/account/etablissement/add"
           element={
             <ProtectedOwnerRoute>
-              <PageTitle title="Handi'Map - Ajouter un etablissement"/>
+              <PageTitle title="Handi'Map - Ajouter un etablissement" />
               <OwnerAddEtablissement />
             </ProtectedOwnerRoute>
           }
@@ -103,7 +119,7 @@ function App() {
           path="/account/etablissement/modify"
           element={
             <ProtectedOwnerRoute>
-              <PageTitle title="Handi'Map - Modifier un etablissement"/>
+              <PageTitle title="Handi'Map - Modifier un etablissement" />
               <OwnerModifyEtablissement />
             </ProtectedOwnerRoute>
           }
@@ -116,11 +132,15 @@ function App() {
             </ProtectedOwnerRoute>
           }
         />
-        <Route path="*" element={
-          <>
-            <PageTitle title="Handi'Map - Erreur 404"/>
-            <Error404 />
-          </>}/>
+        <Route
+          path="*"
+          element={
+            <>
+              <PageTitle title="Handi'Map - Erreur 404" />
+              <Error404 />
+            </>
+          }
+        />
       </Routes>
 
       <Footer />

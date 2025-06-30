@@ -115,9 +115,7 @@ const OwnerAddEtablissement = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="coordonnees">
-            coordonnees (format : "lat;lon")
-          </label>
+          <label htmlFor="coordonnees">coordonnees (format : "lat;lon")</label>
           <input
             type="text"
             id="coordonnees"
