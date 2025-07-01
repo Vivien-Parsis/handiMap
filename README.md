@@ -13,7 +13,7 @@ Application web avec serveur frontend React et serveur backend en node et expres
 
 - git
 - node (>=22) et npm, ou Docker
-- Une base de donnée postgreSQL externe
+- Base de données postgresql externe (un fichier schema.sql est trouvable dans le repo pour initialisé les tables et relations)
 - Un espace cloudinary. [Tutoriel pour le config et avoir les variables d'env](https://cloudinary.com/documentation/getting_started_with_cloudinary_node_tutorial)
 
 ## Instruction d'installation
@@ -42,7 +42,7 @@ NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 
 - Dans votre base de données PostegreSQL externe, utiliser le fichier `schema.sql` pour creer les tables et relations
 
-- dans le répertoire projectn lance le service : `docker compose up`
+- dans le répertoire lancez depuis la racine du projet le service : `docker compose up -d`
 
 ### Option 2 : En local avec Node.js
 
@@ -66,12 +66,16 @@ CLOUDINARY_API_SECRET={your_secret_here}
 NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 ```
 
-- Dans votre base de données PostegreSQL externe, utiliser le fichier `schema.sql` pour creer les tables et relations
+- creer un fichier .env dans le frontend :
+
+```none
+VITE_API_URL={backend url}
+```
 
 - Installer et lancer le backend :
 
 ```bash
-  cd ../backend
+  cd backend
   npm install
   npm run start
 ```
@@ -79,7 +83,7 @@ NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 - Installer et lancer le frontend :
 
 ```bash
-  cd ../front-end
+  cd front-end
   npm install
   npm run preview
 ```
@@ -100,10 +104,28 @@ Voici la procédure recommandée :
 - Serveur avec :
   - Docker
   - Docker Compose
+  - git
 - Accès SSH à la machine (si hébergement distant)
 - Nom de domaine configuré (optionnel)
+- Base de données postgresql externe (un fichier schema.sql est trouvable dans le repo pour initialisé les tables et relations)
+- Un espace cloudinary. [Tutoriel pour le config et avoir les variables d'env](https://cloudinary.com/documentation/getting_started_with_cloudinary_node_tutorial)
 
-### Variables d’environnement (à créer dans un fichier `.env` dans `/backend/`)
+### Déploiement avec Docker
+
+- se connecter en ssh
+
+```bash
+ssh user@your-server
+```
+
+- cloner le dépot :
+
+```bash
+   git clone https://github.com/Vivien-Parsis/handiMap
+   cd handiMap
+```
+
+- Variables d’environnement (à créer dans un fichier `.env` dans `handimap/backend/`)
 
 ```none
 JWT_SECRET={your_secret_here}
@@ -114,13 +136,10 @@ CLOUDINARY_API_SECRET={your_secret_here}
 NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 ```
 
-### Déploiement avec Docker
+- creer un fichier .env dans le frontend :
 
-- se connecter en ssh
-
-```bash
-ssh user@your-server
-cd handiMap
+```none
+VITE_API_URL={backend url}
 ```
 
 - Lancer l’application
@@ -131,7 +150,7 @@ docker compose up -d
 
 - Vérifier que tout fonctionne
 
-Frontend : `http://votre-domaine-ou-ip:3000`
+Frontend : `http://votre-domaine-ou-ip`
 
 Backend : `http://votre-domaine-ou-ip:4000`
 
