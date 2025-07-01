@@ -90,7 +90,7 @@ VITE_API_URL={backend url}
 
 ## Adresse
 
-Frontend : `http://votre-domaine-ou-ip:3000`
+Frontend : `http://votre-domaine-ou-ip`
 
 Backend : `http://votre-domaine-ou-ip:4000`
 
