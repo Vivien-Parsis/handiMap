@@ -256,7 +256,7 @@ const Account = () => {
           Supprimer mon compte
         </button>
         <h3>Mes handicaps</h3>
-        <ul>
+        <ul className={styles.handicapList}>
           {userHandicaps.map((value) => {
             return (
               <li key={value.id_handicap}>
