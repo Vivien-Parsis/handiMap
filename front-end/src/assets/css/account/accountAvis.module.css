@@ -21,7 +21,7 @@
 	padding: 0;
 }
 .avisContainer li {
-	margin: 1em;
+	margin: 1em 0;
 }
 .accountContainer li div {
 	display: flex;
@@ -35,7 +35,7 @@
 }
 .avisNotice {
 	font-style: italic;
-	font-size: 0.8em;
+	font-size: 0.9em;
 }
 .deleteAvis {
 	background-color: var(--button-color-delete);
@@ -52,6 +52,6 @@
 }
 @media only screen and (max-width: 650px) {
 	.accountContainer {
-		width: 90%;
+		width: 97%;
 	}
 }
