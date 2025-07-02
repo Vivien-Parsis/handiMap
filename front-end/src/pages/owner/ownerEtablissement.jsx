@@ -255,10 +255,12 @@ const OwnerEtablissement = () => {
                       </p>
                     );
                   })}
-                  <label htmlFor="addHandicap">Rajouter un handicape</label>
+                  <label htmlFor={"addHandicap" + et.id_etablissement}>
+                    Rajouter un handicape
+                  </label>
                   <select
                     onChange={handleChangeSelectAddHandicaps}
-                    id="addHandicap"
+                    id={"addHandicap" + et.id_etablissement}
                     value={newHandicap}
                     className={styles.Selecthandicaps}
                   >
