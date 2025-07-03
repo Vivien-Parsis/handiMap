@@ -28,7 +28,7 @@ jest.unstable_mockModule('../middlewares/auth.middleware.js', () => ({
         req.user = {
             id_user: 1,
             role: 'owner',
-            email: 'test@example.com'
+            mail: 'test@example.com'
         }
         next()
     },
@@ -36,7 +36,7 @@ jest.unstable_mockModule('../middlewares/auth.middleware.js', () => ({
         req.user = {
             id_user: 1,
             role: 'user',
-            email: 'test@example.com'
+            mail: 'test@example.com'
         }
         next()
     },
@@ -44,7 +44,7 @@ jest.unstable_mockModule('../middlewares/auth.middleware.js', () => ({
         req.user = {
             id_user: 1,
             role: 'admin',
-            email: 'test@example.com'
+            mail: 'test@example.com'
         }
         next()
     }

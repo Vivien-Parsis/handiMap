@@ -79,7 +79,7 @@ const Etablissement = () => {
   const showNewAvisLink = () => {
     try {
       const decode = jwtDecode(jwt_token);
-      if (decode.role && decode.email && decode.id_user) {
+      if (decode.role && decode.mail && decode.id_user) {
         return (
           <Link
             to={{

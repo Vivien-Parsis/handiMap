@@ -8,7 +8,7 @@ const Register = () => {
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
-    email: "",
+    mail: "",
     password: "",
     password_confirmation: "",
     rgpd: "",
@@ -68,12 +68,12 @@ const Register = () => {
             required
           />
 
-          <label htmlFor="email">Adresse email</label>
+          <label htmlFor="mail">Adresse mail</label>
           <input
             type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+            id="mail"
+            name="mail"
+            value={formData.mail}
             onChange={handleChange}
             required
           />

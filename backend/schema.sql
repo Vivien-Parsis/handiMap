@@ -4,7 +4,7 @@ CREATE TABLE users (
     id_user SERIAL PRIMARY KEY,
     nom VARCHAR(50),
     prenom VARCHAR(50),
-    email VARCHAR(100) UNIQUE NOT NULL,
+    mail VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
     role role_type DEFAULT 'user'
 );

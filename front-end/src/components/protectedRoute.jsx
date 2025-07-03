@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
   }
   try {
     const decoded = jwtDecode(auth);
-    if (!decoded.role || !decoded.email || !decoded.id_user) {
+    if (!decoded.role || !decoded.mail || !decoded.id_user) {
       alert("token jwt invalide");
       localStorage.removeItem("token");
       return <Navigate to="/login" />;

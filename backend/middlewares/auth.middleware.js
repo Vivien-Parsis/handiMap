@@ -14,7 +14,7 @@ const checkRouteJwt = async (req, res, next) => {
         const token = authHeader.split(' ')[1]
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email) {
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.mail == decoded.mail) {
             req.user = decoded
             next()
         } else {
@@ -37,11 +37,11 @@ const checkOwnerRouteJwt = async (req, res, next) => {
         const token = authHeader.split(' ')[1]
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email) {
-            if (userSearch.role == "owner" || userSearch.role == "admin"){
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.mail == decoded.mail) {
+            if (userSearch.role == "owner" || userSearch.role == "admin") {
                 req.user = decoded
                 next()
-            }else{
+            } else {
                 return res.status(403).send({ "message": "user does not have required role" })
             }
         } else {
@@ -64,7 +64,7 @@ const checkAdminRouteJwt = async (req, res, next) => {
         const token = authHeader.split(' ')[1]
         const decoded = jwt.verify(token, jwt_secret)
         const userSearch = await userModel.findById(decoded.id_user)
-        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.email == decoded.email) {
+        if (userSearch.id_user == decoded.id_user && userSearch.role == decoded.role && userSearch.mail == decoded.mail) {
             if (userSearch.role == "admin") {
                 req.user = decoded
                 next()

@@ -247,7 +247,7 @@ const Account = () => {
             </button>
             {getFormModifyName()}
           </li>
-          <li>{userInfo.email}</li>
+          <li>{userInfo.mail}</li>
         </ul>
         <button className="linkButton" onClick={() => disconnet()}>
           me deconnecter

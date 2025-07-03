@@ -1,15 +1,15 @@
 import { pool } from "../config/db.config.js"
 
 const userModel = {
-	create: async ({ email, passwordHash, role = 'user', nom, prenom }) => {
+	create: async ({ mail, passwordHash, role = 'user', nom, prenom }) => {
 		const result = await pool.query(
-			'INSERT INTO users (email, password, role, nom, prenom) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-			[email, passwordHash, role, nom, prenom]
+			'INSERT INTO users (mail, password, role, nom, prenom) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+			[mail, passwordHash, role, nom, prenom]
 		)
 		return result.rows[0]
 	},
-	findByEmail: async (email) => {
-		const result = await pool.query('SELECT * FROM users WHERE email = $1', [email])
+	findByMail: async (mail) => {
+		const result = await pool.query('SELECT * FROM users WHERE mail = $1', [mail])
 		return result.rows[0]
 	},
 	findById: async (id) => {
