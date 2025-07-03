@@ -10,7 +10,7 @@ const ProtectedOwnerRoute = ({ children }) => {
   try {
     const decode = jwtDecode(auth);
     if (decode) {
-      if (!decode.role || !decode.id_user || !decode.email) {
+      if (!decode.role || !decode.id_user || !decode.mail) {
         alert("format jwt incorect");
         localStorage.removeItem("token");
         return <Navigate to="/login" />;

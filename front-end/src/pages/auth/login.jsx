@@ -6,7 +6,7 @@ import styles from "../../assets/css/auth/authForm.module.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: "",
+    mail: "",
     password: "",
   });
   const [error, setError] = useState(null);
@@ -43,12 +43,12 @@ const Login = () => {
         {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleLogin} className={styles.formLogin}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="mail">Email</label>
           <input
             type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+            id="mail"
+            name="mail"
+            value={formData.mail}
             onChange={handleChange}
             required
           />

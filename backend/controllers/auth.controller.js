@@ -5,14 +5,14 @@ import vine, { errors } from "@vinejs/vine"
 
 const login = async (req, res) => {
     const schema = vine.object({
-        email: vine.string().email(),
+        mail: vine.string().email(),
         password: vine.string().minLength(12).maxLength(30).regex(/[A-Z]/).regex(/[a-z]/).regex(/\d/).regex(/[^a-zA-Z0-9]/).ascii(),
     })
-    const currentUser = { password: req.body.password, email: req.body.email }
+    const currentUser = { password: req.body.password, mail: req.body.mail }
     try {
         const validator = vine.compile(schema)
         await validator.validate(currentUser)
-        const user = await userModel.findByEmail(currentUser.email)
+        const user = await userModel.findByMail(currentUser.mail)
         if (!user || !(await bcrypt.compare(currentUser.password, user.password))) {
             return res.status(401).json({ message: 'Identifiants invalides' })
         }
@@ -27,7 +27,7 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
     const schema = vine.object({
-        email: vine.string().email(),
+        mail: vine.string().email(),
         password: vine.string().minLength(12).maxLength(30).regex(/[A-Z]/).regex(/[a-z]/).regex(/\d/).regex(/[^a-zA-Z0-9]/).confirmed().ascii(),
         nom: vine.string().minLength(1).maxLength(50).regex(/^[a-zA-Z]+$/),
         prenom: vine.string().minLength(1).maxLength(50).regex(/^[a-zA-Z]+$/),
@@ -37,7 +37,7 @@ const register = async (req, res) => {
     const currentUser = {
         password: req.body.password,
         password_confirmation: req.body.password_confirmation,
-        email: req.body.email,
+        mail: req.body.mail,
         nom: req.body.nom,
         prenom: req.body.prenom,
         rgpd: req.body.rgpd
@@ -45,11 +45,11 @@ const register = async (req, res) => {
     try {
         const validator = vine.compile(schema)
         await validator.validate(currentUser)
-        const userFind = await userModel.findByEmail(currentUser.email)
+        const userFind = await userModel.findByMail(currentUser.mail)
         if (!userFind) {
             const salt = await bcrypt.genSalt(10)
             const hashedPassword = await bcrypt.hash(currentUser.password, salt)
-            const newUser = await userModel.create({ email: currentUser.email, passwordHash: hashedPassword, role: 'user', nom: currentUser.nom, prenom: currentUser.prenom })
+            const newUser = await userModel.create({ mail: currentUser.mail, passwordHash: hashedPassword, role: 'user', nom: currentUser.nom, prenom: currentUser.prenom })
             const token = generateToken(newUser)
             return res.status(201).json({ token })
         } else {
