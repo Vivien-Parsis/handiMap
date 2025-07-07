@@ -5,9 +5,13 @@ services:
             - "4000:4000"
         env_file:
             - ./backend/.env
+        environment:
+            - HOST=0.0.0.0
     frontend:
         build: ./front-end
         ports:
             - "80:80"
+        env_file:
+            - ./front-end/.env
         depends_on:
             - api
