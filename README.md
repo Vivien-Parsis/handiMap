@@ -40,6 +40,12 @@ CLOUDINARY_API_SECRET={your_secret_here}
 NODE_ENV={"DEV" OR "TEST" OR "PROD"}
 ```
 
+- creer un fichier .env dans le frontend :
+
+```none
+VITE_API_URL={backend url}
+```
+
 - Dans votre base de données PostegreSQL externe, utiliser le fichier `schema.sql` pour creer les tables et relations
 
 - dans le répertoire lancez depuis la racine du projet le service : `docker compose up -d`
